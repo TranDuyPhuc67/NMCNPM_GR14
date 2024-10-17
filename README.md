@@ -1,6 +1,9 @@
 # 🌟 NHẬP MÔN CÔNG NGHỆ PHẦN MỀM - NHÓM 14 🌟
 
-![img](https://github.com/user-attachments/assets/4d6477c9-7706-4153-80b7-420c8b95919d)
+![Pudgy Penguins](https://media.giphy.com/media/0lGd2OXXHe4tFhb7Wh/giphy.gif)
+
+
+
 
 ## 🎯 **Thành viên:**
 
