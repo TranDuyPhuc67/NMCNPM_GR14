@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BlueMoon | Login</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="Login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h2
+        style="
+          color: #4c8eaf;
+          text-align: center;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        "
+      >
+        BlueMoon
+      </h2>
+
+      <form action="submit">
+        <p
+          style="
+            font-size: 14px;
+            color: #575757;
+            font-family: Arial, sans-serif;
+            margin-bottom: 4px;
+          "
+        >
+          Tài khoản
+        </p>
+        <input type="text" name="username" />
+        <p
+          style="
+            font-size: 14px;
+            color: #575757;
+            font-family: Arial, sans-serif;
+            margin-bottom: 4px;
+            margin-top: 5px;
+          "
+        >
+          Mật khẩu
+        </p>
+
+        <input type="password" name="password" />
+
+        <a
+          class="forget"
+          href="http://127.0.0.1:5500/Source/Forgot_Password.html"
+          >Quên mật khẩu?
+        </a>
+        <input type="submit" value="Đăng nhập" />
+
+        <table>
+          <tr>
+            <td>Chưa có tài khoản?</td>
+            <td>
+              <a
+                href="#"
+                style="color: #4c8eaf; font-weight: 550; text-decoration: none"
+                >Đăng ký</a
+              >
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>
