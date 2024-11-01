@@ -17,3 +17,4 @@
     <a href="register.jsp">Đăng Ký</a>
 </body>
 </html>
+<!-- đây là front end  -->
