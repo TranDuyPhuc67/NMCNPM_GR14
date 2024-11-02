@@ -34,8 +34,8 @@ html, body{
 }
 
 /* Styling cho các input */
-.login-container input[type="text"],
-.login-container input[type="password"] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #d0cece;
@@ -53,7 +53,7 @@ input[type="password"]:focus {
 }
 
 /* Nút đăng nhập */
-.login-container input[type="submit"] {
+input[type="submit"] {
   width: 100%;
   padding: 9px;
   background-color: #4c8eaf;
@@ -66,7 +66,7 @@ input[type="password"]:focus {
   cursor: pointer;
 }
 
-.login-container input[type="submit"]:hover {
+input[type="submit"]:hover {
   background-color: #599cbe;
 }
 
@@ -79,7 +79,7 @@ input[type="password"]:focus {
   text-decoration: none;
 }
 
-.login-container a:hover {
+a:hover {
   text-decoration: underline;
 }
 table {
