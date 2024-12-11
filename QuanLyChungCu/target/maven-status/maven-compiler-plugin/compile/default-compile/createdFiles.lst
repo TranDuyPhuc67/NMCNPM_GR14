@@ -1,0 +1,3 @@
+com/example/servlets/RegisterServlet.class
+com/example/servlets/LoginServlet.class
+com/example/database/DatabaseConnect.class
