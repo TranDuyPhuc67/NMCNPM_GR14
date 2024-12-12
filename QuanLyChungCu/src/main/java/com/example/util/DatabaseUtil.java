@@ -1,26 +1,30 @@
 package com.example.util;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
+import com.mysql.cj.jdbc.MysqlDataSource;
+
 public class DatabaseUtil {
+    private static final String URL = "jdbc:mysql://localhost:3306/QuanLyChungCu";
+    private static final String USER = "root";
+    private static final String PASSWORD = "19102004";
 
-    // Cấu hình kết nối đến cơ sở dữ liệu
-    private static final String URL = "jdbc:mysql://localhost:3306/QuanLyChungCu"; // Đổi tên cơ sở dữ liệu của bạn
-    private static final String USER = "root";  // Đổi tên người dùng của bạn
-    private static final String PASSWORD = "19102004";  // Đổi mật khẩu của bạn
+    // Cấu hình DataSource
+    private static DataSource dataSource;
 
-    // Kết nối tới cơ sở dữ liệu
+    static {
+        MysqlDataSource mysqlDataSource = new MysqlDataSource();
+        mysqlDataSource.setURL(URL);
+        mysqlDataSource.setUser(USER);
+        mysqlDataSource.setPassword(PASSWORD);
+        dataSource = mysqlDataSource;
+    }
+
+    // Kết nối đến cơ sở dữ liệu
     public static Connection getConnection() throws SQLException {
-        try {
-            // Nạp Driver JDBC MySQL
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            
-            // Thiết lập và trả về kết nối
-            return DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new SQLException("Không tìm thấy JDBC Driver.");
-        }
+        return dataSource.getConnection();
     }
 }
