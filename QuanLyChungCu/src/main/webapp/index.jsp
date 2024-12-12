@@ -1,201 +1,185 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-<meta charset="UTF-8">
-<title>Apartment Fee Management</title>
-<link crossorigin="anonymous"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	rel="stylesheet" />
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-	rel="stylesheet" />
-<style>
-body {
-	font-family: Arial, sans-serif;
-}
+  <head>
+    <meta charset="UTF-8">
+    <title>Apartment Fee Management</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
 
-.navbar {
-	background-color: #ececec;
-	height: 50px;
-}
+      .navbar {
+        background-color: #ececec;
+        height: 50px;
+      }
 
-.navbar-nav .nav-link {
-	color: #3f51b5;
-}
+      .navbar-nav .nav-link {
+        color: #3f51b5;
+      }
 
-.navbar-nav .nav-link.active {
-	font-weight: bold;
-	color: #3f51b5;
-}
+      .navbar-nav .nav-link.active {
+        font-weight: bold;
+        color: #3f51b5;
+      }
 
-.navbar-nav .btn {
-	margin-left: 10px;
-}
+      .navbar-nav .btn {
+        margin-left: 10px;
+      }
 
-.header {
-	text-align: center;
-	margin-top: 50px;
-}
+      .header {
+        text-align: center;
+        margin-top: 50px;
+      }
 
-.heroo {
-	position: relative;
-	background: url("Image/banner.jpg") no-repeat center center/cover;
-	height: 700px;
-	color: white;
-	text-align: center;
-	display: grid;
-	justify-items: center;
-	align-content: start;
-}
+      .heroo {
+        position: relative;
+        background: url("Image/banner.jpg") no-repeat center center/cover;
+        height: 700px;
+        color: white;
+        text-align: center;
+        display: grid;
+        justify-items: center;
+        align-content: start;
+      }
 
-.overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 0;
-}
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 0;
+      }
 
-.header {
-	position: relative;
-	z-index: 2;
-}
+      .header {
+        position: relative;
+        z-index: 2;
+      }
 
-.header h1 {
-	color: #ffffff;
-	font-weight: 800;
-}
+      .header h1 {
+        color: #ffffff;
+        font-weight: 800;
+      }
 
-.header p {
-	color: #ffffff;
-	margin-bottom: 40px;
-}
+      .header p {
+        color: #ffffff;
+        margin-bottom: 40px;
+      }
 
-.card {
-	border: 1px solid #8d8d8e;
-	border-radius: 8px;
-	color: #4f4f4f;
-	background-color: #ececec;
-	padding: 20px;
-	margin: 20px;
-	text-align: center;
-}
+      .card {
+        border: 1px solid #8d8d8e;
+        border-radius: 8px;
+        color: #4f4f4f;
+        background-color: #ececec;
+        padding: 20px;
+        margin: 20px;
+        text-align: center;
+      }
 
-.card i {
-	font-size: 24px;
-	color: #3a3d61;
-	margin-bottom: 10px;
-}
+      .card i {
+        font-size: 24px;
+        color: #3a3d61;
+        margin-bottom: 10px;
+      }
 
-.footer {
-	text-align: center;
-	padding: 20px;
-	background-color: #d3d3d3;
-}
-</style>
-</head>
-<body>
-	<nav class="navbar navbar-expand-lg navbar-light">
-		<div class="container">
-			<a class="navbar-brand" href="#"> <img
-				src="Image/Remove-bg.ai_1730519657240.png" alt="Logo" height="40" />
-			</a>
-			<button aria-controls="navbarNav" aria-expanded="false"
-				aria-label="Toggle navigation" class="navbar-toggler"
-				data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
-				<span class="navbar-toggler-icon"> </span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a aria-current="page"
-						class="nav-link active" href="#"> Home </a></li>
-					<li class="nav-item"><a class="nav-link" href="#"> About
-							us </a></li>
-					<li class="nav-item"><a class="nav-link" href="#">
-							Services </a></li>
-					<li class="nav-item"><a class="nav-link" href="#">
-							Portfolio </a></li>
-					<li class="nav-item"><a class="nav-link" href="#"> Contact
-					</a></li>
-					<li class="nav-item">
-						<%
+      .footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #d3d3d3;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="Image/Remove-bg.ai_1730519657240.png" alt="Logo" height="40" />
+        </a>
+        <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a aria-current="page" class="nav-link active" href="#"> Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"> About us </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"> Services </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"> Portfolio </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"> Contact </a>
+            </li>
+            <li class="nav-item"><%
 						String username = (String) session.getAttribute("username");
 						if (username != null) {
-						%> <a class="btn btn-outline-secondary" href="Logout">Sign
-							Out</a> <%
+						%> <a class="btn btn-outline-secondary" href="Logout">Sign Out</a><%
  } else {
- %> <a class="btn btn-outline-secondary" href="Login.jsp">Sign
-							In</a> <%
+ %> <a class="btn btn-outline-secondary" href="Login.jsp">Sign In</a><%
  }
- %>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-	<div class="heroo">
-		<div class="overlay"></div>
-		<div class="header">
-			<h1>Welcome to Apartment Fee Management</h1>
-			<p>Manage your apartment fees efficiently and effectively</p>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-lg-4">
-					<div class="card">
-						<i class="fas fa-receipt"> </i>
-						<h5 class="card-title">Quản lý khoản thu</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet nulla
-							adipiscing elit. Nunc maximus, nec ut commodo</p>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-4">
-					<div class="card">
-						<i class="fas fa-building"> </i>
-						<h5 class="card-title">Quản lý căn hộ</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet nulla
-							adipiscing elit. Nunc maximus, nec ut commodo</p>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-4">
-					<div class="card">
-						<i class="fas fa-users"> </i>
-						<h5 class="card-title">Quản lý hộ gia đình</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet nulla
-							adipiscing elit. Nunc maximus, nec ut commodo</p>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-4">
-					<div class="card">
-						<i class="fas fa-id-card"> </i>
-						<h5 class="card-title">Quản lý tạm trú</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet nulla
-							adipiscing elit. Nunc maximus, nec ut commodo</p>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-4">
-					<div class="card">
-						<i class="fas fa-plane"> </i>
-						<h5 class="card-title">Quản lý tạm vắng</h5>
-						<p class="card-text">Lorem ipsum dolor sit amet nulla
-							adipiscing elit. Nunc maximus, nec ut commodo</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="footer">
-		<p>
-			Copyright © 2024 <strong> Website </strong> . All rights reserved.
-		</p>
-	</div>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+ %> </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="heroo">
+      <div class="overlay"></div>
+      <div class="header">
+        <h1>Welcome to Apartment Fee Management</h1>
+        <p>Manage your apartment fees efficiently and effectively</p>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="card">
+              <i class="fas fa-receipt"></i>
+              <h5 class="card-title">Quản lý khoản thu</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet nulla adipiscing elit. Nunc maximus, nec ut commodo</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card">
+              <i class="fas fa-building"></i>
+              <h5 class="card-title">Quản lý căn hộ</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet nulla adipiscing elit. Nunc maximus, nec ut commodo</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card">
+              <i class="fas fa-users"></i>
+              <h5 class="card-title">Quản lý hộ gia đình</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet nulla adipiscing elit. Nunc maximus, nec ut commodo</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card">
+              <i class="fas fa-id-card"></i>
+              <h5 class="card-title">Quản lý tạm trú</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet nulla adipiscing elit. Nunc maximus, nec ut commodo</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card">
+              <i class="fas fa-plane"></i>
+              <h5 class="card-title">Quản lý tạm vắng</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet nulla adipiscing elit. Nunc maximus, nec ut commodo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p> Copyright © 2024 <strong> Website </strong> . All rights reserved. </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

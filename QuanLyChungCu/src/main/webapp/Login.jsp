@@ -53,18 +53,6 @@
         </a>
         <input type="submit" value="Đăng nhập" />
 
-        <table>
-          <tr>
-            <td>Chưa có tài khoản?</td>
-            <td>
-              <a
-                class="register-link"
-                href="./Register.html"
-                >Đăng ký</a
-              >
-            </td>
-          </tr>
-        </table>
       </form>
     </div>
   </body>
