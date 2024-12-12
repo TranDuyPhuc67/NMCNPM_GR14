@@ -8,15 +8,13 @@ public class HOGIADINH {
 		super();
 	}
 
-	public HOGIADINH(String hotenchuho) {
-		super();
-		Hotenchuho = hotenchuho;
+	public HOGIADINH(int idhogiadinh, String hotenchuho) {
+		this.Idhogiadinh = idhogiadinh;
+		this.Hotenchuho = hotenchuho;
 	}
 
-	public HOGIADINH(int idhogiadinh, String hotenchuho) {
-		super();
-		Idhogiadinh = idhogiadinh;
-		Hotenchuho = hotenchuho;
+	public HOGIADINH(String hotenchuho) {
+		this.Hotenchuho = hotenchuho;
 	}
 
 	public int getIdhogiadinh() {
@@ -24,7 +22,7 @@ public class HOGIADINH {
 	}
 
 	public void setIdhogiadinh(int idhogiadinh) {
-		Idhogiadinh = idhogiadinh;
+		this.Idhogiadinh = idhogiadinh;
 	}
 
 	public String getHotenchuho() {
@@ -32,7 +30,6 @@ public class HOGIADINH {
 	}
 
 	public void setHotenchuho(String hotenchuho) {
-		Hotenchuho = hotenchuho;
+		this.Hotenchuho = hotenchuho;
 	}
-
 }

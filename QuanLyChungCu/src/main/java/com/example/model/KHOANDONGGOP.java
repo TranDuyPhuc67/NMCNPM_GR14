@@ -1,64 +1,59 @@
 package com.example.model;
 
 public class KHOANDONGGOP {
+	private int Iddonggop;
 	private int Idhogiadinh;
-	private double Quyvinguoingheo;
-	private double QuyvibiendaoVN;
-	private double Quyvitretho;
-	private double Quytuthien;
+	private String Tenquy;
+	private double Sotien;
 
 	public KHOANDONGGOP() {
 		super();
 	}
 
-	public KHOANDONGGOP(int idhogiadinh, double quyvinguoingheo, double quyvibiendaoVN, double quyvitretho,
-			double quytuthien) {
+	public KHOANDONGGOP(int Idhogiadinh, String Tenquy, double Sotien) {
 		super();
-		Idhogiadinh = idhogiadinh;
-		Quyvinguoingheo = quyvinguoingheo;
-		QuyvibiendaoVN = quyvibiendaoVN;
-		Quyvitretho = quyvitretho;
-		Quytuthien = quytuthien;
+		this.Idhogiadinh = Idhogiadinh;
+		this.Tenquy = Tenquy;
+		this.Sotien = Sotien;
+	}
+
+	public KHOANDONGGOP(int Iddonggop, int Idhogiadinh, String Tenquy, double Sotien) {
+		super();
+		this.Iddonggop = Iddonggop;
+		this.Idhogiadinh = Idhogiadinh;
+		this.Tenquy = Tenquy;
+		this.Sotien = Sotien;
+	}
+
+	public int getIddonggop() {
+		return Iddonggop;
+	}
+
+	public void setIddonggop(int Iddonggop) {
+		this.Iddonggop = Iddonggop;
 	}
 
 	public int getIdhogiadinh() {
 		return Idhogiadinh;
 	}
 
-	public void setIdhogiadinh(int idhogiadinh) {
-		Idhogiadinh = idhogiadinh;
+	public void setIdhogiadinh(int Idhogiadinh) {
+		this.Idhogiadinh = Idhogiadinh;
 	}
 
-	public double getQuyvinguoingheo() {
-		return Quyvinguoingheo;
+	public String getTenquy() {
+		return Tenquy;
 	}
 
-	public void setQuyvinguoingheo(double quyvinguoingheo) {
-		Quyvinguoingheo = quyvinguoingheo;
+	public void setTenquy(String Tenquy) {
+		this.Tenquy = Tenquy;
 	}
 
-	public double getQuyvibiendaoVN() {
-		return QuyvibiendaoVN;
+	public double getSotien() {
+		return Sotien;
 	}
 
-	public void setQuyvibiendaoVN(double quyvibiendaoVN) {
-		QuyvibiendaoVN = quyvibiendaoVN;
+	public void setSotien(double Sotien) {
+		this.Sotien = Sotien;
 	}
-
-	public double getQuyvitretho() {
-		return Quyvitretho;
-	}
-
-	public void setQuyvitretho(double quyvitretho) {
-		Quyvitretho = quyvitretho;
-	}
-
-	public double getQuytuthien() {
-		return Quytuthien;
-	}
-
-	public void setQuytuthien(double quytuthien) {
-		Quytuthien = quytuthien;
-	}
-
 }

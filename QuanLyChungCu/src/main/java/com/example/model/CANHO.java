@@ -11,17 +11,16 @@ public class CANHO {
 		super();
 	}
 
+	public CANHO(int Idhogiadinh, String Sonha, String Loaicanho, double Dientich) {
+		this.Idhogiadinh = Idhogiadinh;
+		this.Sonha = Sonha;
+		this.Loaicanho = Loaicanho;
+		this.Dientich = Dientich;
+	}
+
 	public CANHO(int idcanho, int idhogiadinh, String sonha, String loaicanho, double dientich) {
 		super();
 		Idcanho = idcanho;
-		Idhogiadinh = idhogiadinh;
-		Sonha = sonha;
-		Loaicanho = loaicanho;
-		Dientich = dientich;
-	}
-
-	public CANHO(int idhogiadinh, String sonha, String loaicanho, double dientich) {
-		super();
 		Idhogiadinh = idhogiadinh;
 		Sonha = sonha;
 		Loaicanho = loaicanho;
@@ -32,40 +31,39 @@ public class CANHO {
 		return Idcanho;
 	}
 
-	public void setIdcanho(int idcanho) {
-		Idcanho = idcanho;
+	public void setIdcanho(int Idcanho) {
+		this.Idcanho = Idcanho;
 	}
 
 	public int getIdhogiadinh() {
 		return Idhogiadinh;
 	}
 
-	public void setIdhogiadinh(int idhogiadinh) {
-		Idhogiadinh = idhogiadinh;
+	public void setIdhogiadinh(int Idhogiadinh) {
+		this.Idhogiadinh = Idhogiadinh;
 	}
 
 	public String getSonha() {
 		return Sonha;
 	}
 
-	public void setSonha(String sonha) {
-		Sonha = sonha;
+	public void setSonha(String Sonha) {
+		this.Sonha = Sonha;
 	}
 
 	public String getLoaicanho() {
 		return Loaicanho;
 	}
 
-	public void setLoaicanho(String loaicanho) {
-		Loaicanho = loaicanho;
+	public void setLoaicanho(String Loaicanho) {
+		this.Loaicanho = Loaicanho;
 	}
 
 	public double getDientich() {
 		return Dientich;
 	}
 
-	public void setDientich(double dientich) {
-		Dientich = dientich;
+	public void setDientich(double Dientich) {
+		this.Dientich = Dientich;
 	}
-
 }

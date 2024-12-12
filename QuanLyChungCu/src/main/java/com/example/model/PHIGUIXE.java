@@ -1,43 +1,44 @@
 package com.example.model;
 
+import java.math.BigDecimal;
+
 public class PHIGUIXE {
-	private int Idhogiadinh;
-	private double Phixemay;
-	private double Phioto;
+    private Integer Idhogiadinh; 
+    private BigDecimal Phixemay;  
+    private BigDecimal Phioto;    
 
-	public PHIGUIXE() {
-		super();
-	}
+    public PHIGUIXE() {
+        super();
+    }
 
-	public PHIGUIXE(int idhogiadinh, double phixemay, double phioto) {
-		super();
-		Idhogiadinh = idhogiadinh;
-		Phixemay = phixemay;
-		Phioto = phioto;
-	}
+    public PHIGUIXE(Integer idhogiadinh, BigDecimal phixemay, BigDecimal phioto) {
+        super();
+        Idhogiadinh = idhogiadinh;
+        Phixemay = phixemay;
+        Phioto = phioto;
+    }
 
-	public int getIdhogiadinh() {
-		return Idhogiadinh;
-	}
+    public Integer getIdhogiadinh() {
+        return Idhogiadinh;
+    }
 
-	public void setIdhogiadinh(int idhogiadinh) {
-		Idhogiadinh = idhogiadinh;
-	}
+    public void setIdhogiadinh(Integer idhogiadinh) {
+        Idhogiadinh = idhogiadinh;
+    }
 
-	public double getPhixemay() {
-		return Phixemay;
-	}
+    public BigDecimal getPhixemay() {
+        return Phixemay;
+    }
 
-	public void setPhixemay(double phixemay) {
-		Phixemay = phixemay;
-	}
+    public void setPhixemay(BigDecimal phixemay) {
+        Phixemay = phixemay;
+    }
 
-	public double getPhioto() {
-		return Phioto;
-	}
+    public BigDecimal getPhioto() {
+        return Phioto;
+    }
 
-	public void setPhioto(double phioto) {
-		Phioto = phioto;
-	}
-
+    public void setPhioto(BigDecimal phioto) {
+        Phioto = phioto;
+    }
 }
