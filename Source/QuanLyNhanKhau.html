@@ -56,6 +56,7 @@
       .table th,
       .table td {
         text-align: center;
+        vertical-align: middle;
       }
       .table .text-success {
         color: green;
@@ -81,6 +82,16 @@
       .table thead tr th {
         background-color: #3790e9 !important; /* Thay đổi màu nền của thead */
         color: #eee;
+        vertical-align: middle;
+        font-size: 13px;
+      }
+      .table tbody tr td {
+        vertical-align: middle;
+        font-size: 13px;
+      }
+      .small-text {
+        font-size: 14px;
+        font-style: italic;
       }
     </style>
   </head>
@@ -144,12 +155,86 @@
         <h2>Quản lý nhân khẩu</h2>
         <p class="pp">
           Cung cấp công cụ để theo dõi và tổ chức thông tin chi tiết về các nhân
-          khẩu trong căn hộ.
+          khẩu trong hộ gia đình.
         </p>
+        <!-- Bảng danh sách nhân khẩu -->
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Họ tên</th>
+              <th>CMND/CCCD</th>
+              <th>Ngày sinh</th>
+              <th>Giới tính</th>
+              <th>Dân tộc</th>
+              <th>Tôn giáo</th>
+              <th>Quốc tịch</th>
+              <th>Địa chỉ thường trú</th>
+              <th>Số điện thoại</th>
+              <th>Quan hệ với chủ hộ</th>
+              <th>Trạng thái</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nguyễn Văn Minh</td>
+              <td>024205002986</td>
+              <td>04/09/1980</td>
+              <td>Nam</td>
+              <td>Kinh</td>
+              <td>Không</td>
+              <td>Việt Nam</td>
+              <td>Đoan Bái, Hiệp Hòa, Hà Nội</td>
+              <td>0329656868</td>
+              <td>Chủ sở hữu</td>
+              <td>Thường trú</td>
+              <td>
+                <button
+                  class="btn btn-warning btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editModal"
+                >
+                  Chỉnh sửa
+                </button>
+                <button class="btn btn-danger btn-sm mt-1">Xóa</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Nguyễn Thị Khai</td>
+              <td>025205008866</td>
+              <td>05/10/1982</td>
+              <td>Nữ</td>
+              <td>Kinh</td>
+              <td>Không</td>
+              <td>Việt Nam</td>
+              <td>Đoan Bái, Hiệp Hòa, Hà Nội</td>
+              <td>0329656868</td>
+              <td>Vợ</td>
+              <td>Thường trú</td>
+              <td>
+                <button
+                  class="btn btn-warning btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editModal"
+                >
+                  Chỉnh sửa
+                </button>
+                <button class="btn btn-danger btn-sm mt-1">Xóa</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-        <!-- Tìm kiếm và thêm mới -->
+        <!-- thêm mới -->
         <div class="row mb-3">
-          <div class="col-md-12 col-12 text-md-end mt-2 mt-md-0">
+          <div class="col-4">
+            <a href="QuanLyHoGiaDinh.html">
+              <button id="backButton" class="btn btn-outline-secondary">
+                Quay lại
+              </button>
+            </a>
+          </div>
+          <div class="col-8 text-md-end">
             <button
               class="btn btn-primary"
               data-bs-toggle="modal"
@@ -159,58 +244,6 @@
             </button>
           </div>
         </div>
-        <!-- Bảng danh sách nhân khẩu -->
-        <table class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Họ tên</th>
-              <th>CMND/CCCD</th>
-              <th>Căn hộ</th>
-              <th>Ngày sinh</th>
-              <th>Giới tính</th>
-              <th>Quan hệ với chủ hộ</th>
-              <th>Hành động</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Nguyễn Văn A</td>
-              <td>0123456789</td>
-              <td>A101</td>
-              <td>04/09/1980</td>
-              <td>Nam</td>
-              <td>Chủ sở hữu</td>
-              <td>
-                <button
-                  class="btn btn-warning btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editModal"
-                >
-                  Chỉnh sửa
-                </button>
-                <button class="btn btn-danger btn-sm">Xóa</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Trần Thị B</td>
-              <td>0987654321</td>
-              <td>B102</td>
-              <td>16/08/1982</td>
-              <td>Nữ</td>
-              <td>Vợ</td>
-              <td>
-                <button
-                  class="btn btn-warning btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editModal"
-                >
-                  Chỉnh sửa
-                </button>
-                <button class="btn btn-danger btn-sm">Xóa</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
 
       <!-- Modal Thêm mới hộ khẩu-->
@@ -227,7 +260,7 @@
               class="modal-header"
               style="background-color: #3790e9; color: #fff"
             >
-              <h5 class="modal-title" id="addModalLabel">Thêm mới căn hộ</h5>
+              <h5 class="modal-title" id="addModalLabel">Thêm mới nhân khẩu</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -250,15 +283,7 @@
                     required
                   />
                 </div>
-                <div class="mb-3">
-                  <label for="apartment" class="form-label">Căn hộ</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="apartment"
-                    required
-                  />
-                </div>
+
                 <div class="mb-3">
                   <label for="dateBirth" class="form-label">Ngày sinh</label>
                   <input
@@ -273,6 +298,56 @@
                   <input type="text" class="form-control" id="sex" required />
                 </div>
                 <div class="mb-3">
+                  <label for="nation" class="form-label">Dân tộc</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nation"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="religion" class="form-label">Tôn giáo</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="religion"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="nationality" class="form-label">Quốc tịch</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nationality"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="address" class="form-label"
+                    >Địa chỉ thường trú</label
+                  >
+                  <!-- địa chỉ chung cư/ địa chỉ khác nếu là tạm trú -->
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="phonenumber" class="form-label"
+                    >Số điện thoại</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phonenumber"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
                   <label for="ralation" class="form-label"
                     >Quan hệ với chủ hộ</label
                   >
@@ -280,6 +355,20 @@
                     type="text"
                     class="form-control"
                     id="relation"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="status" class="form-label"
+                    >Trạng thái
+                    <span class="small-text"
+                      >(Thường trú hoặc Tạm trú)</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="status"
                     required
                   />
                 </div>
@@ -313,9 +402,7 @@
               class="modal-header"
               style="background-color: #3790e9; color: #fff"
             >
-              <h5 class="modal-title" id="addModalLabel">
-                Chỉnh sửa thông tin nhân khẩu
-              </h5>
+              <h5 class="modal-title" id="addModalLabel">Thêm mới nhân khẩu</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -338,15 +425,7 @@
                     required
                   />
                 </div>
-                <div class="mb-3">
-                  <label for="apartment" class="form-label">Căn hộ</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="apartment"
-                    required
-                  />
-                </div>
+
                 <div class="mb-3">
                   <label for="dateBirth" class="form-label">Ngày sinh</label>
                   <input
@@ -361,6 +440,56 @@
                   <input type="text" class="form-control" id="sex" required />
                 </div>
                 <div class="mb-3">
+                  <label for="nation" class="form-label">Dân tộc</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nation"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="religion" class="form-label">Tôn giáo</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="religion"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="nationality" class="form-label">Quốc tịch</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nationality"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="address" class="form-label"
+                    >Địa chỉ thường trú</label
+                  >
+                  <!-- địa chỉ chung cư/ địa chỉ khác nếu là tạm trú -->
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="address"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="phonenumber" class="form-label"
+                    >Số điện thoại</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phonenumber"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
                   <label for="ralation" class="form-label"
                     >Quan hệ với chủ hộ</label
                   >
@@ -368,6 +497,20 @@
                     type="text"
                     class="form-control"
                     id="relation"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="status" class="form-label"
+                    >Trạng thái
+                    <span class="small-text"
+                      >(Thường trú hoặc Tạm trú)</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="status"
                     required
                   />
                 </div>
@@ -387,6 +530,7 @@
         </div>
       </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

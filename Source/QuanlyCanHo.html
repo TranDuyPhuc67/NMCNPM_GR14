@@ -56,6 +56,7 @@
       .table th,
       .table td {
         text-align: center;
+        vertical-align: middle;
       }
       .table .text-success {
         color: green;
@@ -174,10 +175,10 @@
           <thead>
             <tr>
               <th>Căn hộ</th>
-              <th>Tầng</th>
               <th>Loại căn hộ</th>
               <th>Diện tích</th>
               <th>Họ tên chủ hộ</th>
+              <th>Căn cước công dân</th>
               <th>Số điện thoại</th>
               <th>Hành động</th>
             </tr>
@@ -185,10 +186,10 @@
           <tbody>
             <tr>
               <td>A101</td>
-              <td>1</td>
               <td>1 ngủ 1 khách</td>
               <td>50m2</td>
               <td>Nguyễn Văn A</td>
+              <td>1149554385743</td>
               <td>123456789</td>
               <td>
                 <button
@@ -203,10 +204,10 @@
             </tr>
             <tr>
               <td>B102</td>
-              <td>1</td>
               <td>2 ngủ 1 khách</td>
               <td>40m2</td>
               <td>Trần Thị B</td>
+              <td>0249876543210</td>
               <td>987654321</td>
               <td>
                 <button
@@ -256,10 +257,6 @@
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="floor" class="form-label">Tầng</label>
-                  <input type="text" class="form-control" id="floor" required />
-                </div>
-                <div class="mb-3">
                   <label for="apartmentType" class="form-label"
                     >Loại căn hộ</label
                   >
@@ -282,6 +279,17 @@
                 <div class="mb-3">
                   <label for="name" class="form-label">Họ tên chủ hộ</label>
                   <input type="text" class="form-control" id="name" required />
+                </div>
+                <div class="mb-3">
+                  <label for="idCard" class="form-label"
+                    >Căn cước công dân</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="idCard"
+                    required
+                  />
                 </div>
                 <div class="mb-3">
                   <label for="phoneNum" class="form-label">Số điện thoại</label>
@@ -322,7 +330,7 @@
               class="modal-header"
               style="background-color: #3790e9; color: #fff"
             >
-              <h5 class="modal-title" id="addModalLabel">Chỉnh sửa căn hộ</h5>
+              <h5 class="modal-title" id="addModalLabel">Thêm căn hộ mới</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -340,10 +348,6 @@
                     id="apartment"
                     required
                   />
-                </div>
-                <div class="mb-3">
-                  <label for="floor" class="form-label">Tầng</label>
-                  <input type="text" class="form-control" id="floor" required />
                 </div>
                 <div class="mb-3">
                   <label for="apartmentType" class="form-label"
@@ -368,6 +372,17 @@
                 <div class="mb-3">
                   <label for="name" class="form-label">Họ tên chủ hộ</label>
                   <input type="text" class="form-control" id="name" required />
+                </div>
+                <div class="mb-3">
+                  <label for="idCard" class="form-label"
+                    >Căn cước công dân</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="idCard"
+                    required
+                  />
                 </div>
                 <div class="mb-3">
                   <label for="phoneNum" class="form-label">Số điện thoại</label>

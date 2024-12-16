@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý phí thu</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .navbar {
+        background-color: rgba(
+          21,
+          35,
+          45,
+          0.9
+        ) !important; /* Màu nền khi cuộn */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .navbar-nav .nav-link {
+        color: #eeeeee;
+      }
+      .navbar-nav .nav-link.active {
+        font-weight: bold;
+        color: #ffffff;
+      }
+      .navbar-nav .btn {
+        margin-left: 10px;
+      }
+      .header {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        margin-top: 50px;
+      }
+      .header h1 {
+        color: #ffffff;
+        font-weight: 800;
+      }
+      .header p {
+        color: #ffffff;
+        margin-bottom: 40px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .btn-search {
+        background-color: #3790e9;
+        color: white;
+      }
+      .btn-primary {
+        background-color: #3790e9;
+        color: white;
+      }
+      .table th,
+      .table td {
+        text-align: center;
+        vertical-align: middle;
+      }
+      .table .text-success {
+        color: green;
+      }
+      .table .text-danger {
+        color: red;
+      }
+      .container h2 {
+        text-align: center;
+        font-weight: 700;
+        color: rgba(10, 87, 138, 0.9);
+        font-size: 40px;
+        margin-top: 60px;
+      }
+      .container .pp {
+        text-align: center;
+        color: rgba(10, 87, 138, 0.9);
+        margin-bottom: 50px;
+      }
+      .hero {
+        margin-top: 100px;
+      }
+      .table thead tr th {
+        background-color: #3790e9 !important; /* Thay đổi màu nền của thead */
+        color: #eee;
+      }
+      .small-text {
+        font-size: 13px; /* Kích thước chữ nhỏ hơn */
+      }
+      .dropdown-toggle {
+        border: none; /* Bỏ viền cho nút dropdown */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="margin-left: 30px">
+          <img
+            src="../Image/Remove-bg.ai_1730519657240.png"
+            alt="Logo"
+            height="50"
+          />
+        </a>
+        <button
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          class="navbar-toggler"
+          data-bs-target="#navbarNav"
+          data-bs-toggle="collapse"
+          type="button"
+        >
+          <span class="navbar-toggler-icon"> </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a aria-current="page" class="nav-link active" href="#">
+                Trang chủ
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tiện ích </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"> Dịch vụ khác</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"> Liên hệ hỗ trợ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"> </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="btn btn-outline-secondary"
+                href="#"
+                style="color: rgb(216, 216, 216); margin-right: 10px"
+              >
+                Tài khoản
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- danh sách quản lý -->
+    <div class="hero">
+      <div class="container mt-4">
+        <h2>Quản lý phí thu</h2>
+        <p class="pp">Thống kê tổng các loại phí sẽ thu của từng căn hộ</p>
+
+        <!-- Tìm kiếm và thêm mới -->
+        <div class="row mb-3">
+          <div class="col-md-6 col-12">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Tìm kiếm căn hộ"
+              />
+              <button class="btn btn-search">Tìm kiếm</button>
+            </div>
+          </div>
+        </div>
+        <!-- Bảng danh sách hộ gia đình -->
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Họ tên chủ hộ</th>
+              <th>Số điện thoại</th>
+              <th>Căn hộ</th>
+              <th>Phí dịch vụ</th>
+              <th>Phí quản lý</th>
+              <th>Khoản đóng góp</th>
+              <th>Tổng phí thu</th>
+              <th>Trạng thái</th>
+              <th>Thông tin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nguyễn Văn A</td>
+              <td>123456789</td>
+              <td>A101</td>
+              <td>100.000</td>
+              <td>100.000</td>
+              <td>100.000</td>
+              <td><b>300.000</b></td>
+              <td>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-secondary dropdown-toggle small-text"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Chọn trạng thái
+                  </button>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <li>
+                      <a
+                        class="dropdown-item text-success small-text"
+                        data-value="submitted"
+                        >Đã nộp</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item text-warning small-text"
+                        data-value="not_submitted"
+                        >Chưa nộp</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </td>
+              <td>
+                <a href="PhiTuNguyen.html">
+                  <button class="btn btn-primary btn-sm">Chi tiết</button>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>Trần Thị B</td>
+              <td>987654321</td>
+              <td>B102</td>
+              <td>150.000</td>
+              <td>200.000</td>
+              <td>400.000</td>
+              <td><b>750.000</b></td>
+              <td>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-secondary dropdown-toggle small-text"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Chọn trạng thái
+                  </button>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <li>
+                      <a
+                        class="dropdown-item text-success small-text"
+                        data-value="submitted"
+                        >Đã nộp</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item text-warning small-text"
+                        data-value="not_submitted"
+                        >Chưa nộp</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <input type="hidden" id="status" required />
+              </td>
+              <td>
+                <a href="PhiTuNguyen.html">
+                  <button class="btn btn-primary btn-sm">Chi tiết</button>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll(".dropdown-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          const statusValue = this.getAttribute("data-value");
+          const button =
+            this.closest(".dropdown").querySelector(".dropdown-toggle"); // Tìm nút dropdown trong cùng hàng
+          button.textContent = this.textContent; // Cập nhật văn bản của nút
+          button.classList.add("small-text"); // Thêm lớp nhỏ cho nút
+
+          // Xóa các lớp màu nền cũ
+          button.classList.remove("bg-success", "bg-warning");
+
+          // Thêm lớp màu nền mới dựa trên trạng thái
+          if (statusValue === "submitted") {
+            button.classList.add("bg-success");
+          } else if (statusValue === "not_submitted") {
+            button.classList.add("bg-warning");
+          }
+        });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
