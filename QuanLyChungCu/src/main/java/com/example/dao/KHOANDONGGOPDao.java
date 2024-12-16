@@ -9,11 +9,11 @@ public class KHOANDONGGOPDao implements DAOInterface<KHOANDONGGOP> {
 
     @Override
     public int insert(KHOANDONGGOP t) {
-        String sql = "INSERT INTO KHOANDONGGOP (Idhogiadinh, Tenquy, Sotien) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO KHOANDONGGOP (CCCDchuho, Tenquy, Sotien) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, t.getIdhogiadinh());
+            stmt.setString(1, t.getCCCDchuho());
             stmt.setString(2, t.getTenquy());
             stmt.setDouble(3, t.getSotien());
             return stmt.executeUpdate();
@@ -62,7 +62,7 @@ public class KHOANDONGGOPDao implements DAOInterface<KHOANDONGGOP> {
             while (rs.next()) {
                 KHOANDONGGOP khoandonggop = new KHOANDONGGOP();
                 khoandonggop.setIddonggop(rs.getInt("Iddonggop"));
-                khoandonggop.setIdhogiadinh(rs.getInt("Idhogiadinh"));
+                khoandonggop.setCCCDchuho(rs.getString("CCCDchuho"));
                 khoandonggop.setTenquy(rs.getString("Tenquy"));
                 khoandonggop.setSotien(rs.getDouble("Sotien"));
                 list.add(khoandonggop);
@@ -85,7 +85,7 @@ public class KHOANDONGGOPDao implements DAOInterface<KHOANDONGGOP> {
                 if (rs.next()) {
                     KHOANDONGGOP khoandonggop = new KHOANDONGGOP();
                     khoandonggop.setIddonggop(rs.getInt("Iddonggop"));
-                    khoandonggop.setIdhogiadinh(rs.getInt("Idhogiadinh"));
+                    khoandonggop.setCCCDchuho(rs.getString("CCCDchuho"));
                     khoandonggop.setTenquy(rs.getString("Tenquy"));
                     khoandonggop.setSotien(rs.getDouble("Sotien"));
                     return khoandonggop;

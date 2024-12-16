@@ -9,11 +9,11 @@ public class PHIGUIXEDao implements DAOInterface<PHIGUIXE> {
 
     @Override
     public int insert(PHIGUIXE t) {
-        String sql = "INSERT INTO PHIGUIXE (Idhogiadinh, Phixemay, Phioto) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO PHIGUIXE (CCCDchuho, Phixemay, Phioto) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, t.getIdhogiadinh());
+            stmt.setString(1, t.getCCCDchuho());
             stmt.setBigDecimal(2, t.getPhixemay());
             stmt.setBigDecimal(3, t.getPhioto());
             return stmt.executeUpdate();
@@ -24,13 +24,13 @@ public class PHIGUIXEDao implements DAOInterface<PHIGUIXE> {
 
     @Override
     public int update(PHIGUIXE t) {
-        String sql = "UPDATE PHIGUIXE SET Phixemay = ?, Phioto = ? WHERE Idhogiadinh = ?";
+        String sql = "UPDATE PHIGUIXE SET Phixemay = ?, Phioto = ? WHERE CCCDchuho = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setBigDecimal(1, t.getPhixemay());
             stmt.setBigDecimal(2, t.getPhioto());
-            stmt.setInt(3, t.getIdhogiadinh());
+            stmt.setString(3, t.getCCCDchuho());
             return stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi cập nhật PHIGUIXE", e);
@@ -39,11 +39,11 @@ public class PHIGUIXEDao implements DAOInterface<PHIGUIXE> {
 
     @Override
     public boolean delete(PHIGUIXE t) {
-        String sql = "DELETE FROM PHIGUIXE WHERE Idhogiadinh = ?";
+        String sql = "DELETE FROM PHIGUIXE WHERE CCCDchuho = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, t.getIdhogiadinh());
+            stmt.setString(1, t.getCCCDchuho());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi xóa PHIGUIXE", e);
@@ -61,7 +61,7 @@ public class PHIGUIXEDao implements DAOInterface<PHIGUIXE> {
 
             while (rs.next()) {
                 PHIGUIXE phiguixe = new PHIGUIXE();
-                phiguixe.setIdhogiadinh(rs.getInt("Idhogiadinh"));
+                phiguixe.setCCCDchuho(rs.getString("CCCDchuho"));
                 phiguixe.setPhixemay(rs.getBigDecimal("Phixemay"));
                 phiguixe.setPhioto(rs.getBigDecimal("Phioto"));
                 list.add(phiguixe);
@@ -75,22 +75,22 @@ public class PHIGUIXEDao implements DAOInterface<PHIGUIXE> {
 
     @Override
     public PHIGUIXE selectById(PHIGUIXE t) {
-        String sql = "SELECT * FROM PHIGUIXE WHERE Idhogiadinh = ?";
+        String sql = "SELECT * FROM PHIGUIXE WHERE CCCDchuho = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, t.getIdhogiadinh());
+            stmt.setString(1, t.getCCCDchuho());
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     PHIGUIXE phiguixe = new PHIGUIXE();
-                    phiguixe.setIdhogiadinh(rs.getInt("Idhogiadinh"));
+                    phiguixe.setCCCDchuho(rs.getString("CCCDchuho"));
                     phiguixe.setPhixemay(rs.getBigDecimal("Phixemay"));
                     phiguixe.setPhioto(rs.getBigDecimal("Phioto"));
                     return phiguixe;
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Lỗi khi chọn PHIGUIXE theo Idhogiadinh", e);
+            throw new RuntimeException("Lỗi khi chọn PHIGUIXE theo CCCDchuho", e);
         }
         return null;
     }

@@ -9,12 +9,12 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
 
     @Override
     public int insert(NHANKHAU t) {
-        String sql = "INSERT INTO NHANKHAU (CCCD, Idhogiadinh, Hovaten, Gioitinh, Ngaysinh, Dantoc, Tongiao, Quoctich, Diachi, Sdt, Email, Quanhe) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO NHANKHAU (CCCD, CCCDchuho, Hovaten, Gioitinh, Ngaysinh, Dantoc, Tongiao, Quoctich, Diachi, Sdt, Email, Quanhe, Trangthai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, t.getCCCD());
-            stmt.setInt(2, t.getIdhogiadinh());
+            stmt.setString(2, t.getCCCDchuho());
             stmt.setString(3, t.getHovaten());
             stmt.setString(4, t.getGioitinh());
             stmt.setDate(5, (t.getNgaysinh()));
@@ -25,6 +25,7 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
             stmt.setString(10, t.getSdt());
             stmt.setString(11, t.getEmail());
             stmt.setString(12, t.getQuanhe());
+            stmt.setString(13, t.getTrangthai());
             return stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi thêm NHANKHAU", e);
@@ -33,21 +34,21 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
 
     @Override
     public int update(NHANKHAU t) {
-        String sql = "UPDATE NHANKHAU SET Hovaten = ?, Gioitinh = ?, Ngaysinh = ?, Dantoc = ?, Tongiao = ?, Quoctich = ?, Diachi = ?, Sdt = ?, Email = ?, Quanhe = ? WHERE CCCD = ?";
+        String sql = "UPDATE NHANKHAU SET Hovaten = ?, Gioitinh = ?, Ngaysinh = ?, Dantoc = ?, Tongiao = ?, Quoctich = ?, Diachi = ?, Sdt = ?, Email = ?, Quanhe = ?, Trangthai = ? WHERE CCCD = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, t.getHovaten());
-            stmt.setString(2, t.getGioitinh());
-            stmt.setDate(3, (t.getNgaysinh()));
-            stmt.setString(4, t.getDantoc());
-            stmt.setString(5, t.getTongiao());
-            stmt.setString(6, t.getQuoctich());
-            stmt.setString(7, t.getDiachi());
-            stmt.setString(8, t.getSdt());
-            stmt.setString(9, t.getEmail());
-            stmt.setString(10, t.getQuanhe());
-            stmt.setString(11, t.getCCCD());
+            stmt.setString(1, t.getCCCD());
+            stmt.setString(2, t.getHovaten());
+            stmt.setString(3, t.getGioitinh());
+            stmt.setDate(4,t.getNgaysinh());
+            stmt.setString(5, t.getDantoc());
+            stmt.setString(6, t.getTongiao());
+            stmt.setString(7, t.getQuoctich());
+            stmt.setString(8, t.getDiachi());
+            stmt.setString(9, t.getSdt());
+            stmt.setString(10, t.getEmail());
+            stmt.setString(11, t.getQuanhe());
+            stmt.setString(12, t.getTrangthai());
             return stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi cập nhật NHANKHAU", e);
@@ -79,7 +80,7 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
             while (rs.next()) {
                 NHANKHAU nhankhau = new NHANKHAU();
                 nhankhau.setCCCD(rs.getString("CCCD"));
-                nhankhau.setIdhogiadinh(rs.getInt("Idhogiadinh"));
+                nhankhau.setCCCDchuho(rs.getString("CCCDchuho"));
                 nhankhau.setHovaten(rs.getString("Hovaten"));
                 nhankhau.setGioitinh(rs.getString("Gioitinh"));
                 nhankhau.setNgaysinh(rs.getDate("Ngaysinh"));
@@ -90,6 +91,7 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
                 nhankhau.setSdt(rs.getString("Sdt"));
                 nhankhau.setEmail(rs.getString("Email"));
                 nhankhau.setQuanhe(rs.getString("Quanhe"));
+                nhankhau.setTrangthai(rs.getString("Trangthai"));
                 list.add(nhankhau);
             }
         } catch (SQLException e) {
@@ -110,7 +112,7 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
                 if (rs.next()) {
                     NHANKHAU nhankhau = new NHANKHAU();
                     nhankhau.setCCCD(rs.getString("CCCD"));
-                    nhankhau.setIdhogiadinh(rs.getInt("Idhogiadinh"));
+                    nhankhau.setCCCDchuho(rs.getString("CCCDchuho"));
                     nhankhau.setHovaten(rs.getString("Hovaten"));
                     nhankhau.setGioitinh(rs.getString("Gioitinh"));
                     nhankhau.setNgaysinh(rs.getDate("Ngaysinh"));
@@ -121,6 +123,7 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
                     nhankhau.setSdt(rs.getString("Sdt"));
                     nhankhau.setEmail(rs.getString("Email"));
                     nhankhau.setQuanhe(rs.getString("Quanhe"));
+                    nhankhau.setTrangthai(rs.getString("Trangthai"));
                     return nhankhau;
                 }
             }

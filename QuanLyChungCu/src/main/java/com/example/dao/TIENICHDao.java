@@ -9,14 +9,13 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
 
     @Override
     public int insert(TIENICH t) {
-        String sql = "INSERT INTO TIENICH (Idhogiadinh, LoaiTienIch, TongTien, ThangThu) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO TIENICH (CCCDchuho, LoaiTienIch, TongTien, ThangThu) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, t.getIdhogiadinh());
+            stmt.setString(1, t.getCCCDchuho());
             stmt.setString(2, t.getLoaiTienIch());
             stmt.setBigDecimal(3, t.getTongTien());
-            stmt.setDate(4, (t.getThangThu()));
             return stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi thêm TIENICH", e);
@@ -25,14 +24,13 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
 
     @Override
     public int update(TIENICH t) {
-        String sql = "UPDATE TIENICH SET LoaiTienIch = ?, TongTien = ?, ThangThu = ? WHERE Idtienich = ?";
+        String sql = "UPDATE TIENICH SET LoaiTienIch = ?, TongTien = ? WHERE Idtienich = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, t.getLoaiTienIch());
             stmt.setBigDecimal(2, t.getTongTien());
-            stmt.setDate(3, (t.getThangThu()));
-            stmt.setInt(4, t.getIdtienich());
+            stmt.setInt(3, t.getIdtienich());
             return stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi cập nhật TIENICH", e);
@@ -64,10 +62,9 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
             while (rs.next()) {
                 TIENICH tienich = new TIENICH();
                 tienich.setIdtienich(rs.getInt("Idtienich"));
-                tienich.setIdhogiadinh(rs.getInt("Idhogiadinh"));
+                tienich.setCCCDchuho(rs.getString("CCCDchuho"));
                 tienich.setLoaiTienIch(rs.getString("LoaiTienIch"));
                 tienich.setTongTien(rs.getBigDecimal("TongTien"));
-                tienich.setThangThu(rs.getDate("ThangThu"));
                 list.add(tienich);
             }
         } catch (SQLException e) {
@@ -88,10 +85,9 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
                 if (rs.next()) {
                     TIENICH tienich = new TIENICH();
                     tienich.setIdtienich(rs.getInt("Idtienich"));
-                    tienich.setIdhogiadinh(rs.getInt("Idhogiadinh"));
+                    tienich.setCCCDchuho(rs.getString("CCCDchuho"));
                     tienich.setLoaiTienIch(rs.getString("LoaiTienIch"));
                     tienich.setTongTien(rs.getBigDecimal("TongTien"));
-                    tienich.setThangThu(rs.getDate("ThangThu"));
                     return tienich;
                 }
             }
