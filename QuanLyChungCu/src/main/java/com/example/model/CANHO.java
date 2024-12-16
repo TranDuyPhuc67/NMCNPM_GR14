@@ -2,7 +2,7 @@ package com.example.model;
 
 public class CANHO {
 	private int Idcanho;
-	private int Idhogiadinh;
+	private String CCCDchuho;
 	private String Sonha;
 	private String Loaicanho;
 	private double Dientich;
@@ -11,17 +11,18 @@ public class CANHO {
 		super();
 	}
 
-	public CANHO(int Idhogiadinh, String Sonha, String Loaicanho, double Dientich) {
-		this.Idhogiadinh = Idhogiadinh;
-		this.Sonha = Sonha;
-		this.Loaicanho = Loaicanho;
-		this.Dientich = Dientich;
+	public CANHO(String cCCDchuho, String sonha, String loaicanho, double dientich) {
+		super();
+		CCCDchuho = cCCDchuho;
+		Sonha = sonha;
+		Loaicanho = loaicanho;
+		Dientich = dientich;
 	}
 
-	public CANHO(int idcanho, int idhogiadinh, String sonha, String loaicanho, double dientich) {
+	public CANHO(int idcanho, String cCCDchuho, String sonha, String loaicanho, double dientich) {
 		super();
 		Idcanho = idcanho;
-		Idhogiadinh = idhogiadinh;
+		CCCDchuho = cCCDchuho;
 		Sonha = sonha;
 		Loaicanho = loaicanho;
 		Dientich = dientich;
@@ -31,39 +32,40 @@ public class CANHO {
 		return Idcanho;
 	}
 
-	public void setIdcanho(int Idcanho) {
-		this.Idcanho = Idcanho;
+	public void setIdcanho(int idcanho) {
+		Idcanho = idcanho;
 	}
 
-	public int getIdhogiadinh() {
-		return Idhogiadinh;
+	public String getCCCDchuho() {
+		return CCCDchuho;
 	}
 
-	public void setIdhogiadinh(int Idhogiadinh) {
-		this.Idhogiadinh = Idhogiadinh;
+	public void setCCCDchuho(String cCCDchuho) {
+		CCCDchuho = cCCDchuho;
 	}
 
 	public String getSonha() {
 		return Sonha;
 	}
 
-	public void setSonha(String Sonha) {
-		this.Sonha = Sonha;
+	public void setSonha(String sonha) {
+		Sonha = sonha;
 	}
 
 	public String getLoaicanho() {
 		return Loaicanho;
 	}
 
-	public void setLoaicanho(String Loaicanho) {
-		this.Loaicanho = Loaicanho;
+	public void setLoaicanho(String loaicanho) {
+		Loaicanho = loaicanho;
 	}
 
 	public double getDientich() {
 		return Dientich;
 	}
 
-	public void setDientich(double Dientich) {
-		this.Dientich = Dientich;
+	public void setDientich(double dientich) {
+		Dientich = dientich;
 	}
+
 }

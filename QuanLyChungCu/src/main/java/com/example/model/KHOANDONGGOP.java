@@ -2,7 +2,7 @@ package com.example.model;
 
 public class KHOANDONGGOP {
 	private int Iddonggop;
-	private int Idhogiadinh;
+	private String CCCDchuho;
 	private String Tenquy;
 	private double Sotien;
 
@@ -10,17 +10,17 @@ public class KHOANDONGGOP {
 		super();
 	}
 
-	public KHOANDONGGOP(int Idhogiadinh, String Tenquy, double Sotien) {
+	public KHOANDONGGOP(String CCCDchuho, String Tenquy, double Sotien) {
 		super();
-		this.Idhogiadinh = Idhogiadinh;
+		this.CCCDchuho = CCCDchuho;
 		this.Tenquy = Tenquy;
 		this.Sotien = Sotien;
 	}
 
-	public KHOANDONGGOP(int Iddonggop, int Idhogiadinh, String Tenquy, double Sotien) {
+	public KHOANDONGGOP(int Iddonggop, String CCCDchuho, String Tenquy, double Sotien) {
 		super();
 		this.Iddonggop = Iddonggop;
-		this.Idhogiadinh = Idhogiadinh;
+		this.CCCDchuho = CCCDchuho;
 		this.Tenquy = Tenquy;
 		this.Sotien = Sotien;
 	}
@@ -33,12 +33,12 @@ public class KHOANDONGGOP {
 		this.Iddonggop = Iddonggop;
 	}
 
-	public int getIdhogiadinh() {
-		return Idhogiadinh;
+	public String getCCCDchuho() {
+		return CCCDchuho;
 	}
 
-	public void setIdhogiadinh(int Idhogiadinh) {
-		this.Idhogiadinh = Idhogiadinh;
+	public void setCCCDchuho(String CCCDchuho) {
+		this.CCCDchuho = CCCDchuho;
 	}
 
 	public String getTenquy() {

@@ -1,7 +1,7 @@
 package com.example.model;
 
 public class KHOANPHI {
-    private int Idhogiadinh;
+    private String CCCDchuho;
     private int Idcanho;
     private double Phidichvu;
     private double Phiquanly;
@@ -10,19 +10,19 @@ public class KHOANPHI {
         super();
     }
 
-    public KHOANPHI(int idhogiadinh, int idcanho, double phidichvu, double phiquanly) {
-        this.Idhogiadinh = idhogiadinh;
+    public KHOANPHI(String CCCDchuho, int idcanho, double phidichvu, double phiquanly) {
+        this.CCCDchuho = CCCDchuho;
         this.Idcanho = idcanho;
         this.Phidichvu = phidichvu;
         this.Phiquanly = phiquanly;
     }
 
-    public int getIdhogiadinh() {
-        return Idhogiadinh;
+    public String getCCCDchuho() {
+        return CCCDchuho;
     }
 
-    public void setIdhogiadinh(int idhogiadinh) {
-        this.Idhogiadinh = idhogiadinh;
+    public void setCCCDchuho(String CCCDchuho) {
+        this.CCCDchuho = CCCDchuho;
     }
 
     public int getIdcanho() {
