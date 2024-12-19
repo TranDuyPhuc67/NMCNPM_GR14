@@ -1,21 +1,23 @@
 package com.example.model;
 
-import java.math.BigDecimal;
+import java.sql.Date;
 
 public class PHIGUIXE {
 	private String CCCDchuho;
-	private BigDecimal Phixemay;
-	private BigDecimal Phioto;
+	private int Soxemay;
+	private int Sooto;
+	private Date Thoihan;
 
 	public PHIGUIXE() {
 		super();
 	}
 
-	public PHIGUIXE(String cCCDchuho, BigDecimal phixemay, BigDecimal phioto) {
+	public PHIGUIXE(String cCCDchuho, int soxemay, int sooto, Date thoihan) {
 		super();
 		CCCDchuho = cCCDchuho;
-		Phixemay = phixemay;
-		Phioto = phioto;
+		Soxemay = soxemay;
+		Sooto = sooto;
+		Thoihan = thoihan;
 	}
 
 	public String getCCCDchuho() {
@@ -26,19 +28,28 @@ public class PHIGUIXE {
 		CCCDchuho = cCCDchuho;
 	}
 
-	public BigDecimal getPhixemay() {
-		return Phixemay;
+	public int getSoxemay() {
+		return Soxemay;
 	}
 
-	public void setPhixemay(BigDecimal phixemay) {
-		Phixemay = phixemay;
+	public void setSoxemay(int soxemay) {
+		Soxemay = soxemay;
 	}
 
-	public BigDecimal getPhioto() {
-		return Phioto;
+	public int getSooto() {
+		return Sooto;
 	}
 
-	public void setPhioto(BigDecimal phioto) {
-		Phioto = phioto;
+	public void setSooto(int sooto) {
+		Sooto = sooto;
 	}
+
+	public Date getThoihan() {
+		return Thoihan;
+	}
+
+	public void setThoihan(Date thoihan) {
+		Thoihan = thoihan;
+	}
+
 }

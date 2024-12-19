@@ -1,62 +1,65 @@
 package com.example.model;
 
-import java.math.BigDecimal;
+import java.sql.Date;
 
 public class TIENICH {
-	private int Idtienich;
-	private String CCCDchuho;
-	private String LoaiTienIch;
-	private BigDecimal TongTien;
+	private int Idcanho;
+	private int Sodien;
+	private int Sonuoc;
+	private int Internet;
+	private Date Thoihan;
 
 	public TIENICH() {
 		super();
 	}
 
-	public TIENICH(int idtienich, String cCCDchuho, String loaiTienIch, BigDecimal tongTien) {
+	public TIENICH(int idcanho, int sodien, int sonuoc, int internet, Date thoihan) {
 		super();
-		Idtienich = idtienich;
-		CCCDchuho = cCCDchuho;
-		LoaiTienIch = loaiTienIch;
-		TongTien = tongTien;
+		Idcanho = idcanho;
+		Sodien = sodien;
+		Sonuoc = sonuoc;
+		Internet = internet;
+		Thoihan = thoihan;
 	}
 
-	public TIENICH(String cCCDchuho, String loaiTienIch, BigDecimal tongTien) {
-		super();
-		CCCDchuho = cCCDchuho;
-		LoaiTienIch = loaiTienIch;
-		TongTien = tongTien;
+	public int getIdcanho() {
+		return Idcanho;
 	}
 
-	public int getIdtienich() {
-		return Idtienich;
+	public void setIdcanho(int idcanho) {
+		Idcanho = idcanho;
 	}
 
-	public void setIdtienich(int idtienich) {
-		Idtienich = idtienich;
+	public int getSodien() {
+		return Sodien;
 	}
 
-	public String getCCCDchuho() {
-		return CCCDchuho;
+	public void setSodien(int sodien) {
+		Sodien = sodien;
 	}
 
-	public void setCCCDchuho(String cCCDchuho) {
-		CCCDchuho = cCCDchuho;
+	public int getSonuoc() {
+		return Sonuoc;
 	}
 
-	public String getLoaiTienIch() {
-		return LoaiTienIch;
+	public void setSonuoc(int sonuoc) {
+		Sonuoc = sonuoc;
 	}
 
-	public void setLoaiTienIch(String loaiTienIch) {
-		LoaiTienIch = loaiTienIch;
+	public int getInternet() {
+		return Internet;
 	}
 
-	public BigDecimal getTongTien() {
-		return TongTien;
+	public void setInternet(int internet) {
+		Internet = internet;
 	}
 
-	public void setTongTien(BigDecimal tongTien) {
-		TongTien = tongTien;
+	public Date getThoihan() {
+		return Thoihan;
+	}
+
+	public void setThoihan(Date thoihan) {
+		Thoihan = thoihan;
 	}
 
 }

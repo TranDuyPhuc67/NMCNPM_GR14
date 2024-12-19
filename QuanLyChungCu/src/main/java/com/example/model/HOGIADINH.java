@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class HOGIADINH {
 	private String CCCDchuho;
+	private int Idcanho;
 	private int Sothanhvien;
 	private String Hotenchuho;
 	private String Gioitinh;
@@ -12,19 +13,19 @@ public class HOGIADINH {
 	private String Tongiao;
 	private String Quoctich;
 	private String Diachi;
+	private String Sdt;
+	private String Email;
+	private String Trangthai;
 
 	public HOGIADINH() {
 		super();
 	}
 
-	private String Sdt;
-	private String Email;
-	private String Trangthai;
-
-	public HOGIADINH(String cCCDchuho, int sothanhvien, String hotenchuho, String gioitinh, Date ngaysinh,
+	public HOGIADINH(String cCCDchuho, int idcanho, int sothanhvien, String hotenchuho, String gioitinh, Date ngaysinh,
 			String dantoc, String tongiao, String quoctich, String diachi, String sdt, String email, String trangthai) {
 		super();
 		CCCDchuho = cCCDchuho;
+		Idcanho = idcanho;
 		Sothanhvien = sothanhvien;
 		Hotenchuho = hotenchuho;
 		Gioitinh = gioitinh;
@@ -44,6 +45,14 @@ public class HOGIADINH {
 
 	public void setCCCDchuho(String cCCDchuho) {
 		CCCDchuho = cCCDchuho;
+	}
+
+	public int getIdcanho() {
+		return Idcanho;
+	}
+
+	public void setIdcanho(int idcanho) {
+		Idcanho = idcanho;
 	}
 
 	public int getSothanhvien() {

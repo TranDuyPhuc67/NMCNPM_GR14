@@ -2,7 +2,6 @@ package com.example.model;
 
 public class CANHO {
 	private int Idcanho;
-	private String CCCDchuho;
 	private String Sonha;
 	private String Loaicanho;
 	private double Dientich;
@@ -11,18 +10,16 @@ public class CANHO {
 		super();
 	}
 
-	public CANHO(String cCCDchuho, String sonha, String loaicanho, double dientich) {
+	public CANHO(String sonha, String loaicanho, double dientich) {
 		super();
-		CCCDchuho = cCCDchuho;
 		Sonha = sonha;
 		Loaicanho = loaicanho;
 		Dientich = dientich;
 	}
 
-	public CANHO(int idcanho, String cCCDchuho, String sonha, String loaicanho, double dientich) {
+	public CANHO(int idcanho, String sonha, String loaicanho, double dientich) {
 		super();
 		Idcanho = idcanho;
-		CCCDchuho = cCCDchuho;
 		Sonha = sonha;
 		Loaicanho = loaicanho;
 		Dientich = dientich;
@@ -34,14 +31,6 @@ public class CANHO {
 
 	public void setIdcanho(int idcanho) {
 		Idcanho = idcanho;
-	}
-
-	public String getCCCDchuho() {
-		return CCCDchuho;
-	}
-
-	public void setCCCDchuho(String cCCDchuho) {
-		CCCDchuho = cCCDchuho;
 	}
 
 	public String getSonha() {
