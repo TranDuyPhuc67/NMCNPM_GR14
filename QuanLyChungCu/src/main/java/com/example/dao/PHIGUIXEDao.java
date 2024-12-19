@@ -9,13 +9,14 @@ public class PHIGUIXEDao implements DAOInterface<PHIGUIXE> {
 
     @Override
     public int insert(PHIGUIXE t) {
-        String sql = "INSERT INTO PHIGUIXE (CCCDchuho, Phixemay, Phioto) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO PHIGUIXE (CCCDchuho, Soxemay, Sooto, Thoihan) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, t.getCCCDchuho());
-            stmt.setBigDecimal(2, t.getPhixemay());
-            stmt.setBigDecimal(3, t.getPhioto());
+            stmt.setInt(2, t.getSoxemay());
+            stmt.setInt(3, t.getSooto());
+            stmt.setDate(4, t.getThoihan());
             return stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi thêm PHIGUIXE", e);
@@ -24,13 +25,14 @@ public class PHIGUIXEDao implements DAOInterface<PHIGUIXE> {
 
     @Override
     public int update(PHIGUIXE t) {
-        String sql = "UPDATE PHIGUIXE SET Phixemay = ?, Phioto = ? WHERE CCCDchuho = ?";
+        String sql = "UPDATE PHIGUIXE SET Phixemay = ?, Phioto = ?, Thoihan = ? WHERE CCCDchuho = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setBigDecimal(1, t.getPhixemay());
-            stmt.setBigDecimal(2, t.getPhioto());
-            stmt.setString(3, t.getCCCDchuho());
+            stmt.setInt(1, t.getSoxemay());
+            stmt.setInt(2, t.getSooto());
+            stmt.setDate(3, t.getThoihan());
+            stmt.setString(4, t.getCCCDchuho());
             return stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Lỗi khi cập nhật PHIGUIXE", e);
@@ -62,8 +64,9 @@ public class PHIGUIXEDao implements DAOInterface<PHIGUIXE> {
             while (rs.next()) {
                 PHIGUIXE phiguixe = new PHIGUIXE();
                 phiguixe.setCCCDchuho(rs.getString("CCCDchuho"));
-                phiguixe.setPhixemay(rs.getBigDecimal("Phixemay"));
-                phiguixe.setPhioto(rs.getBigDecimal("Phioto"));
+                phiguixe.setSoxemay(rs.getInt("Phixemay"));
+                phiguixe.setSooto(rs.getInt("Phioto"));
+                phiguixe.setThoihan(rs.getDate("Thoihan"));
                 list.add(phiguixe);
             }
         } catch (SQLException e) {
@@ -84,8 +87,9 @@ public class PHIGUIXEDao implements DAOInterface<PHIGUIXE> {
                 if (rs.next()) {
                     PHIGUIXE phiguixe = new PHIGUIXE();
                     phiguixe.setCCCDchuho(rs.getString("CCCDchuho"));
-                    phiguixe.setPhixemay(rs.getBigDecimal("Phixemay"));
-                    phiguixe.setPhioto(rs.getBigDecimal("Phioto"));
+                    phiguixe.setSoxemay(rs.getInt("Phixemay"));
+                    phiguixe.setSooto(rs.getInt("Phioto"));
+                    phiguixe.setThoihan(rs.getDate("Thoihan"));
                     return phiguixe;
                 }
             }

@@ -13,14 +13,13 @@ public class CANHODao implements DAOInterface<CANHO> {
 
     @Override
     public int insert(CANHO t) {
-        String sql = "INSERT INTO CANHO (CCCDchuho, Sonha, Loaicanho, Dientich) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO CANHO (Sonha, Loaicanho, Dientich) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, t.getCCCDchuho());
-            stmt.setString(2, t.getSonha());
-            stmt.setString(3, t.getLoaicanho());
-            stmt.setDouble(4, t.getDientich());
+            stmt.setString(1, t.getSonha());
+            stmt.setString(2, t.getLoaicanho());
+            stmt.setDouble(3, t.getDientich());
 
             return stmt.executeUpdate();
         } catch (SQLException e) {
@@ -76,7 +75,6 @@ public class CANHODao implements DAOInterface<CANHO> {
             while (rs.next()) {
                 CANHO canho = new CANHO();
                 canho.setIdcanho(rs.getInt("Idcanho"));
-                canho.setCCCDchuho(rs.getString("CCCDchuho"));
                 canho.setSonha(rs.getString("Sonha"));
                 canho.setLoaicanho(rs.getString("Loaicanho"));
                 canho.setDientich(rs.getDouble("Dientich"));
@@ -102,7 +100,6 @@ public class CANHODao implements DAOInterface<CANHO> {
                 if (rs.next()) {
                     CANHO canho = new CANHO();
                     canho.setIdcanho(rs.getInt("Idcanho"));
-                    canho.setCCCDchuho(rs.getString("CCCDchuho"));
                     canho.setSonha(rs.getString("Sonha"));
                     canho.setLoaicanho(rs.getString("Loaicanho"));
                     canho.setDientich(rs.getDouble("Dientich"));
