@@ -55,3 +55,4 @@ public class CanHoController extends HttpServlet {
         response.sendRedirect("./QuanLyCanHo");
     }
 }
+
