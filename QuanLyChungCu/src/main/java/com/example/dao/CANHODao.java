@@ -13,13 +13,14 @@ public class CANHODao implements DAOInterface<CANHO> {
 
     @Override
     public int insert(CANHO t) {
-        String sql = "INSERT INTO CANHO (Sonha, Loaicanho, Dientich) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO CANHO (Idcanho ,Sonha, Loaicanho, Dientich) VALUES (?, ?, ?, ?)";
         try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, t.getSonha());
-            stmt.setString(2, t.getLoaicanho());
-            stmt.setDouble(3, t.getDientich());
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            System.out.println(t.getLoaicanho());
+            stmt.setInt(1, t.getIdcanho());
+            stmt.setString(2, t.getSonha());
+            stmt.setString(3, t.getLoaicanho());
+            stmt.setDouble(4, t.getDientich());
 
             return stmt.executeUpdate();
         } catch (SQLException e) {
@@ -52,8 +53,7 @@ public class CANHODao implements DAOInterface<CANHO> {
     public boolean delete(CANHO t) {
         String sql = "DELETE FROM CANHO WHERE Idcanho = ?";
         try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, t.getIdcanho());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {

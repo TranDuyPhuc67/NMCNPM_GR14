@@ -9,8 +9,8 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 
 public class DatabaseUtil {
     private static final String URL = "jdbc:mysql://localhost:3306/QuanLyChungCu";
-    private static final String USER = "root";
-    private static final String PASSWORD = "19102004";
+    private static final String USER = "p4nda513";
+    private static final String PASSWORD = "123456";
 
     // Cấu hình DataSource
     private static DataSource dataSource;
