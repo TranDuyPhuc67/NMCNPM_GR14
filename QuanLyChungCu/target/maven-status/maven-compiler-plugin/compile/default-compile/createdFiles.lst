@@ -13,6 +13,7 @@ com/example/dao/KHOANPHIDao.class
 com/example/dao/HOGIADINHDao.class
 com/example/dao/TAMTRUVANGDao.class
 com/example/service/TIENICHService.class
+QuanLyCanHo.class
 com/example/service/HOGIADINHService.class
 com/example/dao/PHIGUIXEDao.class
 com/example/util/DatabaseUtil.class
@@ -24,7 +25,6 @@ com/example/dao/KHOANDONGGOPDao.class
 com/example/dao/DAOInterface.class
 com/example/model/PHIGUIXE.class
 com/example/dao/NHANKHAUDao.class
-com/example/display/QuanLyCanHo.class
 com/example/controller/LogoutController.class
 com/example/model/TAMTRUVANG.class
 com/example/service/PHIGUIXEService.class

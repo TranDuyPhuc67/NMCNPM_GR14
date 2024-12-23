@@ -5,24 +5,27 @@ public class CANHO {
 	private String Sonha;
 	private String Loaicanho;
 	private double Dientich;
+	private String Diachi;
 
 	public CANHO() {
 		super();
 	}
 
-	public CANHO(String sonha, String loaicanho, double dientich) {
+	public CANHO(String sonha, String loaicanho, double dientich,String diachi) {
 		super();
 		Sonha = sonha;
 		Loaicanho = loaicanho;
 		Dientich = dientich;
+		Diachi = diachi;
 	}
 
-	public CANHO(int idcanho, String sonha, String loaicanho, double dientich) {
+	public CANHO(int idcanho, String sonha, String loaicanho, double dientich,String diachi) {
 		super();
 		Idcanho = idcanho;
 		Sonha = sonha;
 		Loaicanho = loaicanho;
 		Dientich = dientich;
+		Diachi = diachi;
 	}
 
 	public int getIdcanho() {
@@ -55,6 +58,12 @@ public class CANHO {
 
 	public void setDientich(double dientich) {
 		Dientich = dientich;
+	}
+	public String getDiachi() {
+		return Diachi;
+	}
+	public void setDiachi(String diachi) {
+		Diachi = diachi;
 	}
 
 }

@@ -25,13 +25,13 @@ public class CanHoController extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         CANHOService canhoService = new CANHOService();
         String xuly = request.getParameter("xuly");
-        String idcanho = request.getParameter("idcanho");
-        int num_idcanho = Integer.parseInt(idcanho);
+        String sonha = request.getParameter("sonha");
         int check = -1; 
         if (xuly.equals("2")){
             CANHO canho = new CANHO();
-            canho.setIdcanho(num_idcanho);
-            canhoService.deleteCanHo(canho);
+            canho.setSonha(sonha);
+            CANHO canho1 = canhoService.getCanHoByName(sonha);
+            canhoService.deleteCanHo(canho1);
         }
         else{
             String loaicanho = request.getParameter("loaicanho");
@@ -39,16 +39,16 @@ public class CanHoController extends HttpServlet {
             String dientich = request.getParameter("dientich");
             double num_dientich  = Double.parseDouble(dientich);
             String diachi = request.getParameter("diachi");
-            
-            CANHO canho = new CANHO(num_idcanho, diachi, loaicanho, num_dientich);
-            // Tạo đối tượng service và xác thực tài khoản
-
-
-            List<CANHO> canhos = canhoService.getAllCanHos();
+            diachi = URLDecoder.decode(diachi, StandardCharsets.UTF_8.name());
+    
+            CANHO canho = new CANHO(sonha, loaicanho, num_dientich, diachi);
+            // List<CANHO> canhos = canhoService.getAllCanHos();
             if (xuly.equals("0")){
                 check = canhoService.addCanHo(canho);         
             }
             else if (xuly.equals("1")){
+                CANHO canho1 = canhoService.getCanHoByName(sonha);
+                canho.setIdcanho(canho1.getIdcanho());
                 check = canhoService.updateCanHo(canho);
             } 
         }

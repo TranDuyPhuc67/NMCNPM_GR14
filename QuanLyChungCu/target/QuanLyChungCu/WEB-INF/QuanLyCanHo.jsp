@@ -155,10 +155,10 @@
           <div class="col-md-6 col-12">
             <form action="./QuanLyCanHo" method="GET" class="input-group">
               <input
-                type="number"
+                type="text"
                 class="form-control"
                 placeholder="Tìm kiếm căn hộ"
-                name="IDcanho"
+                name="sonha"
               />
               <button type="submit" class="btn btn-search">Tìm kiếm</button>
             </form>
@@ -178,10 +178,12 @@
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>Căn hộ</th>
+              <th>Mã Căn hộ</th>
+              <th>Số nhà</th>
               <th>Loại căn hộ</th>
               <th>Diện tích</th>
               <th>Địa chỉ</th>
+              <!-- <th>Đỉịa ch</th> -->
               <!-- <th>Căn cước công dân</th>
               <th>Số điện thoại</th> -->
               <th>Hành động</th>
@@ -192,12 +194,13 @@
               <c:forEach var="canho" items="${canhos}">
                       <tr>
                           <td>${canho.idcanho}</td>
+                          <td>${canho.sonha}</td>
                           <td>${canho.loaicanho}</td>
                           <td>${canho.dientich} m²</td>
-                          <td>${canho.sonha}</td>
+                          <td>${canho.diachi}</td>
                           <td>
                               <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">Chỉnh sửa</button>
-                              <button class="btn btn-danger btn-sm" onclick="Xoa('${canho.idcanho}')">Xóa</button>
+                              <button class="btn btn-danger btn-sm" onclick="Xoa('${canho.sonha}')">Xóa</button>
 
                           </td>
                       </tr>
@@ -208,14 +211,14 @@
       </div>
 
       <form id="deleteForm" action="./Canho" method="POST">
-        <input type="hidden" id="idcanho" name="idcanho" value="">
+        <input type="hidden" id="sonha" name="sonha" value="">
         <input type="hidden" id="xuly" name="xuly" value="2">
       </form>
 
       <script>
         function Xoa(canhoId) {
             if (confirm("Bạn có chắc chắn muốn xóa phần tử này?")) {
-                document.getElementById('idcanho').value = canhoId;
+                document.getElementById('sonha').value = canhoId;
                 document.getElementById('deleteForm').submit();
             }
         }
@@ -250,7 +253,7 @@
                   <label for="apartment" class="form-label">Căn hộ</label>
                   <input
                     type="text"
-                    name="idcanho"
+                    name="sonha"
                     class="form-control"
                     id="apartment"
                     required
@@ -346,7 +349,7 @@
                   <label for="apartment" class="form-label">Căn hộ</label>
                   <input
                     type="text"
-                    name="idcanho"
+                    name="sonha"
                     class="form-control"
                     id="apartment"
                     required

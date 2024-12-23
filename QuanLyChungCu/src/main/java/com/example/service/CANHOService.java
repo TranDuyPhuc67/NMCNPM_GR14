@@ -27,10 +27,17 @@ public class CANHOService {
     public ArrayList<CANHO> getAllCanHos() {
         return canHoDao.selectAll();  
     }
-
+    public ArrayList<CANHO> getByCondition(String t) {
+        return canHoDao.selectByCondition(t);  
+    }
     public CANHO getCanHoById(int idCanHo) {
         CANHO temp = new CANHO();
         temp.setIdcanho(idCanHo);
         return canHoDao.selectById(temp); 
+    }
+    public CANHO getCanHoByName(String sonha) {
+        CANHO temp = new CANHO();
+        temp.setSonha(sonha);
+        return canHoDao.selectByName(sonha); 
     }
 }
