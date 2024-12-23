@@ -7,7 +7,6 @@ import com.example.util.DatabaseUtil;
 
 public class TAMTRUVANGDao implements DAOInterface<TAMTRUVANG>{
 
-
     @Override
     public int insert(TAMTRUVANG t){
         String query = "INSERT INTO TAMTRUVANG (CCCD , HOVATEN, Idcanho,Ngaybatdau, Ngayketthuc, Lydo, Trangthai ) VALUES (?, ?)";

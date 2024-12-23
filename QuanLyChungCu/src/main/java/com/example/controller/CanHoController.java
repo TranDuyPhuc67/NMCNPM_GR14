@@ -20,6 +20,9 @@ public class CanHoController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         CANHOService canhoService = new CANHOService();
         String xuly = request.getParameter("xuly");
         String idcanho = request.getParameter("idcanho");
@@ -37,7 +40,7 @@ public class CanHoController extends HttpServlet {
             double num_dientich = Double.parseDouble(dientich);
             String diachi = request.getParameter("diachi");
             
-            CANHO canho = new CANHO(num_idcanho, xuly, loaicanho, num_dientich);
+            CANHO canho = new CANHO(num_idcanho, diachi, loaicanho, num_dientich);
             // Tạo đối tượng service và xác thực tài khoản
 
 

@@ -30,7 +30,6 @@ public class QuanLyCanHo extends HttpServlet {
             int num_idcanho = Integer.parseInt(idcanho);
             CANHO canho = canhoService.getCanHoById(num_idcanho); 
             canhos = Collections.singletonList(canho);
-
         }
         if (canhos.size() == 0) {
                 request.setAttribute("canhos", null); 
