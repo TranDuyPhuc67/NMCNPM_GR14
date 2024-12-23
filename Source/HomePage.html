@@ -45,7 +45,6 @@
       .navbar-nav .btn {
         margin-left: 10px;
       }
-
       .header {
         text-align: center;
         margin-top: 50px;
@@ -166,6 +165,9 @@
         transform: scale(1.05); /* Phóng to card khi hover */
         transition: transform 0.3s; /* Thêm hiệu ứng chuyển tiếp */
       }
+      .dropdown-item:hover {
+        background-color: #4f4f4f;
+      }
     </style>
   </head>
   <body>
@@ -215,21 +217,61 @@
                 <a class="nav-link" href="#"> Liên hệ hỗ trợ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"> </a>
-              </li>
-              <li class="nav-item" style="margin-right: 10px">
                 <a
-                  class="btn btn-secondary"
+                  class="btn btn-outline-secondary"
                   href="Login.html"
-                  style="
-                    background-color: rgb(60, 82, 105);
-                    border: none;
-                    margin-top: 6px;
-                  "
+                  style="color: rgb(216, 216, 216)"
                 >
-                  <i class="fas fa-user"> </i>
+                  Đăng nhập
                 </a>
               </li>
+              <!-- Dropdown thông báo -->
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="notificationDropdown"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-user"> </i>
+                </button>
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="notificationDropdown"
+                  style="
+                    border-radius: 10px;
+                    background-color: rgba(52, 52, 52, 0.8);
+                  "
+                >
+                  <li>
+                    <p class="dropdown-item" style="color: #efeff0">
+                      Bạn chưa có thông báo mới
+                    </p>
+                  </li>
+
+                  <li>
+                    <hr
+                      class="dropdown-divider"
+                      style="background-color: #efeff0"
+                    />
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#" style="color: #efeff0"
+                      >Trang cá nhân</a
+                    >
+                  </li>
+                  <li>
+                    <button
+                      type=""
+                      class="dropdown-item"
+                      style="color: #efeff0"
+                    >
+                      Đăng xuất
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </ul>
           </div>
         </div>
@@ -332,28 +374,40 @@
                   style="color: #4f4f4f; text-align: left"
                 >
                   <div class="col-12">
-                    <a href="PhiChungCu.html">
+                    <a
+                      href="PhiChungCu.html"
+                      onclick="sessionStorage.setItem('fromLinkA', 'true')"
+                    >
                       <div class="card-modal">
                         <h5 class="card-title">Quản lý phí chung cư</h5>
                       </div>
                     </a>
                   </div>
                   <div class="col-12">
-                    <a href="PhiTienIch.html">
+                    <a
+                      href="PhiTienIch.html"
+                      onclick="sessionStorage.setItem('fromLinkA', 'true')"
+                    >
                       <div class="card-modal">
                         <h5 class="card-title">Quản lý phí tiện ích</h5>
                       </div>
                     </a>
                   </div>
                   <div class="col-12">
-                    <a href="PhiGuiXe.html">
+                    <a
+                      href="PhiGuiXe.html"
+                      onclick="sessionStorage.setItem('fromLinkA', 'true')"
+                    >
                       <div class="card-modal">
                         <h5 class="card-title">Quản lý phí gửi xe</h5>
                       </div>
                     </a>
                   </div>
                   <div class="col-12">
-                    <a href="ThongKe.html">
+                    <a
+                      href="ThongKe.html"
+                      onclick="sessionStorage.setItem('fromLinkA', 'true')"
+                    >
                       <div class="card-modal">
                         <h5 class="card-title">Thống kê các khoản thu</h5>
                       </div>
@@ -364,7 +418,10 @@
                     data-bs-toggle="modal"
                     data-bs-target="#Modal"
                   >
-                    <a href="QuanLyKhoanThu.html">
+                    <a
+                      href="QuanLyKhoanThu.html"
+                      onclick="sessionStorage.setItem('fromLinkA', 'true')"
+                    >
                       <div class="card-modal">
                         <h5 class="card-title">
                           Quản lý khoản đóng góp tự nguyện

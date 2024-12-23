@@ -475,12 +475,20 @@
 
     <!-- JavaScript để hiển thị modal khi tải trang -->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var myModal = new bootstrap.Modal(
-          document.getElementById("tienIchModal"),
-          {}
-        );
-        myModal.show();
+      document.addEventListener("DOMContentLoaded", () => {
+        // Kiểm tra trạng thái trong sessionStorage
+        const fromLinkA = sessionStorage.getItem("fromLinkA");
+
+        if (fromLinkA === "true") {
+          // Hiển thị modal
+          const modal = new bootstrap.Modal(
+            document.getElementById("tienIchModal")
+          );
+          modal.show();
+
+          // Xóa trạng thái sau khi hiển thị để tránh hiển thị lại khi reload
+          sessionStorage.removeItem("fromLinkA");
+        }
       });
     </script>
   </body>

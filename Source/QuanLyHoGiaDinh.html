@@ -184,7 +184,7 @@
             <button
               class="btn btn-primary"
               data-bs-toggle="modal"
-              data-bs-target="#addModal"
+              data-bs-target="#addInfoModal1"
             >
               Thêm mới hộ gia đình
             </button>
@@ -264,9 +264,9 @@
       <!-- Modal Thêm mới hộ gia đình -->
       <div
         class="modal fade"
-        id="addModal"
+        id="addInfoModal1"
         tabindex="-1"
-        aria-labelledby="addModalLabel"
+        aria-labelledby="addInfoModal1Label"
         aria-hidden="true"
       >
         <div class="modal-dialog">
@@ -275,7 +275,7 @@
               class="modal-header"
               style="background-color: #3790e9; color: #fff"
             >
-              <h5 class="modal-title" id="addModalLabel">
+              <h5 class="modal-title" id="addInfoModal1Label">
                 Thêm mới hộ gia đình
               </h5>
               <button
@@ -286,7 +286,7 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form id="form1">
                 <div class="mb-3">
                   <label for="name" class="form-label">Họ và tên chủ hộ</label>
                   <input type="text" class="form-control" id="name" required />
@@ -300,7 +300,100 @@
                     required
                   />
                 </div>
+                <div class="mb-3">
+                  <label for="phonenumber" class="form-label"
+                    >Số điện thoại</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="phonenumber"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="apartment" class="form-label">Căn hộ</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="apartment"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="floor" class="form-label">Tầng</label>
+                  <input type="text" class="form-control" id="floor" required />
+                </div>
+                <div class="mb-3">
+                  <label for="persons" class="form-label">Số nhân khẩu</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="persons"
+                    required
+                  />
+                </div>
 
+                <div class="mb-3">
+                  <label for="motorNumber" class="form-label">Số xe máy</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="motorNumber"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="carNumber" class="form-label">Số ô tô</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="carNumber"
+                    required
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Đóng
+              </button>
+              <button class="btn btn-primary" id="nextModal">Tiếp theo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modal thêm thông tin chủ hộ -->
+      <div
+        class="modal fade"
+        id="addInfoModal2"
+        tabindex="-1"
+        aria-labelledby="addInfoModal2Label"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div
+              class="modal-header"
+              style="background-color: #3790e9; color: #fff"
+            >
+              <h5 class="modal-title" id="addInfoModal2Label">
+                Thêm thông tin chủ hộ
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form id="form2">
                 <div class="mb-3">
                   <label for="dateBirth" class="form-label">Ngày sinh</label>
                   <input
@@ -352,17 +445,7 @@
                     required
                   />
                 </div>
-                <div class="mb-3">
-                  <label for="phonenumber" class="form-label"
-                    >Số điện thoại</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="phonenumber"
-                    required
-                  />
-                </div>
+
                 <div class="mb-3">
                   <label for="status" class="form-label"
                     >Trạng thái
@@ -377,24 +460,6 @@
                     required
                   />
                 </div>
-                <div class="mb-3">
-                  <label for="motorNumber" class="form-label">Số xe máy</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="motorNumber"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="carNumber" class="form-label">Số ô tô</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="carNumber"
-                    required
-                  />
-                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -405,12 +470,13 @@
               >
                 Đóng
               </button>
-              <button type="submit" class="btn btn-primary">Lưu</button>
+              <button type="submit" class="btn btn-primary" id="submitForm">
+                Lưu
+              </button>
             </div>
           </div>
         </div>
       </div>
-
       <!-- Modal Chỉnh sửa thông tin hộ gia đình -->
       <div
         class="modal fade"
@@ -592,6 +658,44 @@
         );
         successModal.show();
       }
+    </script>
+    <!-- thêm hộ gia đình -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const modal1 = new bootstrap.Modal(
+          document.getElementById("addInfoModal1")
+        );
+        const modal2 = new bootstrap.Modal(
+          document.getElementById("addInfoModal2")
+        );
+
+        // Nút "Tiếp tục" để mở modal 2
+        document.getElementById("nextModal").addEventListener("click", () => {
+          modal1.hide();
+          modal2.show();
+        });
+
+        // Nút "Gửi" để lấy dữ liệu từ cả hai form
+        document.getElementById("submitForm").addEventListener("click", () => {
+          const form1Data = new FormData(document.getElementById("form1"));
+          const form2Data = new FormData(document.getElementById("form2"));
+
+          // Gộp dữ liệu từ cả hai form
+          const combinedData = {};
+          form1Data.forEach((value, key) => {
+            combinedData[key] = value;
+          });
+          form2Data.forEach((value, key) => {
+            combinedData[key] = value;
+          });
+
+          console.log("Dữ liệu cuối cùng:", combinedData);
+
+          // Gửi dữ liệu qua API hoặc xử lý thêm...
+          modal2.hide();
+          alert("Dữ liệu đã được gửi!");
+        });
+      });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
