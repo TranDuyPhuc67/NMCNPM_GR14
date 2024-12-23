@@ -71,7 +71,6 @@ public class CANHODao implements DAOInterface<CANHO> {
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
-
             while (rs.next()) {
                 CANHO canho = new CANHO();
                 canho.setIdcanho(rs.getInt("Idcanho"));
@@ -114,6 +113,7 @@ public class CANHODao implements DAOInterface<CANHO> {
 
         return null;
     }
+    
 
 	@Override
 	public ArrayList<CANHO> selectByCondition(String Condition) {

@@ -37,7 +37,7 @@ public class CanHoController extends HttpServlet {
             String loaicanho = request.getParameter("loaicanho");
             loaicanho = URLDecoder.decode(loaicanho, StandardCharsets.UTF_8.name());
             String dientich = request.getParameter("dientich");
-            double num_dientich = Double.parseDouble(dientich);
+            double num_dientich  = Double.parseDouble(dientich);
             String diachi = request.getParameter("diachi");
             
             CANHO canho = new CANHO(num_idcanho, diachi, loaicanho, num_dientich);
