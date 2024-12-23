@@ -7,19 +7,30 @@ public class TIENICH {
 	private int Sodien;
 	private int Sonuoc;
 	private int Internet;
-	private Date Thoihan;
+	private Date Hanthu;
+	private int Tongtienich;
 
 	public TIENICH() {
 		super();
 	}
 
-	public TIENICH(int idcanho, int sodien, int sonuoc, int internet, Date thoihan) {
+	public TIENICH(int idcanho, int sodien, int sonuoc, int internet, Date hanthu) {
 		super();
 		Idcanho = idcanho;
 		Sodien = sodien;
 		Sonuoc = sonuoc;
 		Internet = internet;
-		Thoihan = thoihan;
+		Hanthu = hanthu;
+	}
+
+	public TIENICH(int idcanho, int sodien, int sonuoc, int internet, Date thoihan, int tongtienich) {
+		super();
+		Idcanho = idcanho;
+		Sodien = sodien;
+		Sonuoc = sonuoc;
+		Internet = internet;
+		Hanthu = thoihan;
+		Tongtienich = tongtienich;
 	}
 
 	public int getIdcanho() {
@@ -54,12 +65,20 @@ public class TIENICH {
 		Internet = internet;
 	}
 
-	public Date getThoihan() {
-		return Thoihan;
+	public Date getHanthu() {
+		return Hanthu;
 	}
 
-	public void setThoihan(Date thoihan) {
-		Thoihan = thoihan;
+	public void setHanthu(Date thoihan) {
+		Hanthu = thoihan;
+	}
+
+	public int getTongtienich() {
+		return Tongtienich;
+	}
+
+	public void setTongtienich(int tongtienich) {
+		Tongtienich = tongtienich;
 	}
 
 }

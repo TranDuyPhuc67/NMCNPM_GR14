@@ -7,6 +7,16 @@ public class PHIGUIXE {
 	private int Soxemay;
 	private int Sooto;
 	private Date Thoihan;
+	private int Tongguixe;
+
+	public PHIGUIXE(String cCCDchuho, int soxemay, int sooto, Date thoihan, int tongguixe) {
+		super();
+		CCCDchuho = cCCDchuho;
+		Soxemay = soxemay;
+		Sooto = sooto;
+		Thoihan = thoihan;
+		Tongguixe = tongguixe;
+	}
 
 	public PHIGUIXE() {
 		super();
@@ -50,6 +60,14 @@ public class PHIGUIXE {
 
 	public void setThoihan(Date thoihan) {
 		Thoihan = thoihan;
+	}
+
+	public int getTongguixe() {
+		return Tongguixe;
+	}
+
+	public void setTongguixe(int tongguixe) {
+		Tongguixe = tongguixe;
 	}
 
 }
