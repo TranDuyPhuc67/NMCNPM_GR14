@@ -117,6 +117,44 @@ public class CANHODao implements DAOInterface<CANHO> {
 
         return null;
     }
+    public int NametoId(String t) {
+        String sql = "SELECT Idcanho FROM CANHO WHERE Sonha = ?";
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, t);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("Idcanho");
+                }
+            }
+        } catch (SQLException e) {
+            // Log error and throw an exception
+            System.err.println("Error while selecting CANHO by ID: " + e.getMessage());
+            throw new RuntimeException("Error while selecting CANHO by ID", e);
+        }
+
+        return 0;
+    }
+    public String IdtoName(int t) {
+        String sql = "SELECT Sonha FROM CANHO WHERE Idcanho = ?";
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, t);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("Sonha");
+                }
+            }
+        } catch (SQLException e) {
+            // Log error and throw an exception
+            System.err.println("Error while selecting CANHO by ID: " + e.getMessage());
+            throw new RuntimeException("Error while selecting CANHO by ID", e);
+        }
+
+        return null;
+    }
     public CANHO selectByName(String t) {
         String sql = "SELECT * FROM CANHO WHERE sonha = ?";
         try (Connection conn = DatabaseUtil.getConnection();

@@ -37,4 +37,7 @@ public class HOGIADINHService {
     public List<HOGIADINH> getHOGIADINHByCondition(String condition) {
         return hogiadinhDao.selectByCondition(condition); 
     }
+    public int updateCHUHO(HOGIADINH hogiadinh) {
+        return hogiadinhDao.updateChuHo(hogiadinh); 
+    }
 }

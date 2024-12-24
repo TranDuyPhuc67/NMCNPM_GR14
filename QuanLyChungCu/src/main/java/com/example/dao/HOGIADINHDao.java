@@ -13,8 +13,8 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 
 	@Override
 	public int insert(HOGIADINH t) {
-		String sql = "INSERT INTO HOGIADINH (CCCDchuho, Idcanho, Sothanhvien, Hotenchuho, Gioitinh, Ngaysinh, Dantoc, Tongiao, Quoctich, Diachi, Sdt, Email, Trangthai) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO HOGIADINH (CCCDchuho, Idcanho, Sothanhvien, Hotenchuho, Gioitinh, Ngaysinh, Dantoc, Tongiao, Quoctich, Diachi, Sdt, Trangthai, Soxemay, Sooto, Tang, Sonha) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, t.getCCCDchuho());
 			stmt.setInt(2, t.getIdcanho());
@@ -27,8 +27,11 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			stmt.setString(9, t.getQuoctich());
 			stmt.setString(10, t.getDiachi());
 			stmt.setString(11, t.getSdt());
-			stmt.setString(12, t.getEmail());
-			stmt.setString(113, t.getTrangthai());
+			stmt.setString(12, t.getTrangthai());
+			stmt.setInt(13, t.getSoxemay());
+			stmt.setInt(14, t.getSooto());
+			stmt.setInt(15, t.getTang());
+			stmt.setString(16, t.getSonha());
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error while inserting HOGIADINH: " + e.getMessage());
@@ -38,22 +41,16 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 
 	@Override
 	public int update(HOGIADINH t) {
-		String sql = "UPDATE HOGIADINH SET Idcanho = ?, Sothanhvien = ?, Hotenchuho = ?, Gioitinh = ?, Ngaysinh = ?, Dantoc = ?, Tongiao = ?, Quoctich = ?, Diachi = ?, Sdt = ?, Email = ?, Trangthai = ? "
-				+ "WHERE CCCDchuho = ?";
+		String sql = "UPDATE HOGIADINH SET Sdt = ?,  Idcanho = ?, Sothanhvien = ?, Tang = ?, Sonha = ? WHERE CCCDchuho = ? AND Hotenchuho = ?";
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setInt(1, t.getIdcanho());
-			stmt.setInt(2, t.getSothanhvien());
-			stmt.setString(3, t.getHotenchuho());
-			stmt.setString(4, t.getGioitinh());
-			stmt.setDate(5, t.getNgaysinh());
-			stmt.setString(6, t.getDantoc());
-			stmt.setString(7, t.getTongiao());
-			stmt.setString(8, t.getQuoctich());
-			stmt.setString(9, t.getDiachi());
-			stmt.setString(10, t.getSdt());
-			stmt.setString(11, t.getEmail());
-			stmt.setString(12, t.getTrangthai());
-			stmt.setString(13, t.getCCCDchuho());
+			// stmt.setString(1, t.getCCCDchuho());
+			stmt.setString(1, t.getSdt());
+			stmt.setInt(2, t.getIdcanho());
+			stmt.setInt(3, t.getTang());
+			stmt.setString(4, t.getSonha());
+			stmt.setInt(5, t.getSothanhvien());
+			stmt.setString(6, t.getCCCDchuho());
+			stmt.setString(7, t.getHotenchuho());
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error while updating HOGIADINH: " + e.getMessage());
@@ -96,8 +93,11 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 				hogiadinh.setQuoctich(rs.getString("Quoctich"));
 				hogiadinh.setDiachi(rs.getString("Diachi"));
 				hogiadinh.setSdt(rs.getString("Sdt"));
-				hogiadinh.setEmail(rs.getString("Email"));
 				hogiadinh.setTrangthai(rs.getString("Trangthai"));
+				hogiadinh.setSoxemay(rs.getInt("Soxemay"));
+				hogiadinh.setSooto(rs.getInt("Sooto"));
+				hogiadinh.setTang(rs.getInt("Tang"));
+				hogiadinh.setSonha(rs.getString("Sonha"));
 				list.add(hogiadinh);
 			}
 		} catch (SQLException e) {
@@ -128,8 +128,11 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 					hogiadinh.setQuoctich(rs.getString("Quoctich"));
 					hogiadinh.setDiachi(rs.getString("Diachi"));
 					hogiadinh.setSdt(rs.getString("Sdt"));
-					hogiadinh.setEmail(rs.getString("Email"));
 					hogiadinh.setTrangthai(rs.getString("Trangthai"));
+					hogiadinh.setSoxemay(rs.getInt("Soxemay"));
+					hogiadinh.setSooto(rs.getInt("Sooto"));
+					hogiadinh.setTang(rs.getInt("Tang"));
+					hogiadinh.setSonha(rs.getString("Sonha"));
 					return hogiadinh;
 				}
 			}
@@ -139,42 +142,70 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 		}
 		return null;
 	}
-
+	public int updateChuHo(HOGIADINH t) {
+		String sql = "UPDATE HOGIADINH SET Hotenchuho = ?,CCCDchuho = ?, Gioitinh = ?, Ngaysinh = ?, Dantoc = ?, Tongiao = ?, Quoctich = ?, Diachi = ?, Sdt = ? "
+				+ "WHERE CCCDchuho = ?";
+		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, t.getHotenchuho());
+			stmt.setString(2, t.getCCCDchuho());
+			stmt.setString(3, t.getGioitinh());
+			stmt.setDate(4, t.getNgaysinh());
+			stmt.setString(5, t.getDantoc());
+			stmt.setString(6, t.getTongiao());
+			stmt.setString(7, t.getQuoctich());
+			stmt.setString(8, t.getDiachi());
+			stmt.setString(9, t.getSdt());
+			stmt.setString(10, t.getCCCDchuho());
+			return stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("Error while updating HOGIADINH: " + e.getMessage());
+			throw new RuntimeException("Error while updating HOGIADINH", e);
+		}
+	}
 	@Override
 	public ArrayList<HOGIADINH> selectByCondition(String condition) {
-		String sql = "SELECT * FROM HOGIADINH WHERE " + condition;
+		String sql = "SELECT * FROM HOGIADINH WHERE Hotenchuho LIKE ? OR Sdt LIKE ? OR CCCDchuho = ? OR Idcanho = ? OR Sothanhvien = ? OR Tang = ?";
 		ArrayList<HOGIADINH> list = new ArrayList<>();
 
 		if (condition == null || condition.isEmpty()) {
 			throw new IllegalArgumentException("Condition cannot be null or empty");
 		}
+		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, "%" + condition + "%");
+			stmt.setString(2, "%" + condition + "%");
+			stmt.setInt(3, Integer.parseInt(condition));
+			stmt.setInt(4, Integer.parseInt(condition));
+			stmt.setInt(5, Integer.parseInt(condition));
+			stmt.setInt(6, Integer.parseInt(condition));
+			try (ResultSet rs = stmt.executeQuery()) {
 
-		try (Connection conn = DatabaseUtil.getConnection();
-				PreparedStatement stmt = conn.prepareStatement(sql);
-				ResultSet rs = stmt.executeQuery()) {
-
-			while (rs.next()) {
-				HOGIADINH hogiadinh = new HOGIADINH();
-				hogiadinh.setCCCDchuho(rs.getString("CCCDchuho"));
-				hogiadinh.setIdcanho(rs.getInt("Idcanho"));
-				hogiadinh.setSothanhvien(rs.getInt("Sothanhvien"));
-				hogiadinh.setHotenchuho(rs.getString("Hotenchuho"));
-				hogiadinh.setGioitinh(rs.getString("Gioitinh"));
-				hogiadinh.setNgaysinh(rs.getDate("Ngaysinh"));
-				hogiadinh.setDantoc(rs.getString("Dantoc"));
-				hogiadinh.setTongiao(rs.getString("Tongiao"));
-				hogiadinh.setQuoctich(rs.getString("Quoctich"));
-				hogiadinh.setDiachi(rs.getString("Diachi"));
-				hogiadinh.setSdt(rs.getString("Sdt"));
-				hogiadinh.setEmail(rs.getString("Email"));
-				hogiadinh.setTrangthai(rs.getString("Trangthai"));
-				list.add(hogiadinh);
-			}
-		} catch (SQLException e) {
-			System.err.println("Error while selecting HOGIADINH by condition: " + e.getMessage());
-			throw new RuntimeException("Error while selecting HOGIADINH by condition", e);
+				while (rs.next()) {
+					HOGIADINH hogiadinh = new HOGIADINH();
+					hogiadinh.setCCCDchuho(rs.getString("CCCDchuho"));
+					hogiadinh.setIdcanho(rs.getInt("Idcanho"));
+					hogiadinh.setSothanhvien(rs.getInt("Sothanhvien"));
+					hogiadinh.setHotenchuho(rs.getString("Hotenchuho"));
+					hogiadinh.setGioitinh(rs.getString("Gioitinh"));
+					hogiadinh.setNgaysinh(rs.getDate("Ngaysinh"));
+					hogiadinh.setDantoc(rs.getString("Dantoc"));
+					hogiadinh.setTongiao(rs.getString("Tongiao"));
+					hogiadinh.setQuoctich(rs.getString("Quoctich"));
+					hogiadinh.setDiachi(rs.getString("Diachi"));
+					hogiadinh.setSdt(rs.getString("Sdt"));
+					hogiadinh.setTrangthai(rs.getString("Trangthai"));
+					hogiadinh.setSoxemay(rs.getInt("Soxemay"));
+					hogiadinh.setSooto(rs.getInt("Sooto"));
+					hogiadinh.setTang(rs.getInt("Tang"));
+					hogiadinh.setSonha(rs.getString("Sonha"));
+					list.add(hogiadinh);
+				}
+			} 
 		}
-
+		catch (SQLException e) {
+				System.err.println("Error while selecting HOGIADINH by condition: " + e.getMessage());
+				throw new RuntimeException("Error while selecting HOGIADINH by condition", e);
+		}
+		
 		return list;
 	}
 }

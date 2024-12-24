@@ -9,8 +9,10 @@ com/example/service/CANHOService.class
 com/example/dao/QUANLYDao.class
 com/example/model/QUANLY.class
 com/example/model/KHOANDONGGOP.class
+com/example/controller/QuanLyHoGiaDinhController.class
 com/example/dao/KHOANPHIDao.class
 com/example/dao/HOGIADINHDao.class
+QuanLyHoGiaDinh.class
 com/example/dao/TAMTRUVANGDao.class
 com/example/service/TIENICHService.class
 QuanLyCanHo.class

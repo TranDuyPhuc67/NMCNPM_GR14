@@ -6,6 +6,8 @@ public class HOGIADINH {
 	private String CCCDchuho;
 	private int Idcanho;
 	private int Sothanhvien;
+	private int Soxemay;
+	private int Sooto;
 	private String Hotenchuho;
 	private String Gioitinh;
 	private Date Ngaysinh;
@@ -14,15 +16,24 @@ public class HOGIADINH {
 	private String Quoctich;
 	private String Diachi;
 	private String Sdt;
-	private String Email;
 	private String Trangthai;
-
+	private int Tang;
+	private String Sonha;
 	public HOGIADINH() {
 		super();
 	}
-
+	public HOGIADINH(String cCCDchuho,int idcanho, String hotenchuho,int sothanhvien,String sdt,int tang,String sonha) {
+		super();
+		CCCDchuho = cCCDchuho;
+		Idcanho = idcanho;
+		Sothanhvien = sothanhvien;
+		Hotenchuho = hotenchuho;
+		Sdt = sdt;
+		Tang = tang;
+		Sonha = sonha;
+	}
 	public HOGIADINH(String cCCDchuho, int idcanho, int sothanhvien, String hotenchuho, String gioitinh, Date ngaysinh,
-			String dantoc, String tongiao, String quoctich, String diachi, String sdt, String email, String trangthai) {
+			String dantoc, String tongiao, String quoctich, String diachi, String sdt,  String trangthai, int soxemay, int sooto, int tang,String sonha) {
 		super();
 		CCCDchuho = cCCDchuho;
 		Idcanho = idcanho;
@@ -35,8 +46,11 @@ public class HOGIADINH {
 		Quoctich = quoctich;
 		Diachi = diachi;
 		Sdt = sdt;
-		Email = email;
 		Trangthai = trangthai;
+		Soxemay = soxemay;
+		Sooto = sooto;
+		Tang = tang;
+		Sonha = sonha;
 	}
 
 	public String getCCCDchuho() {
@@ -127,14 +141,6 @@ public class HOGIADINH {
 		Sdt = sdt;
 	}
 
-	public String getEmail() {
-		return Email;
-	}
-
-	public void setEmail(String email) {
-		Email = email;
-	}
-
 	public String getTrangthai() {
 		return Trangthai;
 	}
@@ -142,5 +148,28 @@ public class HOGIADINH {
 	public void setTrangthai(String trangthai) {
 		Trangthai = trangthai;
 	}
-
+	public int getSoxemay() {
+		return Soxemay;
+	}
+	public void setSoxemay(int soxemay) {
+		Soxemay = soxemay;
+	}
+	public int getSooto() {
+		return Sooto;
+	}
+	public void setSooto(int sooto) {
+		Sooto = sooto;
+	}
+	public int getTang() {
+		return Tang;
+	}
+	public void setTang(int tang) {
+		Tang = tang;
+	}
+	public String getSonha() {
+		return Sonha;
+	}
+	public void setSonha(String sonha) {
+		Sonha = sonha;
+	}
 }

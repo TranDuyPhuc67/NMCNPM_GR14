@@ -36,8 +36,12 @@ public class CANHOService {
         return canHoDao.selectById(temp); 
     }
     public CANHO getCanHoByName(String sonha) {
-        CANHO temp = new CANHO();
-        temp.setSonha(sonha);
         return canHoDao.selectByName(sonha); 
+    }
+    public int NametoId(String sonha) {       
+        return canHoDao.NametoId(sonha);
+    }
+    public String IdtoName(int id) {       
+        return canHoDao.IdtoName(id);
     }
 }

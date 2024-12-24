@@ -4,9 +4,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý hộ gia đình</title>
+    <title>Quản lý Tạm Vắng</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       rel="stylesheet"
     />
     <style>
@@ -47,24 +51,13 @@
         font-family: Arial, sans-serif;
       }
       .btn-search {
-        background-color: #3790e9;
+        background-color: #007bff;
         color: white;
-      }
-      .btn-primary {
-        background-color: #3790e9;
-        color: white;
-      }
-      .table {
-        border-radius: 5px;
-        overflow: hidden;
       }
       .table th,
       .table td {
         text-align: center;
         vertical-align: middle;
-      }
-      .table td a {
-        color: #fff;
       }
       .table .text-success {
         color: green;
@@ -87,23 +80,18 @@
       .hero {
         margin-top: 100px;
       }
-      .table thead tr th {
-        background-color: #3790e9 !important; /* Thay đổi màu nền của thead */
-        color: #eee;
-      }
       .modal-dialog {
         display: flex;
-        align-items: center;
         justify-content: center;
+        align-items: center;
         min-height: calc(100vh - 1rem);
       }
     </style>
   </head>
   <body>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="margin-left: 30px">
+        <a class="navbar-brand" href="HomePage.html" style="margin-left: 30px">
           <img
             src="./Image/Remove-bg.ai_1730519657240.png"
             alt="Logo"
@@ -124,7 +112,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a aria-current="page" class="nav-link active" href="#">
+              <a
+                aria-current="page"
+                class="nav-link active"
+                href="HomePage.html"
+              >
                 Trang chủ
               </a>
             </li>
@@ -146,21 +138,20 @@
                 href="#"
                 style="color: rgb(216, 216, 216); margin-right: 10px"
               >
-                Tài khoản
+                <i class="fas fa-user"></i>
               </a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- danh sách quản lý -->
     <div class="hero">
       <div class="container mt-4">
-        <h2>Quản lý hộ gia đình</h2>
+        <h2>Quản lý tạm vắng</h2>
         <p class="pp">
-          Cung cấp công cụ để theo dõi và tổ chức thông tin chi tiết về từng hộ
-          gia đình.
+          Theo dõi và quản lý thông tin cư dân tạm vắng trong khu chung cư
         </p>
+
         <!-- Tìm kiếm và thêm mới -->
         <div class="row mb-3">
           <div class="col-md-6 col-12">
@@ -168,9 +159,9 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="Tìm kiếm hộ gia đình theo mã phòng"
+                placeholder="Tìm kiếm cư dân"
               />
-              <button class="btn btn-search">Tìm kiếm</button>
+              <button type="" class="btn btn-search">Tìm kiếm</button>
             </div>
           </div>
           <div class="col-md-6 col-12 text-md-end mt-2 mt-md-0">
@@ -179,20 +170,21 @@
               data-bs-toggle="modal"
               data-bs-target="#addModal"
             >
-              Thêm mới hộ gia đình
+              Thêm mới tạm vắng
             </button>
           </div>
         </div>
-        <!-- Bảng danh sách hộ gia đình -->
+        <!-- Bảng danh sách tạm vắng -->
         <table class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>Họ tên chủ hộ</th>
+              <th>Họ tên</th>
               <th>CMND/CCCD</th>
-              <th>Số điện thoại</th>
               <th>Căn hộ</th>
-              <th>Tầng</th>
-              <th>Số nhân khẩu</th>
+              <th>Ngày bắt đầu</th>
+              <th>Ngày kết thúc</th>
+              <th>Lý do</th>
+              <th>Trạng thái</th>
               <th>Hành động</th>
             </tr>
           </thead>
@@ -200,14 +192,12 @@
             <tr>
               <td>Nguyễn Văn A</td>
               <td>123456789</td>
-              <td>0328675544</td>
               <td>A101</td>
-              <td>1</td>
-              <td>4</td>
+              <td>01/12/2024</td>
+              <td>15/12/2024</td>
+              <td>Công tác</td>
+              <td class="text-success">Đang tạm vắng</td>
               <td>
-                <a href="QuanLyNhanKhau.html">
-                  <button class="btn btn-success btn-sm">Quản lý</button>
-                </a>
                 <button
                   class="btn btn-warning btn-sm"
                   data-bs-toggle="modal"
@@ -215,20 +205,24 @@
                 >
                   Chỉnh sửa
                 </button>
-                <button class="btn btn-danger btn-sm">Xóa</button>
+                <button
+                  class="btn btn-danger btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteModal"
+                >
+                  Xóa
+                </button>
               </td>
             </tr>
             <tr>
               <td>Trần Thị B</td>
               <td>987654321</td>
-              <td>0328676868</td>
               <td>B102</td>
-              <td>1</td>
-              <td>5</td>
+              <td>05/12/2024</td>
+              <td>20/12/2024</td>
+              <td>Thăm người thân</td>
+              <td class="text-danger">Hết hạn</td>
               <td>
-                <a href="QuanLyNhanKhau.html">
-                  <button class="btn btn-success btn-sm">Quản lý</button>
-                </a>
                 <button
                   class="btn btn-warning btn-sm"
                   data-bs-toggle="modal"
@@ -236,13 +230,20 @@
                 >
                   Chỉnh sửa
                 </button>
-                <button class="btn btn-danger btn-sm">Xóa</button>
+                <button
+                  class="btn btn-danger btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteModal"
+                >
+                  Xóa
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <!-- Modal Thêm mới hộ gia đình -->
+
+      <!-- Modal Thêm mới tạm vắng -->
       <div
         class="modal fade"
         id="addModal"
@@ -252,13 +253,8 @@
       >
         <div class="modal-dialog">
           <div class="modal-content">
-            <div
-              class="modal-header"
-              style="background-color: #3790e9; color: #fff"
-            >
-              <h5 class="modal-title" id="addModalLabel">
-                Thêm mới hộ gia đình
-              </h5>
+            <div class="modal-header">
+              <h5 class="modal-title" id="addModalLabel">Thêm mới tạm vắng</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -269,7 +265,7 @@
             <div class="modal-body">
               <form>
                 <div class="mb-3">
-                  <label for="name" class="form-label">Họ và tên chủ hộ</label>
+                  <label for="name" class="form-label">Họ và tên</label>
                   <input type="text" class="form-control" id="name" required />
                 </div>
                 <div class="mb-3">
@@ -278,147 +274,6 @@
                     type="text"
                     class="form-control"
                     id="idCard"
-                    required
-                  />
-                </div>
-
-                <div class="mb-3">
-                  <label for="dateBirth" class="form-label">Ngày sinh</label>
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="dateBirth"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="sex" class="form-label">Giới tính</label>
-                  <input type="text" class="form-control" id="sex" required />
-                </div>
-                <div class="mb-3">
-                  <label for="nation" class="form-label">Dân tộc</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="nation"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="religion" class="form-label">Tôn giáo</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="religion"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="nationality" class="form-label">Quốc tịch</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="nationality"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="address" class="form-label"
-                    >Địa chỉ thường trú</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="address"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="phonenumber" class="form-label"
-                    >Số điện thoại</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="phonenumber"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="status" class="form-label"
-                    >Trạng thái
-                    <span class="small-text"
-                      >(Thường trú hoặc Tạm trú)</span
-                    ></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="status"
-                    required
-                  />
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Đóng
-              </button>
-              <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Modal Chỉnh sửa thông tin hộ gia đình -->
-      <div
-        class="modal fade"
-        id="editModal"
-        tabindex="-1"
-        aria-labelledby="editModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div
-              class="modal-header"
-              style="background-color: #3790e9; color: #fff"
-            >
-              <h5 class="modal-title" id="addModalLabel">
-                Chỉnh sửa thông tin hộ gia đình
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="name" class="form-label">Họ tên chủ hộ</label>
-                  <input type="text" class="form-control" id="name" required />
-                </div>
-                <div class="mb-3">
-                  <label for="idCard" class="form-label">CMND/CCCD</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="idCard"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="phoneNum" class="form-label">Số điện thoại</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="phoneNum"
                     required
                   />
                 </div>
@@ -432,15 +287,29 @@
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="floor" class="form-label">Tầng</label>
-                  <input type="text" class="form-control" id="floor" required />
+                  <label for="startDate" class="form-label">Ngày bắt đầu</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="startDate"
+                    required
+                  />
                 </div>
                 <div class="mb-3">
-                  <label for="persons" class="form-label">Số nhân khẩu</label>
+                  <label for="endDate" class="form-label">Ngày kết thúc</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="endDate"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="reason" class="form-label">Lý do tạm vắng</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="persons"
+                    id="reason"
                     required
                   />
                 </div>
@@ -459,8 +328,186 @@
           </div>
         </div>
       </div>
-    </div>
 
+      <!-- Modal Chỉnh sửa tạm trú -->
+      <div
+        class="modal fade"
+        id="editModal"
+        tabindex="-1"
+        aria-labelledby="editModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editModalLabel">
+                Chỉnh sửa tạm vắng
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Họ và tên</label>
+                  <input type="text" class="form-control" id="name" required />
+                </div>
+                <div class="mb-3">
+                  <label for="idCard" class="form-label">CMND/CCCD</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="idCard"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="apartment" class="form-label">Căn hộ</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="apartment"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="startDate" class="form-label">Ngày bắt đầu</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="startDate"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="endDate" class="form-label">Ngày kết thúc</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="endDate"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="reason" class="form-label">Lý do tạm vắng</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="reason"
+                    required
+                  />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Đóng
+              </button>
+              <button type="" class="btn btn-primary">Cập nhật</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Xóa tạm vắng -->
+      <div
+        class="modal fade"
+        id="deleteModal"
+        tabindex="-1"
+        aria-labelledby="deleteModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div
+              class="modal-header"
+              style="background-color: #3790e9; color: #fff"
+            >
+              <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              Bạn có chắc chắn muốn xóa tạm vắng này không?
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Hủy
+              </button>
+              <button type="" class="btn btn-danger" onclick="deleteTamVang()">
+                Xóa
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Thông báo xóa thành công -->
+      <div
+        class="modal fade"
+        id="successModal"
+        tabindex="-1"
+        aria-labelledby="successModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div
+              class="modal-header"
+              style="background-color: #3790e9; color: #fff"
+            >
+              <h5 class="modal-title" id="successModalLabel">Thông báo</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">Tạm vắng đã được xóa thành công.</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Đóng
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function deleteTamVang() {
+        // Thực hiện hành động xóa ở đây
+        // Thay thế bằng mã xóa thực tế
+        var deleteModal = bootstrap.Modal.getInstance(
+          document.getElementById("deleteModal")
+        );
+        deleteModal.hide();
+
+        // Hiển thị modal thông báo xóa thành công
+        var successModal = new bootstrap.Modal(
+          document.getElementById("successModal")
+        );
+        successModal.show();
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
