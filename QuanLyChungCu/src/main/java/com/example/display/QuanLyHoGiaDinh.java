@@ -20,9 +20,11 @@ public class QuanLyHoGiaDinh extends HttpServlet {
         List<HOGIADINH> hogiadinhs;
         if (search == null || search.isEmpty()) {
             hogiadinhs = hogiadinhService.getAllHOGIADINH();
+            System.out.println(1);
         } else {
             hogiadinhs = hogiadinhService.getHOGIADINHByCondition(search);
         }
+
         if (hogiadinhs == null || hogiadinhs.isEmpty() || hogiadinhs.get(0) == null) {
             request.setAttribute("errorMessage", "Không tìm thấy hộ gia đình nào phù hợp.");
             request.setAttribute("hogiadinhs", null);
@@ -31,7 +33,7 @@ public class QuanLyHoGiaDinh extends HttpServlet {
         }
         
         request.getRequestDispatcher("./WEB-INF/QuanLyHoGiaDinh.jsp").forward(request, response);
-
+        
        
     }
 }

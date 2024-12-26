@@ -16,7 +16,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 		String sql = "INSERT INTO HOGIADINH (CCCDchuho, Idcanho, Sothanhvien, Hotenchuho, Gioitinh, Ngaysinh, Dantoc, Tongiao, Quoctich, Diachi, Sdt, Trangthai, Soxemay, Sooto, Tang, Sonha) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setString(1, t.getCCCDchuho());
+			stmt.setString(1, t.getCccdchuho());
 			stmt.setInt(2, t.getIdcanho());
 			stmt.setInt(3, t.getSothanhvien());
 			stmt.setString(4, t.getHotenchuho());
@@ -46,10 +46,10 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			// stmt.setString(1, t.getCCCDchuho());
 			stmt.setString(1, t.getSdt());
 			stmt.setInt(2, t.getIdcanho());
-			stmt.setInt(3, t.getTang());
-			stmt.setString(4, t.getSonha());
-			stmt.setInt(5, t.getSothanhvien());
-			stmt.setString(6, t.getCCCDchuho());
+			stmt.setInt(3, t.getSothanhvien());
+			stmt.setInt(4, t.getTang());
+			stmt.setString(5, t.getSonha());
+			stmt.setString(6, t.getCccdchuho());
 			stmt.setString(7, t.getHotenchuho());
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
@@ -63,7 +63,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 		String sql = "DELETE FROM HOGIADINH WHERE CCCDchuho = ?";
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-			stmt.setString(1, t.getCCCDchuho());
+			stmt.setString(1, t.getCccdchuho());
 			return stmt.executeUpdate() > 0;
 		} catch (SQLException e) {
 			System.err.println("Error while deleting HOGIADINH: " + e.getMessage());
@@ -113,7 +113,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 		String sql = "SELECT * FROM HOGIADINH WHERE CCCDchuho = ?";
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-			stmt.setString(1, t.getCCCDchuho());
+			stmt.setString(1, t.getCccdchuho());
 			try (ResultSet rs = stmt.executeQuery()) {
 				if (rs.next()) {
 					HOGIADINH hogiadinh = new HOGIADINH();
@@ -147,7 +147,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 				+ "WHERE CCCDchuho = ?";
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, t.getHotenchuho());
-			stmt.setString(2, t.getCCCDchuho());
+			stmt.setString(2, t.getCccdchuho());
 			stmt.setString(3, t.getGioitinh());
 			stmt.setDate(4, t.getNgaysinh());
 			stmt.setString(5, t.getDantoc());
@@ -155,7 +155,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			stmt.setString(7, t.getQuoctich());
 			stmt.setString(8, t.getDiachi());
 			stmt.setString(9, t.getSdt());
-			stmt.setString(10, t.getCCCDchuho());
+			stmt.setString(10, t.getCccdchuho());
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error while updating HOGIADINH: " + e.getMessage());
@@ -164,19 +164,25 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 	}
 	@Override
 	public ArrayList<HOGIADINH> selectByCondition(String condition) {
-		String sql = "SELECT * FROM HOGIADINH WHERE Hotenchuho LIKE ? OR Sdt LIKE ? OR CCCDchuho = ? OR Idcanho = ? OR Sothanhvien = ? OR Tang = ?";
+		String sql = "SELECT * FROM HOGIADINH WHERE Hotenchuho = ? OR Sdt = ? OR CCCDchuho = ? OR Sonha = ? OR Sothanhvien = ? OR Tang = ?";
 		ArrayList<HOGIADINH> list = new ArrayList<>();
 
 		if (condition == null || condition.isEmpty()) {
 			throw new IllegalArgumentException("Condition cannot be null or empty");
 		}
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setString(1, "%" + condition + "%");
-			stmt.setString(2, "%" + condition + "%");
-			stmt.setInt(3, Integer.parseInt(condition));
-			stmt.setInt(4, Integer.parseInt(condition));
-			stmt.setInt(5, Integer.parseInt(condition));
-			stmt.setInt(6, Integer.parseInt(condition));
+			stmt.setString(1, condition);
+			stmt.setString(2, condition);
+			stmt.setString(3, condition);
+			stmt.setString(4, condition);
+			try{
+				stmt.setInt(5, Integer.parseInt(condition));
+				stmt.setInt(6, Integer.parseInt(condition));
+			}
+			catch (NumberFormatException e){
+				stmt.setInt(5, -1);
+				stmt.setInt(6, -1);
+			}
 			try (ResultSet rs = stmt.executeQuery()) {
 
 				while (rs.next()) {

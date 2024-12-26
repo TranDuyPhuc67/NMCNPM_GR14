@@ -22,9 +22,9 @@ public class HOGIADINH {
 	public HOGIADINH() {
 		super();
 	}
-	public HOGIADINH(String cCCDchuho,int idcanho, String hotenchuho,int sothanhvien,String sdt,int tang,String sonha) {
+	public HOGIADINH(String cccdchuho,int idcanho, String hotenchuho,int sothanhvien,String sdt,int tang,String sonha) {
 		super();
-		CCCDchuho = cCCDchuho;
+		CCCDchuho = cccdchuho;
 		Idcanho = idcanho;
 		Sothanhvien = sothanhvien;
 		Hotenchuho = hotenchuho;
@@ -32,10 +32,10 @@ public class HOGIADINH {
 		Tang = tang;
 		Sonha = sonha;
 	}
-	public HOGIADINH(String cCCDchuho, int idcanho, int sothanhvien, String hotenchuho, String gioitinh, Date ngaysinh,
+	public HOGIADINH(String cccdchuho, int idcanho, int sothanhvien, String hotenchuho, String gioitinh, Date ngaysinh,
 			String dantoc, String tongiao, String quoctich, String diachi, String sdt,  String trangthai, int soxemay, int sooto, int tang,String sonha) {
 		super();
-		CCCDchuho = cCCDchuho;
+		CCCDchuho = cccdchuho;
 		Idcanho = idcanho;
 		Sothanhvien = sothanhvien;
 		Hotenchuho = hotenchuho;
@@ -53,12 +53,12 @@ public class HOGIADINH {
 		Sonha = sonha;
 	}
 
-	public String getCCCDchuho() {
+	public String getCccdchuho() {
 		return CCCDchuho;
 	}
 
-	public void setCCCDchuho(String cCCDchuho) {
-		CCCDchuho = cCCDchuho;
+	public void setCCCDchuho(String cccdchuho) {
+		CCCDchuho = cccdchuho;
 	}
 
 	public int getIdcanho() {

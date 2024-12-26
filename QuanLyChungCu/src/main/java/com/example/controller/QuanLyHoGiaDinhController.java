@@ -74,13 +74,23 @@ public class QuanLyHoGiaDinhController extends HttpServlet {
                 int idcanho = canhoService.NametoId(sonha);
                 String sothanhvien = request.getParameter("persons");
                 HOGIADINH hogiadinh = new HOGIADINH(cccdChuho, idcanho , hotenchuho, Integer.parseInt(sothanhvien),sdt,tang,sonha);
-                System.out.println(hogiadinh.getCCCDchuho());
+                System.out.println(hogiadinh.getCccdchuho());
                 HOGIADINHService hogiadinhService = new HOGIADINHService();
                 hogiadinhService.updateHOGIADINH(hogiadinh);
+            }
+            else if (xuly.equals("2")){
+                String cccdChuho = request.getParameter("cccd");
+                HOGIADINHService hogiadinhService = new HOGIADINHService();
+                HOGIADINH hogiadinh = new HOGIADINH();
+                hogiadinh.setCCCDchuho(cccdChuho);
+                hogiadinhService.deleteHOGIADINH(hogiadinh);
             }
         
 
         }
+        // HttpSession session = request.getSession();
+        // session.setAttribute("success", check);
+        response.sendRedirect("./QuanLyHoGiaDinh");
 
     }
 }

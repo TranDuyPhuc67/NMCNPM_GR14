@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -177,7 +178,7 @@
                 type="text"
                 class="form-control"
                 name="search"
-                placeholder="Tìm kiếm hộ gia đình theo mã phòng"
+                placeholder="Tìm kiếm hộ gia đình theo mã phòng, tên chủ hộ, số điện thoại, ..."
               />
               <button type="submit" class="btn btn-search">Tìm kiếm</button>
             </form>
@@ -206,69 +207,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Nguyễn Văn A</td>
-              <td>123456789</td>
-              <td>0328675544</td>
-              <td>A101</td>
-              <td>1</td>
-              <td>4</td>
-              <td>
-                <a href="QuanLyNhanKhau.jsp">
-                  <button class="btn btn-success btn-sm">Quản lý</button>
-                </a>
-                <button
-                  class="btn btn-warning btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editModal"
-                >
-                  Chỉnh sửa
-                </button>
-                <button
-                  class="btn btn-danger btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#deleteModal"
-                >
-                  Xóa
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Trần Thị B</td>
-              <td>987654321</td>
-              <td>0328676868</td>
-              <td>B102</td>
-              <td>1</td>
-              <td>5</td>
-              <td>
-                <a href="QuanLyNhanKhau.jsp">
-                  <button class="btn btn-success btn-sm">Quản lý</button>
-                </a>
-                <button
-                  class="btn btn-warning btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editModal"
-                >
-                  Chỉnh sửa
-                </button>
-                <button
-                  class="btn btn-danger btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#deleteModal"
-                >
-                  Xóa
-                </button>
-              </td>
-            </tr>
             <c:if test="${hogiadinhs != null}">
               <c:forEach var="hogiadinh" items="${hogiadinhs}">
                       <tr>
-                          <td>${hogiadinh.hotenchuho}</td>
-                          <td>${hogiadinh.cccdchuho}</td>
-                          <td>${hogiadinh.sdt}</td>
-                          <td>${hogiadinh.sonha} </td>
-                          <td>${hogiadinh.tang}</td>
-                          <td>${hogiadinh.sothanhvien}</td>       
+                        <td>${hogiadinh.hotenchuho}</td>
+                        <td>${hogiadinh.cccdchuho}</td>
+                        <td>${hogiadinh.sdt}</td>
+                        <td>${hogiadinh.sonha}</td>
+                        <td>${hogiadinh.tang}</td>
+                        <td>${hogiadinh.sothanhvien}</td>     
                           <td>
                             <a href="QuanLyNhanKhau.jsp">
                               <button class="btn btn-success btn-sm">Quản lý</button>
@@ -284,6 +231,7 @@
                               class="btn btn-danger btn-sm"
                               data-bs-toggle="modal"
                               data-bs-target="#deleteModal"
+                              onclick="deleteFamily('${hogiadinh.cccdchuho}')"
                             >
                               Xóa
                             </button>
@@ -651,7 +599,7 @@
               <button
                 type="button"
                 class="btn btn-danger"
-                onclick="deleteFamily()"
+                onclick="confirmDelete()"
               >
                 Xóa
               </button>
@@ -695,15 +643,27 @@
         </div>
       </div>
     </div>
+    <form id="deleteForm" action="./HoGiaDinh" method="POST">
+      <input type="hidden" id="cccd" name="cccd" value="">
+      <input type="hidden" id="xuly" name="xuly" value="2">
+    </form>
     <script>
-      function deleteFamily() {
+      let cccdToDelete = '';
+    
+      function deleteFamily(cccd) {
+        cccdToDelete = cccd;
+      }
+    
+      function confirmDelete() {
         // Thực hiện hành động xóa ở đây
-        // Thay thế bằng mã xóa thực tế
+        document.getElementById('cccd').value = cccdToDelete;
+        document.getElementById('deleteForm').submit();
+    
         var deleteModal = bootstrap.Modal.getInstance(
           document.getElementById("deleteModal")
         );
         deleteModal.hide();
-
+        
         // Hiển thị modal thông báo xóa thành công
         var successModal = new bootstrap.Modal(
           document.getElementById("successModal")
