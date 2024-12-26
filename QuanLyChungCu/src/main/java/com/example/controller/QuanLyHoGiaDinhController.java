@@ -67,6 +67,7 @@ public class QuanLyHoGiaDinhController extends HttpServlet {
             String xuly = request.getParameter("xuly");
             if (xuly.equals("1")){
                 String hotenchuho = request.getParameter("name");
+                
                 String cccdChuho = request.getParameter("idCard");
                 String sdt = request.getParameter("phoneNum");
                 int tang = Integer.parseInt(request.getParameter("floor"));

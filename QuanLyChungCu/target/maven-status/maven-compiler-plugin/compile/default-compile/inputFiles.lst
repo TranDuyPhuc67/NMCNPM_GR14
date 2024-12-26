@@ -15,10 +15,12 @@
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/dao/PHIGUIXEDao.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/display/QuanLyCanHo.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/service/PHIGUIXEService.java
+/home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/controller/QuanLyNhanKhauController.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/model/TAMTRUVANG.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/model/KHOANPHI.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/dao/KHOANDONGGOPDao.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/dao/TAMTRUVANGDao.java
+/home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/display/QuanLyNhanKhau.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/service/TIENICHService.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/dao/QUANLYDao.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/service/QUANLYService.java
@@ -27,6 +29,7 @@
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/controller/CanHoController.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/model/TIENICH.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/display/QuanLyHoGiaDinh.java
+/home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/service/NHANKHAUService.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/model/QUANLY.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/dao/CANHODao.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/service/HOGIADINHService.java

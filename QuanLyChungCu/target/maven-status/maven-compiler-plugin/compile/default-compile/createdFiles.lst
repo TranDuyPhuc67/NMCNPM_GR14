@@ -1,5 +1,6 @@
 com/example/dao/CANHODao.class
 com/example/model/HOGIADINH.class
+com/example/controller/QuanLyNhanKhauController.class
 com/example/controller/LoginController.class
 com/example/model/TIENICH.class
 com/example/model/NHANKHAU.class
@@ -15,10 +16,12 @@ com/example/dao/HOGIADINHDao.class
 QuanLyHoGiaDinh.class
 com/example/dao/TAMTRUVANGDao.class
 com/example/service/TIENICHService.class
+com/example/service/NHANKHAUService.class
 QuanLyCanHo.class
 com/example/service/HOGIADINHService.class
 com/example/dao/PHIGUIXEDao.class
 com/example/util/DatabaseUtil.class
+QuanLyNhanKhau.class
 com/example/model/CANHO.class
 com/example/service/KHOANDONGGOPService.class
 com/example/service/QUANLYService.class

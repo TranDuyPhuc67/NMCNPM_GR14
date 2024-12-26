@@ -217,7 +217,7 @@
                         <td>${hogiadinh.tang}</td>
                         <td>${hogiadinh.sothanhvien}</td>     
                           <td>
-                            <a href="QuanLyNhanKhau.jsp">
+                            <a href="QuanLyNhanKhau?CCCDchuho=${hogiadinh.cccdchuho}">
                               <button class="btn btn-success btn-sm">Quản lý</button>
                             </a>
                             <button

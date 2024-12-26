@@ -39,7 +39,7 @@ public class NHANKHAU {
 		Trangthai = trangthai;
 	}
 
-	public String getCCCD() {
+	public String getCccd() {
 		return CCCD;
 	}
 
