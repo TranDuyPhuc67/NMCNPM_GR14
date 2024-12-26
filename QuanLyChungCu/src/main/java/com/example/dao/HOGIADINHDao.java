@@ -143,7 +143,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 		return null;
 	}
 	public int updateChuHo(HOGIADINH t) {
-		String sql = "UPDATE HOGIADINH SET Hotenchuho = ?,CCCDchuho = ?, Gioitinh = ?, Ngaysinh = ?, Dantoc = ?, Tongiao = ?, Quoctich = ?, Diachi = ?, Sdt = ? "
+		String sql = "UPDATE HOGIADINH SET Hotenchuho = ?,CCCDchuho = ?, Gioitinh = ?, Ngaysinh = ?, Dantoc = ?, Tongiao = ?, Quoctich = ?, Diachi = ?, Sdt = ?, Trangthai = ? "
 				+ "WHERE CCCDchuho = ?";
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, t.getHotenchuho());
@@ -155,7 +155,8 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			stmt.setString(7, t.getQuoctich());
 			stmt.setString(8, t.getDiachi());
 			stmt.setString(9, t.getSdt());
-			stmt.setString(10, t.getCccdchuho());
+			stmt.setString(10, t.getTrangthai());
+			stmt.setString(11, t.getCccdchuho());
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error while updating HOGIADINH: " + e.getMessage());

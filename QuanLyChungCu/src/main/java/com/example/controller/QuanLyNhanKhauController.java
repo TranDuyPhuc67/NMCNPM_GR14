@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import com.example.service.NHANKHAUService;
 import com.example.model.NHANKHAU;
+import com.example.model.HOGIADINH;
+import com.example.service.HOGIADINHService;
 
 @WebServlet("/NhanKhau")
 public class QuanLyNhanKhauController extends HttpServlet {
@@ -46,14 +48,29 @@ public class QuanLyNhanKhauController extends HttpServlet {
         else if(xuly.equals("2")){
             String cccdXoa = request.getParameter("cccdXoa");
             NHANKHAU nhankhauXoa = new NHANKHAU();
-            nhankhauXoa.setCCCD(cccdXoa);
-            nhankhauService.deleteNHANKHAU(nhankhauXoa);
+            if (!cccdChuho.equals(cccdXoa)) {
+                nhankhauXoa.setCCCD(cccdXoa);
+                nhankhauService.deleteNHANKHAU(nhankhauXoa);
+            }
+            else {
+                HOGIADINHService hogiadinhService = new HOGIADINHService();
+                HOGIADINH hogiadinh = new HOGIADINH();
+                hogiadinh.setCCCDchuho(cccdXoa);
+                hogiadinhService.deleteHOGIADINH(hogiadinh);
+            }
         }
         else if(xuly.equals("3")){
             String ngaysinh_String = request.getParameter("dateBirth");
             Date ngaysinh = Date.valueOf(ngaysinh_String);
             NHANKHAU nhankhau = new NHANKHAU(cccd, cccdChuho, hoten, gioitinh, ngaysinh, dantoc, tongiao, quoctich, diachi, sdt, "", quanhe, trangthai);
-            nhankhauService.updateNHANKHAU(nhankhau);
+            if (!cccdChuho.equals(cccd)) {
+                nhankhauService.updateNHANKHAU(nhankhau);
+            }
+            else{
+                HOGIADINHService hogiadinhService = new HOGIADINHService();
+                HOGIADINH hogiadinh = new HOGIADINH(cccd,hoten, gioitinh, ngaysinh, dantoc, tongiao, quoctich, diachi,sdt,trangthai);
+                hogiadinhService.updateCHUHO(hogiadinh);
+            }
         }
         
         response.sendRedirect("./QuanLyNhanKhau?CCCDchuho=" + cccdChuho);
