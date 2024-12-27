@@ -142,6 +142,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 		}
 		return null;
 	}
+
 	public int updateChuHo(HOGIADINH t) {
 		String sql = "UPDATE HOGIADINH SET Hotenchuho = ?,CCCDchuho = ?, Gioitinh = ?, Ngaysinh = ?, Dantoc = ?, Tongiao = ?, Quoctich = ?, Diachi = ?, Sdt = ?, Trangthai = ? "
 				+ "WHERE CCCDchuho = ?";
@@ -214,5 +215,21 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 		}
 		
 		return list;
+	}
+	public String selectCCCD(String t) {
+		String sql = "SELECT CCCDchuho FROM HOGIADINH WHERE Sonha = ?";
+		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, t);
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) {
+					HOGIADINH hogiadinh = new HOGIADINH();
+					return rs.getString("CCCDchuho");
+				}
+			}
+		} catch (SQLException e) {
+			System.err.println("Error while selecting HOGIADINH by ID: " + e.getMessage());
+			throw new RuntimeException("Error while selecting HOGIADINH by ID", e);
+		}
+		return null;
 	}
 }

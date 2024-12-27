@@ -1,31 +1,35 @@
 package com.example.model;
 
 import java.sql.Date;
+import com.example.model.NHANKHAU;
 
-public class TAMTRUVANG {
+public class TAMTRU {
     private String CCCD;
 	private String Hovaten;
-    private int IDCanHo;
+    private int IdCanHo;
     private Date Ngaybatdau;
     private Date Ngayketthuc;
 	private String Lydo;
 	private String Trangthai;
+    private NHANKHAU Nhankhau;
+    private String Sonha;
 
-    public TAMTRUVANG() {
+    public TAMTRU() {
 		super();
 	}
-    public TAMTRUVANG(String cCCD, int idcanho, String hovaten,  String trangthai, Date ngaybd, Date ngaykt, String lydo) {
+    public TAMTRU(String cCCD, int idcanho, String hovaten, Date ngaybd, Date ngaykt, String lydo, NHANKHAU nhankhau) {
         super();
         CCCD = cCCD;
-        IDCanHo = idcanho;
+        IdCanHo = idcanho;
         Hovaten = hovaten;
         Ngaybatdau = ngaybd;
         Ngayketthuc = ngaykt;
-        Trangthai = trangthai;
+        Trangthai = "TV";
         Lydo = lydo;
+        Nhankhau = nhankhau;
         }
 
-    public String getCCCD() {
+    public String getCccd() {
         return CCCD;
     }
 
@@ -34,11 +38,11 @@ public class TAMTRUVANG {
     }
 
     public int getIdCanHo() {
-        return IDCanHo;
+        return IdCanHo;
     }
 
-    public void setCCCDchuho(int idcanho) {
-        this.IDCanHo = idcanho;
+    public void setIdCanHo(int idcanho) {
+        this.IdCanHo = idcanho;
     }
 
     public String getHovaten() {
@@ -79,6 +83,18 @@ public class TAMTRUVANG {
 
     public void setLydo(String Lydo) {
         this.Lydo = Lydo;
+    }
+    public NHANKHAU getNhankhau(){
+        return Nhankhau;
+    }
+    public void setNhankhau(NHANKHAU nhankhau){
+        this.Nhankhau = nhankhau;
+    }
+    public String getSonha() {
+        return Sonha;
+    }
+    public void setSonha(String Sonha) {
+        this.Sonha = Sonha;
     }
 
 }

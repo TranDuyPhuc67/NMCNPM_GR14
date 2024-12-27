@@ -18,6 +18,7 @@ import com.example.model.NHANKHAU;
 import com.example.model.HOGIADINH;
 import com.example.service.HOGIADINHService;
 
+
 @WebServlet("/NhanKhau")
 public class QuanLyNhanKhauController extends HttpServlet {
     private static final long serialVersionUID = 1L;

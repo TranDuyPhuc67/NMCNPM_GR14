@@ -40,4 +40,7 @@ public class HOGIADINHService {
     public int updateCHUHO(HOGIADINH hogiadinh) {
         return hogiadinhDao.updateChuHo(hogiadinh); 
     }
+    public String getChuHo(String sonha) {
+        return hogiadinhDao.selectCCCD(sonha); 
+    }
 }

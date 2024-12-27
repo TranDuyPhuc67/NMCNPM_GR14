@@ -1,4 +1,5 @@
 com/example/dao/CANHODao.class
+com/example/model/TAMTRU.class
 com/example/model/HOGIADINH.class
 com/example/controller/QuanLyNhanKhauController.class
 com/example/controller/LoginController.class
@@ -11,10 +12,10 @@ com/example/dao/QUANLYDao.class
 com/example/model/QUANLY.class
 com/example/model/KHOANDONGGOP.class
 com/example/controller/QuanLyHoGiaDinhController.class
+com/example/controller/QuanLyTamTruController.class
 com/example/dao/KHOANPHIDao.class
 com/example/dao/HOGIADINHDao.class
 QuanLyHoGiaDinh.class
-com/example/dao/TAMTRUVANGDao.class
 com/example/service/TIENICHService.class
 com/example/service/NHANKHAUService.class
 QuanLyCanHo.class
@@ -26,11 +27,12 @@ com/example/model/CANHO.class
 com/example/service/KHOANDONGGOPService.class
 com/example/service/QUANLYService.class
 com/example/model/KHOANPHI.class
+com/example/service/TAMTRUService.class
 com/example/dao/KHOANDONGGOPDao.class
 com/example/dao/DAOInterface.class
 com/example/model/PHIGUIXE.class
 com/example/dao/NHANKHAUDao.class
 QuanLyCuDan.class
 com/example/controller/LogoutController.class
-com/example/model/TAMTRUVANG.class
+com/example/dao/TAMTRUDao.class
 com/example/service/PHIGUIXEService.class
