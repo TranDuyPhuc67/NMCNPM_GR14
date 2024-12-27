@@ -43,15 +43,15 @@ public class QuanLyTamTruController extends HttpServlet {
         String tongiao = request.getParameter("religion");
         String quoctich = request.getParameter("nationality"); 
         String diachi = request.getParameter("address");
-        String lydo = request.getParameter("status");
+        String lydo = request.getParameter("reason");
         String quanhe = request.getParameter("relation");
 
         if(xuly.equals("1")){
             String ngaysinh_String = request.getParameter("dateBirth");
             Date ngaysinh = Date.valueOf(ngaysinh_String);
-            String ngaybd_String = request.getParameter("dateStart");
+            String ngaybd_String = request.getParameter("startDate");
             Date ngaybd = Date.valueOf(ngaybd_String);
-            String ngaykt_String = request.getParameter("dateEnd");
+            String ngaykt_String = request.getParameter("endDate");
             Date ngaykt = Date.valueOf(ngaykt_String);
             NHANKHAU nhankhau = new NHANKHAU(cccd, cccdChuho, hoten, gioitinh, ngaysinh, dantoc, tongiao, quoctich, diachi, sdt, "", quanhe, "Tạm trú");
             TAMTRU tamtru = new TAMTRU(cccd, idcanho, hoten, ngaybd, ngaykt, lydo, nhankhau);
@@ -66,9 +66,9 @@ public class QuanLyTamTruController extends HttpServlet {
         else if(xuly.equals("3")){
             String ngaysinh_String = request.getParameter("dateBirth");
             Date ngaysinh = Date.valueOf(ngaysinh_String);
-            String ngaybd_String = request.getParameter("dateStart");
+            String ngaybd_String = request.getParameter("startDate");
             Date ngaybd = Date.valueOf(ngaybd_String);
-            String ngaykt_String = request.getParameter("dateEnd");
+            String ngaykt_String = request.getParameter("endDate");
             Date ngaykt = Date.valueOf(ngaykt_String);
             NHANKHAU nhankhau = new NHANKHAU(cccd, cccdChuho, hoten, gioitinh, ngaysinh, dantoc, tongiao, quoctich, diachi, sdt, "", quanhe, "Tạm trú");
             TAMTRU tamtru = new TAMTRU(cccd, idcanho, hoten, ngaybd, ngaykt, lydo, nhankhau);

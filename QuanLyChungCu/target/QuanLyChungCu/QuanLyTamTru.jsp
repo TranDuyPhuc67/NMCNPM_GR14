@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -263,10 +264,21 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form action="TamTru" method="post">
+                <input type="hidden" id="xuly" name="xuly" value="1">
                 <div class="mb-3">
                   <label for="name" class="form-label">Họ và tên</label>
-                  <input type="text" class="form-control" id="name" required />
+                  <input type="text" class="form-control" id="name" name="name" required />
+                </div>
+                <div class="mb-3">
+                  <label for="apartment" class="form-label">Căn hộ</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="apartment"
+                    name="apartment"
+                    required
+                  />
                 </div>
                 <div class="mb-3">
                   <label for="idCard" class="form-label">CMND/CCCD</label>
@@ -274,6 +286,7 @@
                     type="text"
                     class="form-control"
                     id="idCard"
+                    name="idCard"
                     required
                   />
                 </div>
@@ -284,12 +297,13 @@
                     type="date"
                     class="form-control"
                     id="dateBirth"
+                    name="dateBirth"
                     required
                   />
                 </div>
                 <div class="mb-3">
                   <label for="sex" class="form-label">Giới tính</label>
-                  <input type="text" class="form-control" id="sex" required />
+                  <input type="text" class="form-control" id="sex" name="sex" required />
                 </div>
                 <div class="mb-3">
                   <label for="nation" class="form-label">Dân tộc</label>
@@ -297,6 +311,7 @@
                     type="text"
                     class="form-control"
                     id="nation"
+                    name="nation"
                     required
                   />
                 </div>
@@ -306,6 +321,7 @@
                     type="text"
                     class="form-control"
                     id="religion"
+                    name="religion"
                     required
                   />
                 </div>
@@ -315,6 +331,7 @@
                     type="text"
                     class="form-control"
                     id="nationality"
+                    name="nationality"
                     required
                   />
                 </div>
@@ -327,6 +344,7 @@
                     type="text"
                     class="form-control"
                     id="address"
+                    name="address"
                     required
                   />
                 </div>
@@ -338,6 +356,7 @@
                     type="text"
                     class="form-control"
                     id="phonenumber"
+                    name="phonenumber"
                     required
                   />
                 </div>
@@ -349,6 +368,7 @@
                     type="text"
                     class="form-control"
                     id="relation"
+                    name="relation"
                     required
                   />
                 </div>
@@ -359,6 +379,7 @@
                     type="date"
                     class="form-control"
                     id="startDate"
+                    name="startDate"
                     required
                   />
                 </div>
@@ -368,6 +389,7 @@
                     type="date"
                     class="form-control"
                     id="endDate"
+                    name="endDate"
                     required
                   />
                 </div>
@@ -377,21 +399,23 @@
                     type="text"
                     class="form-control"
                     id="reason"
+                    name="reason"
                     required
                   />
                 </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Đóng
-              </button>
-              <button type="submit" class="btn btn-primary">Lưu</button>
-            </div>
+
           </div>
         </div>
       </div>
@@ -416,10 +440,21 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form action="TamTru" method="post">
+                <input type="hidden" id="xuly" name="xuly" value="3">
                 <div class="mb-3">
                   <label for="name" class="form-label">Họ và tên</label>
-                  <input type="text" class="form-control" id="name" required />
+                  <input type="text" class="form-control" id="name" name="name" required />
+                </div>
+                <div class="mb-3">
+                  <label for="apartment" class="form-label">Căn hộ</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="apartment"
+                    name="apartment"
+                    required
+                  />
                 </div>
                 <div class="mb-3">
                   <label for="idCard" class="form-label">CMND/CCCD</label>
@@ -427,6 +462,7 @@
                     type="text"
                     class="form-control"
                     id="idCard"
+                    name="idCard"
                     required
                   />
                 </div>
@@ -437,12 +473,13 @@
                     type="date"
                     class="form-control"
                     id="dateBirth"
+                    name="dateBirth"
                     required
                   />
                 </div>
                 <div class="mb-3">
                   <label for="sex" class="form-label">Giới tính</label>
-                  <input type="text" class="form-control" id="sex" required />
+                  <input type="text" class="form-control" id="sex" name="sex" required />
                 </div>
                 <div class="mb-3">
                   <label for="nation" class="form-label">Dân tộc</label>
@@ -450,6 +487,7 @@
                     type="text"
                     class="form-control"
                     id="nation"
+                    name="nation"
                     required
                   />
                 </div>
@@ -459,6 +497,7 @@
                     type="text"
                     class="form-control"
                     id="religion"
+                    name="religion"
                     required
                   />
                 </div>
@@ -468,6 +507,7 @@
                     type="text"
                     class="form-control"
                     id="nationality"
+                    name="nationality"
                     required
                   />
                 </div>
@@ -480,6 +520,7 @@
                     type="text"
                     class="form-control"
                     id="address"
+                    name="address"
                     required
                   />
                 </div>
@@ -491,6 +532,7 @@
                     type="text"
                     class="form-control"
                     id="phonenumber"
+                    name="phonenumber"
                     required
                   />
                 </div>
@@ -502,6 +544,7 @@
                     type="text"
                     class="form-control"
                     id="relation"
+                    name="relation"
                     required
                   />
                 </div>
@@ -512,6 +555,7 @@
                     type="date"
                     class="form-control"
                     id="startDate"
+                    name="startDate"
                     required
                   />
                 </div>
@@ -521,6 +565,7 @@
                     type="date"
                     class="form-control"
                     id="endDate"
+                    name="endDate"
                     required
                   />
                 </div>
@@ -530,21 +575,23 @@
                     type="text"
                     class="form-control"
                     id="reason"
+                    name="reason"
                     required
                   />
                 </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Đóng
+                  </button>
+                  <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Đóng
-              </button>
-              <button type="" class="btn btn-primary">Cập nhật</button>
-            </div>
+            
           </div>
         </div>
       </div>

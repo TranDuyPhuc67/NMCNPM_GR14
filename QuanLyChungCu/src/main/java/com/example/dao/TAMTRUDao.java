@@ -9,7 +9,7 @@ public class TAMTRUDao implements DAOInterface<TAMTRU>{
 
     @Override
     public int insert(TAMTRU t){
-        String query = "INSERT INTO TAMTRUVANG (CCCD , HOVATEN, Idcanho,Ngaybatdau, Ngayketthuc, Lydo, Trangthai ) VALUES (?, ?, ?, ?, ?, ?, ?)";   
+        String query = "INSERT INTO BANGTRUVANG (CCCD , HOVATEN, Idcanho,Ngaybatdau, Ngayketthuc, Lydo, Trangthai ) VALUES (?, ?, ?, ?, ?, ?, ?)";   
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
 			stmt.setString(1, t.getCccd());
             stmt.setString(2, t.getHovaten());
