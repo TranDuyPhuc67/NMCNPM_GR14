@@ -23,6 +23,8 @@ public class TAMTRUService {
 
 
     public int updateTAMTRU(TAMTRU tamtru) {
+        nhankhauDao = new NHANKHAUDao();
+        nhankhauDao.update(tamtru.getNhankhau());
         return tamtruDao.update(tamtru);  
     }
 
