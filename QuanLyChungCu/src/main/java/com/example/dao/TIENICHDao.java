@@ -1,7 +1,6 @@
 package com.example.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +16,7 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
 
     @Override
     public int insert(TIENICH t) {
-        int tongTienIch = t.getSodien() + t.getSonuoc()  + t.getInternet();
+        int tongTienIch = t.getSodien() + t.getSonuoc() + t.getInternet();
 
         String sql = "INSERT INTO TIENICH (Idcanho, Sodien, Sonuoc, Internet, Hanthu, Tongtienich) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseUtil.getConnection();
@@ -27,7 +26,7 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
             stmt.setInt(2, t.getSodien());
             stmt.setInt(3, t.getSonuoc());
             stmt.setInt(4, t.getInternet());
-            stmt.setDate(5, t.getHanthu());
+            stmt.setString(5, t.getHanthu());
             stmt.setInt(6, tongTienIch);
             return stmt.executeUpdate();
         } catch (SQLException e) {
@@ -38,7 +37,7 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
 
     @Override
     public int update(TIENICH t) {
-        int tongTienIch = t.getSodien()  + t.getSonuoc() + t.getInternet();
+        int tongTienIch = t.getSodien() + t.getSonuoc() + t.getInternet();
 
         String sql = "UPDATE TIENICH SET Sodien = ?, Sonuoc = ?, Internet = ?, Tongtienich = ? " +
                      "WHERE Idcanho = ? AND Hanthu = ?";
@@ -50,14 +49,13 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
             stmt.setInt(3, t.getInternet());
             stmt.setInt(4, tongTienIch);
             stmt.setInt(5, t.getIdcanho());
-            stmt.setDate(6, t.getHanthu()); 
+            stmt.setString(6, t.getHanthu());
             return stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Lỗi khi cập nhật TIENICH", e);
         }
     }
-
 
     @Override
     public boolean delete(TIENICH t) {
@@ -66,8 +64,7 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, t.getIdcanho());
-            stmt.setDate(2, t.getHanthu());
-
+            stmt.setString(2, t.getHanthu());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,7 +87,7 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
                 tienich.setSodien(rs.getInt("Sodien"));
                 tienich.setSonuoc(rs.getInt("Sonuoc"));
                 tienich.setInternet(rs.getInt("Internet"));
-                tienich.setHanthu(rs.getDate("Hanthu"));
+                tienich.setHanthu(rs.getString("Hanthu"));
                 tienich.setTongtienich(rs.getInt("Tongtienich"));
                 list.add(tienich);
             }
@@ -109,7 +106,7 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, t.getIdcanho());
-            stmt.setDate(2, t.getHanthu());
+            stmt.setString(2, t.getHanthu());
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     TIENICH tienich = new TIENICH();
@@ -117,7 +114,7 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
                     tienich.setSodien(rs.getInt("Sodien"));
                     tienich.setSonuoc(rs.getInt("Sonuoc"));
                     tienich.setInternet(rs.getInt("Internet"));
-                    tienich.setHanthu(rs.getDate("Hanthu"));
+                    tienich.setHanthu(rs.getString("Hanthu"));
                     tienich.setTongtienich(rs.getInt("Tongtienich"));
                     return tienich;
                 }
@@ -131,7 +128,29 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
 
     @Override
     public ArrayList<TIENICH> selectByCondition(String condition) {
-        throw new UnsupportedOperationException("Chức năng này chưa được triển khai");
+        String sql = "SELECT * FROM TIENICH WHERE " + condition;
+        ArrayList<TIENICH> list = new ArrayList<>();
+
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                TIENICH tienich = new TIENICH();
+                tienich.setIdcanho(rs.getInt("Idcanho"));
+                tienich.setSodien(rs.getInt("Sodien"));
+                tienich.setSonuoc(rs.getInt("Sonuoc"));
+                tienich.setInternet(rs.getInt("Internet"));
+                tienich.setHanthu(rs.getString("Hanthu"));
+                tienich.setTongtienich(rs.getInt("Tongtienich"));
+                list.add(tienich);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi khi chọn TIENICH với điều kiện", e);
+        }
+
+        return list;
     }
 
     public List<Map<String, Object>> getAllTienIchWithChuHo() {
@@ -147,13 +166,13 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
 
             while (rs.next()) {
                 Map<String, Object> row = new HashMap<>();
-                row.put("Idcanho", rs.getObject("Idcanho") != null ? rs.getInt("Idcanho") : 0); // Thêm ánh xạ Idcanho
+                row.put("Idcanho", rs.getObject("Idcanho") != null ? rs.getInt("Idcanho") : 0);
                 row.put("TenChuHo", rs.getString("TenChuHo"));
                 row.put("Sonha", rs.getString("Sonha"));
                 row.put("Sodien", rs.getObject("Sodien") != null ? rs.getInt("Sodien") : 0);
                 row.put("Sonuoc", rs.getObject("Sonuoc") != null ? rs.getInt("Sonuoc") : 0);
                 row.put("Internet", rs.getObject("Internet") != null ? rs.getInt("Internet") : 0);
-                row.put("Hanthu", rs.getDate("Hanthu"));
+                row.put("Hanthu", rs.getString("Hanthu"));
                 row.put("Tongtienich", rs.getObject("Tongtienich") != null ? rs.getInt("Tongtienich") : 0);
                 result.add(row);
             }
@@ -164,23 +183,23 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
         return result;
     }
 
-    public boolean checkExists(int idCanHo, Date hanThu) {
+    public boolean checkExists(int idCanHo, String hanThu) {
         String sql = "SELECT 1 FROM TIENICH WHERE Idcanho = ? AND Hanthu = ?";
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, idCanHo);
-            stmt.setDate(2, hanThu);
+            stmt.setString(2, hanThu);
             try (ResultSet rs = stmt.executeQuery()) {
-                return rs.next(); // Trả về true nếu tồn tại
+                return rs.next();
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Lỗi khi kiểm tra tồn tại TIENICH", e);
         }
     }
-    
-    public List<Map<String, Object>> searchTienIch(String sonha, String tenChuHo, Integer day, Integer month, Integer year) {
+
+    public List<Map<String, Object>> searchTienIch(String sonha, String tenChuHo, Integer month, Integer year) {
         List<Map<String, Object>> result = new ArrayList<>();
 
         StringBuilder query = new StringBuilder(
@@ -192,7 +211,6 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
 
         List<Object> parameters = new ArrayList<>();
 
-        // Xây dựng các điều kiện tìm kiếm
         if (sonha != null && !sonha.trim().isEmpty()) {
             query.append(" AND c.Sonha LIKE ?");
             parameters.add("%" + sonha.trim() + "%");
@@ -201,25 +219,19 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
             query.append(" AND h.Hotenchuho LIKE ?");
             parameters.add("%" + tenChuHo.trim() + "%");
         }
-        if (day != null && month != null && year != null) {
+        if (month != null && year != null) {
             query.append(" AND t.Hanthu = ?");
-            parameters.add(Date.valueOf(String.format("%04d-%02d-%02d", year, month, day)));
-        } else if (month != null && year != null) {
-            query.append(" AND MONTH(t.Hanthu) = ? AND YEAR(t.Hanthu) = ?");
-            parameters.add(month);
-            parameters.add(year);
+            parameters.add(String.format("%04d-%02d", year, month));
         } else if (year != null) {
             query.append(" AND YEAR(t.Hanthu) = ?");
             parameters.add(year);
         }
 
-        // Sắp xếp kết quả
         query.append(" ORDER BY t.Hanthu ASC");
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query.toString())) {
 
-            // Gắn tham số vào PreparedStatement
             for (int i = 0; i < parameters.size(); i++) {
                 stmt.setObject(i + 1, parameters.get(i));
             }
@@ -233,18 +245,14 @@ public class TIENICHDao implements DAOInterface<TIENICH> {
                     row.put("Sodien", rs.getObject("Sodien") != null ? rs.getInt("Sodien") : 0);
                     row.put("Sonuoc", rs.getObject("Sonuoc") != null ? rs.getInt("Sonuoc") : 0);
                     row.put("Internet", rs.getObject("Internet") != null ? rs.getInt("Internet") : 0);
-                    row.put("Hanthu", rs.getDate("Hanthu"));
+                    row.put("Hanthu", rs.getString("Hanthu"));
                     row.put("Tongtienich", rs.getObject("Tongtienich") != null ? rs.getInt("Tongtienich") : 0);
                     result.add(row);
                 }
             }
 
         } catch (SQLException e) {
-            // In lỗi ra console, chỉ sử dụng trong môi trường phát triển
-            System.err.println("Lỗi khi thực thi truy vấn:");
             e.printStackTrace();
-
-            // Tùy chọn: Có thể ném lại ngoại lệ nếu cần xử lý ở cấp cao hơn
             throw new RuntimeException("Đã xảy ra lỗi khi tìm kiếm tiện ích", e);
         }
 

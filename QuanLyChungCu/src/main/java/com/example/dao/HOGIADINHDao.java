@@ -13,7 +13,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 
 	@Override
 	public int insert(HOGIADINH t) {
-		String sql = "INSERT INTO HOGIADINH (CCCDchuho, Idcanho, Sothanhvien, Hotenchuho, Gioitinh, Ngaysinh, Dantoc, Tongiao, Quoctich, Diachi, Sdt, Email, Trangthai) "
+		String sql = "INSERT INTO HOGIADINH (CCCDchuho, Idcanho, Sothanhvien, Hotenchuho, Gioitinh, Ngaysinh, Dantoc, Tongiao, Quoctich, Diachi, Sdt, Email, Soxemay, Sooto, Trangthai) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, t.getCCCDchuho());
@@ -28,7 +28,9 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			stmt.setString(10, t.getDiachi());
 			stmt.setString(11, t.getSdt());
 			stmt.setString(12, t.getEmail());
-			stmt.setString(113, t.getTrangthai());
+			stmt.setInt(13, t.getSoxemay());
+			stmt.setInt(14, t.getSooto());
+			stmt.setString(15, t.getTrangthai());
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error while inserting HOGIADINH: " + e.getMessage());
@@ -52,8 +54,10 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			stmt.setString(9, t.getDiachi());
 			stmt.setString(10, t.getSdt());
 			stmt.setString(11, t.getEmail());
-			stmt.setString(12, t.getTrangthai());
-			stmt.setString(13, t.getCCCDchuho());
+			stmt.setInt(12, t.getSoxemay());
+			stmt.setInt(13, t.getSooto());
+			stmt.setString(14, t.getTrangthai());
+			stmt.setString(15, t.getCCCDchuho());
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error while updating HOGIADINH: " + e.getMessage());
@@ -97,6 +101,8 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 				hogiadinh.setDiachi(rs.getString("Diachi"));
 				hogiadinh.setSdt(rs.getString("Sdt"));
 				hogiadinh.setEmail(rs.getString("Email"));
+				hogiadinh.setSoxemay(rs.getInt("Soxemay"));
+				hogiadinh.setSooto(rs.getInt("Sooto"));
 				hogiadinh.setTrangthai(rs.getString("Trangthai"));
 				list.add(hogiadinh);
 			}
@@ -129,6 +135,8 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 					hogiadinh.setDiachi(rs.getString("Diachi"));
 					hogiadinh.setSdt(rs.getString("Sdt"));
 					hogiadinh.setEmail(rs.getString("Email"));
+					hogiadinh.setSoxemay(rs.getInt("Soxemay"));
+					hogiadinh.setSooto(rs.getInt("Sooto"));
 					hogiadinh.setTrangthai(rs.getString("Trangthai"));
 					return hogiadinh;
 				}
@@ -167,6 +175,8 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 				hogiadinh.setDiachi(rs.getString("Diachi"));
 				hogiadinh.setSdt(rs.getString("Sdt"));
 				hogiadinh.setEmail(rs.getString("Email"));
+				hogiadinh.setSoxemay(rs.getInt("Soxemay"));
+				hogiadinh.setSooto(rs.getInt("Sooto"));
 				hogiadinh.setTrangthai(rs.getString("Trangthai"));
 				list.add(hogiadinh);
 			}

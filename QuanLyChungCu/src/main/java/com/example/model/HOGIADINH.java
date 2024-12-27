@@ -15,6 +15,30 @@ public class HOGIADINH {
 	private String Diachi;
 	private String Sdt;
 	private String Email;
+	private int Soxemay;
+	private int Sooto;
+	
+	public HOGIADINH(String cCCDchuho, int idcanho, int sothanhvien, String hotenchuho, String gioitinh, Date ngaysinh,
+			String dantoc, String tongiao, String quoctich, String diachi, String sdt, String email, int soxemay,
+			int sooto, String trangthai) {
+		super();
+		CCCDchuho = cCCDchuho;
+		Idcanho = idcanho;
+		Sothanhvien = sothanhvien;
+		Hotenchuho = hotenchuho;
+		Gioitinh = gioitinh;
+		Ngaysinh = ngaysinh;
+		Dantoc = dantoc;
+		Tongiao = tongiao;
+		Quoctich = quoctich;
+		Diachi = diachi;
+		Sdt = sdt;
+		Email = email;
+		Soxemay = soxemay;
+		Sooto = sooto;
+		Trangthai = trangthai;
+	}
+
 	private String Trangthai;
 
 	public HOGIADINH() {
@@ -133,6 +157,22 @@ public class HOGIADINH {
 
 	public void setEmail(String email) {
 		Email = email;
+	}
+
+	public int getSoxemay() {
+		return Soxemay;
+	}
+
+	public void setSoxemay(int soxemay) {
+		Soxemay = soxemay;
+	}
+
+	public int getSooto() {
+		return Sooto;
+	}
+
+	public void setSooto(int sooto) {
+		Sooto = sooto;
 	}
 
 	public String getTrangthai() {

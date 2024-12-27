@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.example.model.CANHO;
 import com.example.util.DatabaseUtil;
@@ -65,29 +67,28 @@ public class CANHODao implements DAOInterface<CANHO> {
 
     @Override
     public ArrayList<CANHO> selectAll() {
-        String sql = "SELECT * FROM CANHO";
         ArrayList<CANHO> list = new ArrayList<>();
+        String sql = "SELECT * FROM CANHO";
 
         try (Connection conn = DatabaseUtil.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+             ResultSet rs = stmt.executeQuery()) { // Không cần set tham số
 
             while (rs.next()) {
-                CANHO canho = new CANHO();
-                canho.setIdcanho(rs.getInt("Idcanho"));
-                canho.setSonha(rs.getString("Sonha"));
-                canho.setLoaicanho(rs.getString("Loaicanho"));
-                canho.setDientich(rs.getDouble("Dientich"));
-                list.add(canho);
+                list.add(new CANHO(
+                        rs.getInt("Idcanho"),
+                        rs.getString("Sonha"),
+                        rs.getString("Loaicanho"),
+                        rs.getDouble("Dientich")
+                ));
             }
         } catch (SQLException e) {
-            // Log error and throw an exception
-            System.err.println("Error while selecting all CANHO: " + e.getMessage());
-            throw new RuntimeException("Error while selecting all CANHO", e);
+            e.printStackTrace();
+            throw new RuntimeException("Lỗi khi lấy danh sách CANHO", e);
         }
-
         return list;
     }
+
 
     @Override
     public CANHO selectById(CANHO t) {
@@ -120,4 +121,36 @@ public class CANHODao implements DAOInterface<CANHO> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public ArrayList<Map<String, Object>> getAllChuHoWithCanHo() {
+	    String sql = """
+	        SELECT c.Idcanho, c.Sonha, c.Dientich, h.Hotenchuho, h.Soxemay, h.Sooto
+	        FROM CANHO c
+	        LEFT JOIN HOGIADINH h ON c.Idcanho = h.Idcanho
+	    """;
+
+	    ArrayList<Map<String, Object>> resultList = new ArrayList<>();
+
+	    try (Connection conn = DatabaseUtil.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql);
+	         ResultSet rs = stmt.executeQuery()) {
+
+	        while (rs.next()) {
+	            Map<String, Object> row = new HashMap<>();
+	            row.put("idcanho", rs.getInt("Idcanho"));
+	            row.put("sonha", rs.getString("Sonha"));
+	            row.put("dientich", rs.getDouble("Dientich"));
+	            row.put("hotenchuho", rs.getString("Hotenchuho"));
+	            row.put("soxemay", rs.getInt("Soxemay")); // Lấy số xe máy
+	            row.put("sooto", rs.getInt("Sooto"));     // Lấy số ô tô
+	            resultList.add(row);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw new RuntimeException("Lỗi khi lấy danh sách chủ hộ với căn hộ", e);
+	    }
+
+	    return resultList;
+	}
 }
+

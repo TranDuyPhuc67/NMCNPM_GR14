@@ -1,84 +1,85 @@
 package com.example.model;
 
-import java.sql.Date;
-
 public class TIENICH {
-	private int Idcanho;
-	private int Sodien;
-	private int Sonuoc;
-	private int Internet;
-	private Date Hanthu;
-	private int Tongtienich;
+    private int Idcanho;
+    private int Sodien;
+    private int Sonuoc;
+    private int Internet;
+    private String Hanthu; // Định dạng YYYY-MM dưới dạng chuỗi
+    private int Tongtienich;
 
-	public TIENICH() {
-		super();
-	}
+    // Constructor mặc định
+    public TIENICH() {
+        super();
+    }
 
-	public TIENICH(int idcanho, int sodien, int sonuoc, int internet, Date hanthu) {
-		super();
-		Idcanho = idcanho;
-		Sodien = sodien;
-		Sonuoc = sonuoc;
-		Internet = internet;
-		Hanthu = hanthu;
-	}
+    // Constructor đầy đủ không có Tongtienich (tùy chọn khi không tính tổng)
+    public TIENICH(int idcanho, int sodien, int sonuoc, int internet, String hanthu) {
+        super();
+        Idcanho = idcanho;
+        Sodien = sodien;
+        Sonuoc = sonuoc;
+        Internet = internet;
+        Hanthu = hanthu;
+    }
 
-	public TIENICH(int idcanho, int sodien, int sonuoc, int internet, Date thoihan, int tongtienich) {
-		super();
-		Idcanho = idcanho;
-		Sodien = sodien;
-		Sonuoc = sonuoc;
-		Internet = internet;
-		Hanthu = thoihan;
-		Tongtienich = tongtienich;
-	}
+    // Constructor đầy đủ với tất cả các trường
+    public TIENICH(int idcanho, int sodien, int sonuoc, int internet, String hanthu, int tongtienich) {
+        super();
+        Idcanho = idcanho;
+        Sodien = sodien;
+        Sonuoc = sonuoc;
+        Internet = internet;
+        Hanthu = hanthu;
+        Tongtienich = tongtienich;
+    }
 
-	public int getIdcanho() {
-		return Idcanho;
-	}
+    // Getters và Setters
+    public int getIdcanho() {
+        return Idcanho;
+    }
 
-	public void setIdcanho(int idcanho) {
-		Idcanho = idcanho;
-	}
+    public void setIdcanho(int idcanho) {
+        Idcanho = idcanho;
+    }
 
-	public int getSodien() {
-		return Sodien;
-	}
+    public int getSodien() {
+        return Sodien;
+    }
 
-	public void setSodien(int sodien) {
-		Sodien = sodien;
-	}
+    public void setSodien(int sodien) {
+        Sodien = sodien;
+    }
 
-	public int getSonuoc() {
-		return Sonuoc;
-	}
+    public int getSonuoc() {
+        return Sonuoc;
+    }
 
-	public void setSonuoc(int sonuoc) {
-		Sonuoc = sonuoc;
-	}
+    public void setSonuoc(int sonuoc) {
+        Sonuoc = sonuoc;
+    }
 
-	public int getInternet() {
-		return Internet;
-	}
+    public int getInternet() {
+        return Internet;
+    }
 
-	public void setInternet(int internet) {
-		Internet = internet;
-	}
+    public void setInternet(int internet) {
+        Internet = internet;
+    }
 
-	public Date getHanthu() {
-		return Hanthu;
-	}
+    public String getHanthu() {
+        return Hanthu;
+    }
 
-	public void setHanthu(Date thoihan) {
-		Hanthu = thoihan;
-	}
+    public void setHanthu(String hanthu) {
+        Hanthu = hanthu;
+    }
 
-	public int getTongtienich() {
-		return Tongtienich;
-	}
+    public int getTongtienich() {
+        return Tongtienich;
+    }
 
-	public void setTongtienich(int tongtienich) {
-		Tongtienich = tongtienich;
-	}
-
+    public void setTongtienich(int tongtienich) {
+        Tongtienich = tongtienich;
+    }
 }
