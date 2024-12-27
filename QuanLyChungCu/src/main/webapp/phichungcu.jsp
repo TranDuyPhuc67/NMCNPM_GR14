@@ -7,17 +7,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Quản lý phí gửi xe</title>
+<title>Quản lý phí chung cư</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 	rel="stylesheet" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
 <style>
 .navbar {
 	background-color: rgba(21, 35, 45, 0.9) !important;
-	/* Màu nền khi cuộn */
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -30,37 +32,7 @@
 	color: #ffffff;
 }
 
-.navbar-nav .btn {
-	margin-left: 10px;
-}
-
-.header {
-	position: relative;
-	z-index: 2;
-	text-align: center;
-	margin-top: 50px;
-}
-
-.header h1 {
-	color: #ffffff;
-	font-weight: 800;
-}
-
-.header p {
-	color: #ffffff;
-	margin-bottom: 40px;
-}
-
-body {
-	font-family: Arial, sans-serif;
-}
-
 .btn-search {
-	background-color: #3790e9;
-	color: white;
-}
-
-.btn-primary {
 	background-color: #3790e9;
 	color: white;
 }
@@ -70,19 +42,11 @@ body {
 	vertical-align: middle;
 }
 
-.table .text-success {
-	color: green;
-}
-
-.table .text-danger {
-	color: red;
-}
-
 .container h2 {
 	text-align: center;
 	font-weight: 700;
 	color: rgba(10, 87, 138, 0.9);
-	font-size: 40px;
+	font-size: 35px;
 	margin-top: 60px;
 }
 
@@ -97,8 +61,8 @@ body {
 }
 
 .table thead tr th {
-	background-color: #3790e9 !important; /* Thay đổi màu nền của thead */
-	color: #ffffff;
+	background-color: #3790e9 !important;
+	color: #eee;
 }
 </style>
 </head>
@@ -134,16 +98,14 @@ body {
 			</div>
 		</div>
 	</nav>
-	<!-- danh sách quản lý -->
+
 	<div class="container mt-4">
-		<h2>Quản lý phí gửi xe</h2>
-		<!-- thay đổi từ A202 thành id căn hộ -->
-		<p class="pp">Thống kê chi tiết tất cả các khoản phí gửi xe hàng
-			tháng của từng căn hộ</p>
+		<h2>Quản lý phí chung cư</h2>
+		<p class="pp">Bao gồm phí quản lý và phí dịch vụ</p>
 		<!-- Form tìm kiếm -->
 		<div class="row mb-3">
 			<div class="col-md-10 col-12">
-				<form action="PHIGUIXE" method="GET" class="row mb-3">
+				<form action="PHICHUNGCU" method="GET" class="row mb-3">
 					<input type="hidden" name="action" value="search" />
 					<!-- Tìm theo số nhà -->
 					<div class="col-md-3">
@@ -192,18 +154,17 @@ body {
 		<c:if test="${not empty message}">
 			<div class="alert alert-info">${message}</div>
 		</c:if>
-		<!-- Phí gửi xe -->
+		<!-- Bảng danh sách phí chung cư -->
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Tên Chủ Hộ</th>
-					<th>Số Nhà</th>
-					<th>SL ô tô</th>
-					<th>Phí ô tô</th>
-					<th>SL xe máy</th>
-					<th>Phí xe máy</th>
-					<th>Tổng phí</th>
-					<th>Tháng thu</th>
+					<th>Tên chủ hộ</th>
+					<th>Số nhà</th>
+					<th>Diện tích (m²)</th>
+					<th>Phí dịch vụ</th>
+					<th>Phí quản lý</th>
+					<th>Tổng Phí</th>
+					<th>Thời hạn thu</th>
 					<th>Hành động</th>
 				</tr>
 			</thead>
@@ -212,91 +173,102 @@ body {
 					<tr>
 						<td>${item.hotenchuho != null ? item.hotenchuho : "Không xác định"}</td>
 						<td>${item.sonha}</td>
-						<td>${item.sooto}</td>
-						<td>${item.tienxeoto}</td>
-						<td>${item.soxemay}</td>
-						<td>${item.tienxemay}</td>
-						<td>${item.tongguixe}</td>
+						<td>${item.dientich}</td>
+						<td>${item.phidichvu}</td>
+						<td>${item.phiquanly}</td>
+						<td>${item.tongphichungcu}</td>
 						<td>${item.hanthu}</td>
 						<td>
-							<form action="PHIGUIXE" method="GET">
+							<form action="PHICHUNGCU" method="GET">
 								<input type="hidden" name="action" value="delete"> <input
 									type="hidden" name="idCanHo" value="${item.idcanho}"> <input
-									type="hidden" name="hanthu" value="${item.hanthu}"> <input
-									type="hidden" name="month" value="${param.month}"> <input
-									type="hidden" name="year" value="${param.year}">
+									type="hidden" name="hanthu" value="${item.hanthu}">
+								<!-- Thêm giá trị tháng và năm hiện tại -->
+								<input type="hidden" name="month" value="${param.month}">
+								<input type="hidden" name="year" value="${param.year}">
 								<button type="submit" class="btn btn-danger btn-sm"
 									onclick="return confirm('Bạn có chắc chắn muốn xóa không?');">Xóa</button>
 							</form>
 						</td>
 					</tr>
 				</c:forEach>
+
 				<c:if test="${empty combinedList}">
 					<tr>
-						<td colspan="8" class="text-center">Không có tiện ích nào để
-							hiển thị.</td>
+						<td colspan="8" class="text-center">Không có dữ liệu để hiển
+							thị</td>
 					</tr>
 				</c:if>
 			</tbody>
 		</table>
+	</div>
 
-		<!-- Modal cập nhật phí gửi xe -->
-		<div class="modal fade" id="addModal" tabindex="-1"
-			aria-labelledby="updateModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="updateModalLabel">Cập nhật phí
-							gửi xe</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<form action="PHIGUIXE" method="POST">
-							<input type="hidden" name="action" value="add" /> <input
-								type="hidden" name="month" value="${param.month}"> <input
-								type="hidden" name="year" value="${param.year}"><input
-								type="hidden" id="update-idcanho" name="idcanho" /> <label
-								for="phixeoto">Phí ô tô (1 xe/tháng):</label> <input
-								type="number" id="phixeoto" name="tienxeoto"
-								class="form-control" required min="0" /><br /> <label
-								for="phixemay">Phí xe máy (1 xe/tháng):</label> <input
-								type="number" id="phixemay" name="tienxemay"
-								class="form-control" required min="0" /><br /> <label
-								for="hanthu">Tháng năm thu phí (YYYY-MM):</label> <input
+	<!-- Modal Thêm phí -->
+	<div class="modal fade" id="addModal" tabindex="-1"
+		aria-labelledby="addModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="addModalLabel">Thêm phí chung cư</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="PHICHUNGCU" method="POST">
+						<input type="hidden" name="action" value="add" />
+						    <input type="hidden" name="month" value="${param.month}">
+    						<input type="hidden" name="year" value="${param.year}">
+						<div class="mb-3">
+							<label for="phichungcum2" class="form-label">Phí dịch vụ
+								(trên 1m²):</label> <input type="number" id="phichungcum2"
+								name="phichungcum2" class="form-control"
+								placeholder="Nhập phí dịch vụ (VNĐ)" required min="0" />
+						</div>
+						<div class="mb-3">
+							<label for="phiquanlym2" class="form-label">Phí quản lý
+								(trên 1m²):</label> <input type="number" id="phiquanlym2"
+								name="phiquanlym2" class="form-control"
+								placeholder="Nhập phí quản lý (VNĐ)" required min="0" />
+						</div>
+						<div class="mb-3">
+							<label for="hanthu" class="form-label">Thời hạn:</label> <input
 								type="text" id="hanthu" name="hanthu" class="form-control"
-								required pattern="\d{4}-\d{2}" title="Định dạng YYYY-MM" /><br />
+								placeholder="Chọn ngày thu phí" required />
+						</div>
+						<div class="mb-3">
+							<label for="thoigianthu" class="form-label">Thời gian
+								thu:</label> <input type="date" id="thoigianthu" name="thoigianthu"
+								class="form-control" placeholder="Thời hạn đóng phí" required />
+						</div>
 
-							<button type="submit" class="btn btn-primary">Cập nhật</button>
-						</form>
-					</div>
+						<button type="submit" class="btn btn-primary">Áp dụng</button>
+					</form>
 				</div>
 			</div>
 		</div>
+	</div>
 
-
-		<!-- modal xác nhận tháng phí gửi xe-->
-		<div class="modal fade" id="guiXeModal" tabindex="-1"
-			aria-labelledby="guiXeModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content modal-thangNam">
-					<div class="modal-header">
-						<h5 class="modal-title" id="guiXeModalLabel">Nhập tháng năm
-							thu phí gửi xe</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"
-							aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						<form action="PHIGUIXE" method="GET">
-							<input type="hidden" name="action" value="search" /> <label
-								for="month">Tháng:</label> <input type="number" id="month"
-								name="month" class="form-control" placeholder="Nhập tháng"
-								required min="1" max="12" /><br /> <label for="year">Năm:</label>
-							<input type="number" id="year" name="year" class="form-control"
-								placeholder="Nhập năm" required min="1900" max="2100" /><br />
-							<button type="submit" class="btn btn-primary">Xác nhận</button>
-						</form>
-					</div>
+	<!-- Modal xác nhận tháng phí chung cư -->
+	<div class="modal fade" id="chungCuModal" tabindex="-1"
+		aria-labelledby="chungCuModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content modal-thangNam">
+				<div class="modal-header">
+					<h5 class="modal-title" id="chungCuModalLabel">Nhập tháng và
+						năm thu phí chung cư</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="PHICHUNGCU" method="GET">
+						<input type="hidden" name="action" value="search" /> <label
+							for="month">Tháng:</label> <input type="number" id="month"
+							name="month" class="form-control" placeholder="Nhập tháng"
+							required min="1" max="12" /><br /> <label for="year">Năm:</label>
+						<input type="number" id="year" name="year" class="form-control"
+							placeholder="Nhập năm" required min="1900" max="2100" /><br />
+						<button type="submit" class="btn btn-primary">Xác nhận</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -312,7 +284,7 @@ body {
         if (fromLinkA === "true") {
           // Hiển thị modal
           const modal = new bootstrap.Modal(
-            document.getElementById("guiXeModal")
+            document.getElementById("chungCuModal")
           );
           modal.show();
 
