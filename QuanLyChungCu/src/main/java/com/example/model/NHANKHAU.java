@@ -16,6 +16,7 @@ public class NHANKHAU {
 	private String Email;
 	private String Quanhe;
 	private String Trangthai;
+	private String Sonha;
 
 	public NHANKHAU() {
 		super();
@@ -141,5 +142,11 @@ public class NHANKHAU {
 
 	public void setTrangthai(String trangthai) {
 		Trangthai = trangthai;
+	}
+	public String getSonha() {
+		return Sonha;
+	}
+	public void setSonha(String sonha) {
+		Sonha = sonha;
 	}
 }

@@ -26,9 +26,15 @@ public class NHANKHAUService {
         return nhankhauDao.delete(nhankhau); 
     }
 
+    public List<NHANKHAU> getAllNHANKHAU() {
+        return nhankhauDao.selectAll();  
+    }
 
     public List<NHANKHAU> getAllNHANKHAU(String cccdChuHo) {
         return nhankhauDao.selectAll(cccdChuHo);  
+    }
+    public List<NHANKHAU> getAllNHANKHAUMCH(String macanho) {
+        return nhankhauDao.selectAllMCH(macanho);  
     }
 
 }
