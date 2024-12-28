@@ -261,7 +261,7 @@ body {
 			<div class="row">
 				<div class="col-md-6 col-lg-4">
 					<div class="card" data-bs-toggle="modal"
-						data-bs-target="#checkModal">
+						data-bs-target="#checkModal" style="cursor:pointer">
 						<i class="fas fa-receipt"> </i>
 						<h5 class="card-title">Quản lý khoản thu</h5>
 						<p class="card-text">Theo dõi, tổ chức và kiểm soát toàn bộ
