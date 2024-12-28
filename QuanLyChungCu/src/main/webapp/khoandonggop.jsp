@@ -110,9 +110,7 @@
 			<h2>Quản lý khoản đóng góp</h2>
 			<p class="pp">Quản lý các khoản đóng góp tự nguyện như quỹ biển
 				đảo, quỹ vì người nghèo, quỹ khuyến học...</p>
-
-
-			<!-- Form tìm kiếm chỉ theo số nhà, tên chủ hộ và hạn thu -->
+			<!-- Form tìm kiếm chỉ theo số nhà, tên chủ hộ -->
 			<div class="row mb-3">
 				<div class="col-md-10 col-12">
 					<form action="${pageContext.request.contextPath}/KHOANDONGGOP"
@@ -120,25 +118,96 @@
 						<input type="hidden" name="action" value="search" />
 
 						<!-- Tìm theo số nhà -->
-						<div class="col-md-4 col-12 mb-2 mb-md-0">
+						<div class="col-md-3 col-12 mb-2 mb-md-0">
 							<input type="text" name="sonha" class="form-control"
 								placeholder="Tìm theo số nhà" value="${param.sonha}" />
 						</div>
 
 						<!-- Tìm theo tên chủ hộ -->
-						<div class="col-md-5 col-12 mb-2 mb-md-0">
+						<div class="col-md-3 col-12 mb-2 mb-md-0">
 							<input type="text" name="tenChuHo" class="form-control"
 								placeholder="Tìm theo tên chủ hộ" value="${param.tenChuHo}" />
 						</div>
 
 						<!-- Nút tìm kiếm -->
-						<div class="col-md-2 col-12">
+						<div class="col-md-2 col-12 mb-2 mb-md-0">
 							<button type="submit" class="btn btn-primary w-100">Tìm
 								kiếm</button>
 						</div>
 					</form>
 				</div>
+				<div class="col-md-2 col-12 text-center">
+					<p class="text-muted m-0">
+						<c:set var="firstItem" value="${khoanDongGopList[0]}" />
+					<div class="row mb-3 align-items-center">
+						<!-- Hiển thị ngày thu -->
+						<div class="col-md-12 col-12 text-center">
+							<p class="text-muted m-0 d-inline">
+								Ngày thu: <strong>${firstItem.NgayThu != null ? firstItem.NgayThu : "Chưa có ngày thu"}</strong>
+							</p>
+						</div>
+					</div>
+				</div>
+
 			</div>
+			<!-- Nút nhập ngày thu -->
+			<div class="col-md-2 col-6">
+				<button type="button" class="btn btn-success w-100"
+					data-bs-toggle="modal" data-bs-target="#addNgayThuModal">
+					Nhập ngày thu</button>
+			</div>
+			<!-- Modal Nhập ngày thu -->
+			<div class="modal fade" id="addNgayThuModal" tabindex="-1"
+				aria-labelledby="addNgayThuModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- Header của Modal -->
+						<div class="modal-header">
+							<h5 class="modal-title" id="addNgayThuModalLabel">Nhập Ngày
+								Thu</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+
+						<!-- Body của Modal -->
+						<div class="modal-body">
+							<div id="errorAlert" class="alert alert-danger d-none"
+								role="alert">
+								<!-- Nơi hiển thị lỗi nếu có -->
+							</div>
+							<form action="${pageContext.request.contextPath}/KHOANDONGGOP"
+								method="POST">
+								<input type="hidden" name="action" value="updateAllDateColumns" />
+
+								<!-- Nhập ngày thu -->
+								<div class="mb-3">
+									<label for="newDate" class="form-label">Ngày thu mới</label> <input
+										type="date" name="newDate" id="newDate" class="form-control"
+										required />
+								</div>
+
+								<!-- Nhập ghi chú -->
+								<div class="mb-3">
+									<label for="ghiChuInput" class="form-label">Ghi chú</label>
+									<textarea name="ghiChu" id="ghiChuInput" class="form-control"
+										placeholder="Ghi chú về ngày thu (nếu có)"></textarea>
+								</div>
+
+								<!-- Nút lưu -->
+								<button type="submit" class="btn btn-primary">Lưu</button>
+							</form>
+						</div>
+
+						<!-- Footer của Modal -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal">Đóng</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 
 			<!-- Hiển thị thông báo -->
 			<c:if test="${not empty message}">
