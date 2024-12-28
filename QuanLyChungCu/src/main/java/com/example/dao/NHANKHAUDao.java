@@ -197,7 +197,17 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
         }
         return null;
     }
-
+    public int updateTT(String cccd,String trangthai) {
+        String sql = "UPDATE NHANKHAU SET Trangthai = ? WHERE CCCD = ?";
+        try (Connection conn = DatabaseUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, trangthai);
+                stmt.setString(2, cccd);
+            return stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi cập nhật NHANKHAU", e);
+        }
+    }
 	@Override
 	public ArrayList<NHANKHAU> selectByCondition(String Condition) {
 		// TODO Auto-generated method stub

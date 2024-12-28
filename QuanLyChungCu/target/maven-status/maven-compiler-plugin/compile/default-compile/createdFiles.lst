@@ -12,15 +12,19 @@ com/example/dao/QUANLYDao.class
 com/example/model/QUANLY.class
 com/example/model/KHOANDONGGOP.class
 com/example/controller/QuanLyHoGiaDinhController.class
+com/example/controller/QuanLyTamVangController.class
 com/example/controller/QuanLyTamTruController.class
 QuanLyTamTru.class
 com/example/dao/KHOANPHIDao.class
 com/example/dao/HOGIADINHDao.class
 QuanLyHoGiaDinh.class
 com/example/service/TIENICHService.class
+QuanLyTamVang.class
 com/example/service/NHANKHAUService.class
+com/example/model/TAMVANG.class
 QuanLyCanHo.class
 com/example/service/HOGIADINHService.class
+com/example/service/TAMVANGService.class
 com/example/dao/PHIGUIXEDao.class
 com/example/util/DatabaseUtil.class
 QuanLyNhanKhau.class
@@ -33,6 +37,7 @@ com/example/dao/KHOANDONGGOPDao.class
 com/example/dao/DAOInterface.class
 com/example/model/PHIGUIXE.class
 com/example/dao/NHANKHAUDao.class
+com/example/dao/TAMVANGDao.class
 QuanLyCuDan.class
 com/example/controller/LogoutController.class
 com/example/dao/TAMTRUDao.class
