@@ -211,4 +211,33 @@ public class PHICHUNGCUDao implements DAOInterface<PHICHUNGCU> {
 
 	    return results;
 	}
+
+    public ArrayList<PHICHUNGCU> getPHICHUNGCUByMonthAndYear(Integer month, Integer year) {
+        ArrayList<PHICHUNGCU> phichungList = new ArrayList<>();
+
+        String query = "SELECT * FROM PHICHUNGCU WHERE MONTH(Thoigianthu) = ? AND YEAR(Thoigianthu) = ?";
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, month);
+            stmt.setInt(2, year);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    PHICHUNGCU phichungcu = new PHICHUNGCU();
+                    phichungcu.setIdcanho(rs.getInt("Idcanho"));
+                    phichungcu.setPhidichvu(rs.getInt("Phidichvu"));
+                    phichungcu.setPhiquanly(rs.getInt("Phiquanly"));
+                    phichungcu.setTongphichungcu(rs.getInt("Tongphichungcu"));
+                    phichungcu.setHanthu(rs.getString("Hanthu"));
+                    phichungcu.setThoigianthu(rs.getDate("Thoigianthu"));
+                    phichungList.add(phichungcu);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return phichungList;
+    }
 }

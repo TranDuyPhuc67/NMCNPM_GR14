@@ -124,9 +124,24 @@ public class PHIGUIXEController extends HttpServlet {
 			// Gọi service để áp dụng phí gửi xe
 			int affectedRows = phiguixeService.applyFeeForAll(tienxemay, tienxeoto, hanthu);
 
+			// Lấy tháng và năm từ session để duy trì trạng thái tìm kiếm
+			Integer month = (Integer) req.getSession().getAttribute("searchMonth");
+			Integer year = (Integer) req.getSession().getAttribute("searchYear");
+
+			// Nếu không có tháng và năm trong session, phân tích từ `hanthu`
+			if (month == null || year == null) {
+				String[] hanthuParts = hanthu.split("-");
+				year = Integer.parseInt(hanthuParts[0]);
+				month = Integer.parseInt(hanthuParts[1]);
+				req.getSession().setAttribute("searchMonth", month);
+				req.getSession().setAttribute("searchYear", year);
+			}
+
 			// Thông báo kết quả
 			req.setAttribute("message", "Áp dụng phí thành công cho " + affectedRows + " căn hộ.");
-			loadList(req, resp);
+
+			// Tiếp tục tìm kiếm với tháng và năm đã cập nhật
+			handleSearch(req, resp);
 
 		} catch (NumberFormatException e) {
 			req.setAttribute("message", "Phí xe máy và ô tô phải là số hợp lệ.");
@@ -141,19 +156,24 @@ public class PHIGUIXEController extends HttpServlet {
 	private void handleSearch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("Phương thức handleSearch được gọi.");
 
+		// Lấy tham số từ request
 		String tenChuHo = req.getParameter("tenChuHo");
 		String sonha = req.getParameter("sonha");
 		String monthStr = req.getParameter("month");
 		String yearStr = req.getParameter("year");
 
+		// Chuyển đổi tham số
 		Integer month = (monthStr != null && !monthStr.trim().isEmpty()) ? Integer.parseInt(monthStr) : null;
 		Integer year = (yearStr != null && !yearStr.trim().isEmpty()) ? Integer.parseInt(yearStr) : null;
 
+		// Lưu tháng và năm vào session để sử dụng sau
 		req.getSession().setAttribute("searchMonth", month);
 		req.getSession().setAttribute("searchYear", year);
 
+		// Gọi service tìm kiếm
 		ArrayList<Map<String, Object>> searchResults = phiguixeService.searchPHIGUIXE(tenChuHo, sonha, month, year);
 
+		// Thiết lập kết quả tìm kiếm vào request
 		req.setAttribute("combinedList", searchResults);
 		forwardToPage(req, resp, "phiguixe.jsp");
 	}
@@ -161,6 +181,7 @@ public class PHIGUIXEController extends HttpServlet {
 	private void handleDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("Phương thức handleDelete được gọi.");
 
+		// Lấy tháng và năm từ session
 		Integer month = (Integer) req.getSession().getAttribute("searchMonth");
 		Integer year = (Integer) req.getSession().getAttribute("searchYear");
 
@@ -171,6 +192,7 @@ public class PHIGUIXEController extends HttpServlet {
 		}
 
 		try {
+			// Lấy tham số idCanHo và thực hiện xóa
 			String idCanHoStr = req.getParameter("idCanHo");
 			String hanthu = year + "-" + String.format("%02d", month);
 
@@ -184,7 +206,9 @@ public class PHIGUIXEController extends HttpServlet {
 			boolean isDeleted = phiguixeService.deletePHIGUIXE(idCanHo, hanthu);
 
 			req.setAttribute("message", isDeleted ? "Xóa phí thành công!" : "Không tìm thấy phí để xóa.");
-			loadList(req, resp);
+
+			// Sau khi xóa, tiếp tục tìm kiếm với tháng và năm
+			handleSearch(req, resp);
 		} catch (NumberFormatException e) {
 			req.setAttribute("message", "IdCanHo phải là số hợp lệ.");
 			loadList(req, resp);

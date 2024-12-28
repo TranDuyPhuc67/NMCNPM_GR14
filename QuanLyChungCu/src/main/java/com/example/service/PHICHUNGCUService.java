@@ -83,4 +83,8 @@ public class PHICHUNGCUService {
             throw new IllegalArgumentException("Hạn thu phải đúng định dạng YYYY-MM.");
         }
     }
+
+    public ArrayList<PHICHUNGCU> getPHICHUNGCUByMonthAndYear(Integer month, Integer year) {
+        return phichungcuDao.getPHICHUNGCUByMonthAndYear(month, year);
+    }
 }

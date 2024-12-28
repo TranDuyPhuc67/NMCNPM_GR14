@@ -80,7 +80,16 @@ public class PHICHUNGCUController extends HttpServlet {
 	private void loadList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("Phương thức loadList được gọi.");
 
-		ArrayList<PHICHUNGCU> phichungList = phichungcuService.getAllPHICHUNGCU();
+		Integer month = (Integer) req.getSession().getAttribute("searchMonth");
+		Integer year = (Integer) req.getSession().getAttribute("searchYear");
+
+		if (month == null || year == null) {
+			req.setAttribute("message", "Vui lòng nhập tháng và năm để hiển thị danh sách.");
+			forwardToPage(req, resp, "phichungcu.jsp");
+			return;
+		}
+
+		ArrayList<PHICHUNGCU> phichungList = phichungcuService.getPHICHUNGCUByMonthAndYear(month, year);
 		ArrayList<Map<String, Object>> chuHoList = canhoService.getAllChuHoWithCanHo();
 		List<Map<String, Object>> combinedList = combineData(phichungList, chuHoList);
 
@@ -97,20 +106,46 @@ public class PHICHUNGCUController extends HttpServlet {
 		String phichungcum2Str = req.getParameter("phichungcum2");
 		String phiquanlym2Str = req.getParameter("phiquanlym2");
 		String hanthu = req.getParameter("hanthu");
-		String thoigianthuStr = req.getParameter("thoigianthu"); 
-		java.sql.Date thoigianthu = java.sql.Date.valueOf(thoigianthuStr);
-		
-		if (phichungcum2Str == null || phiquanlym2Str == null || hanthu == null) {
-			throw new IllegalArgumentException("Thông tin không đầy đủ.");
+		String thoigianthuStr = req.getParameter("thoigianthu");
+
+		if (phichungcum2Str == null || phiquanlym2Str == null || hanthu == null || thoigianthuStr == null) {
+			req.setAttribute("message", "Thông tin không đầy đủ.");
+			forwardToPage(req, resp, "phichungcu.jsp");
+			return;
 		}
 
-		int phichungcum2 = Integer.parseInt(phichungcum2Str);
-		int phiquanlym2 = Integer.parseInt(phiquanlym2Str);
+		try {
+			int phichungcum2 = Integer.parseInt(phichungcum2Str);
+			int phiquanlym2 = Integer.parseInt(phiquanlym2Str);
+			java.sql.Date thoigianthu = java.sql.Date.valueOf(thoigianthuStr);
 
-		int affectedRows = phichungcuService.applyFeeForAll(phichungcum2, phiquanlym2, hanthu, thoigianthu);
+			// Thêm phí cho tất cả căn hộ
+			int affectedRows = phichungcuService.applyFeeForAll(phichungcum2, phiquanlym2, hanthu, thoigianthu);
 
-		req.setAttribute("message", "Áp dụng phí thành công cho " + affectedRows + " căn hộ.");
-		loadList(req, resp);
+			// Lấy tháng và năm từ session
+			Integer month = (Integer) req.getSession().getAttribute("searchMonth");
+			Integer year = (Integer) req.getSession().getAttribute("searchYear");
+
+			// Nếu không có tháng và năm, phân tích từ `hanthu`
+			if (month == null || year == null) {
+				String[] hanthuParts = hanthu.split("-");
+				year = Integer.parseInt(hanthuParts[0]);
+				month = Integer.parseInt(hanthuParts[1]);
+				req.getSession().setAttribute("searchMonth", month);
+				req.getSession().setAttribute("searchYear", year);
+			}
+
+			req.setAttribute("message", "Áp dụng phí thành công cho " + affectedRows + " căn hộ.");
+			handleSearch(req, resp);
+
+		} catch (NumberFormatException e) {
+			req.setAttribute("message", "Phí phải là số hợp lệ.");
+			forwardToPage(req, resp, "phichungcu.jsp");
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("message", "Đã xảy ra lỗi trong quá trình xử lý.");
+			forwardToPage(req, resp, "phichungcu.jsp");
+		}
 	}
 
 	/**
@@ -127,15 +162,15 @@ public class PHICHUNGCUController extends HttpServlet {
 		Integer month = (monthStr != null && !monthStr.trim().isEmpty()) ? Integer.parseInt(monthStr) : null;
 		Integer year = (yearStr != null && !yearStr.trim().isEmpty()) ? Integer.parseInt(yearStr) : null;
 
+		// Lưu tháng và năm vào session
+		req.getSession().setAttribute("searchMonth", month);
+		req.getSession().setAttribute("searchYear", year);
+
 		// Gọi phương thức tìm kiếm trong Service
 		ArrayList<Map<String, Object>> searchResults = phichungcuService.searchPHICHUNGCU(tenChuHo, sonha, month, year);
-		System.out.println("Kết quả từ searchPHICHUNGCU: " + searchResults);
 
-		// Lấy danh sách chủ hộ
+		// Lấy danh sách chủ hộ và kết hợp dữ liệu
 		ArrayList<Map<String, Object>> chuHoList = canhoService.getAllChuHoWithCanHo();
-		System.out.println("Danh sách chủ hộ từ CANHOService: " + chuHoList);
-
-		// Kết hợp dữ liệu từ searchResults và chuHoList
 		for (Map<String, Object> result : searchResults) {
 			boolean foundChuHo = false;
 			for (Map<String, Object> chuHo : chuHoList) {
@@ -153,9 +188,6 @@ public class PHICHUNGCUController extends HttpServlet {
 			}
 		}
 
-		System.out.println("Kết quả sau khi kết hợp: " + searchResults);
-
-		// Gửi kết quả về giao diện
 		req.setAttribute("combinedList", searchResults);
 		forwardToPage(req, resp, "phichungcu.jsp");
 	}
@@ -172,7 +204,7 @@ public class PHICHUNGCUController extends HttpServlet {
 
 			if (idCanHoStr == null || idCanHoStr.trim().isEmpty() || hanthu == null || hanthu.trim().isEmpty()) {
 				req.setAttribute("message", "IdCanHo hoặc HanThu không được để trống.");
-				loadList(req, resp);
+				handleSearch(req, resp);
 				return;
 			}
 
@@ -181,15 +213,16 @@ public class PHICHUNGCUController extends HttpServlet {
 			boolean isDeleted = phichungcuService.deletePHICHUNGCU(idCanHo, hanthu);
 
 			req.setAttribute("message", isDeleted ? "Xóa phí thành công!" : "Không tìm thấy phí để xóa.");
-			loadList(req, resp);
+			handleSearch(req, resp);
+
 		} catch (NumberFormatException e) {
 			System.err.println("Lỗi chuyển đổi IdCanHo: " + e.getMessage());
 			req.setAttribute("message", "IdCanHo phải là một số hợp lệ.");
-			loadList(req, resp);
+			handleSearch(req, resp);
 		} catch (Exception e) {
 			System.err.println("Lỗi khi xử lý xóa: " + e.getMessage());
 			req.setAttribute("message", "Đã xảy ra lỗi khi xóa: " + e.getMessage());
-			loadList(req, resp);
+			handleSearch(req, resp);
 		}
 	}
 
