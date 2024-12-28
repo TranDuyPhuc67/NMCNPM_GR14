@@ -197,7 +197,7 @@
 									</div>
 
 									<!-- Nút lưu -->
-									<button type="submit" class="btn btn-primary">Lưu</button>
+									<button type="submit" class="btn btn-primary">Cập nhật</button>
 								</form>
 							</div>
 						</div>
@@ -233,8 +233,8 @@
 						<c:forEach var="item" items="${khoanDongGopList}">
 							<!-- Mỗi dòng là một form riêng -->
 							<tr>
-								<form action="${pageContext.request.contextPath}/KHOANDONGGOP"
-									method="post">
+							<form action="KHOANDONGGOP" method="post">
+							<input type="hidden" name="action" value="updateKHOANDONGGOP">
 									<td>
 										<!-- Hiển thị tên chủ hộ --> ${item.TenChuHo} <!-- Input ẩn để gửi CCCDchuho -->
 										<input type="hidden" name="cccdchuho"

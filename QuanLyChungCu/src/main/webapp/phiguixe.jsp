@@ -106,7 +106,7 @@ body {
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-lg">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="HomePage.html"
+			<a class="navbar-brand" href="index.jsp"
 				style="margin-left: 30px"> <img
 				src="Image/Remove-bg.ai_1730519657240.png" alt="Logo" height="50" />
 			</a>
