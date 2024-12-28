@@ -75,45 +75,74 @@ public class KHOANDONGGOPController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			// Lấy CCCD chủ hộ từ form
-			String cccdchuho = request.getParameter("cccdchuho");
-			// Lấy các giá trị quỹ từ form (nếu không có, đặt mặc định là 0)
-			int quyVNN = parseIntOrDefault(request.getParameter("quyVNN"), 0);
-			int quyVBD = parseIntOrDefault(request.getParameter("quyVBD"), 0);
-			int quyTDP = parseIntOrDefault(request.getParameter("quyTDP"), 0);
-			int quyVTT = parseIntOrDefault(request.getParameter("quyVTT"), 0);
-			int quyVNDTT = parseIntOrDefault(request.getParameter("quyVNDTT"), 0);
-			int quyTN = parseIntOrDefault(request.getParameter("quyTN"), 0);
-			int quyKH = parseIntOrDefault(request.getParameter("quyKH"), 0);
-			int quyNCT = parseIntOrDefault(request.getParameter("quyNCT"), 0);
+			// Lấy action từ request để phân biệt các hành động
+			String action = request.getParameter("action");
 
-			// Tính tổng thu
-			int tongthu = quyVNN + quyVBD + quyTDP + quyVTT + quyVNDTT + quyTN + quyKH + quyNCT;
+			if ("updateAllDateColumns".equalsIgnoreCase(action)) {
+				// Xử lý cập nhật tất cả các ngày thu
+				String newDateStr = request.getParameter("newDate");
 
-			System.out.println("Tổng thu: " + tongthu);
+				// Kiểm tra giá trị hợp lệ
+				if (newDateStr == null || newDateStr.isEmpty()) {
+					throw new IllegalArgumentException("Ngày thu không được để trống.");
+				}
 
-			// Tạo model KHOANDONGGOP
-			KHOANDONGGOP donggop = new KHOANDONGGOP();
-			donggop.setCCCDchuho(cccdchuho);
-			donggop.setQuyVNN(quyVNN);
-			donggop.setQuyVBD(quyVBD);
-			donggop.setQuyTDP(quyTDP);
-			donggop.setQuyVTT(quyVTT);
-			donggop.setQuyVNDTT(quyVNDTT);
-			donggop.setQuyTN(quyTN);
-			donggop.setQuyKH(quyKH);
-			donggop.setQuyNCT(quyNCT);
-			donggop.setTongthu(tongthu);
+				java.util.Date utilDate = java.sql.Date.valueOf(newDateStr);
+				java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
-			// CHỈ GỌI HÀM UPDATE (không insert)
-			// => đảm bảo CCCDchuho này đã có sẵn trong bảng KHOANDONGGOP
-			khoandonggopService.updateKHOANDONGGOP(donggop);
+				// Gọi Service để cập nhật tất cả ngày thu
+				int rowsUpdated = khoandonggopService.updateAllDateColumns(sqlDate);
 
-			System.out.println("Dữ liệu đã được lưu/cập nhật thành công.");
+				System.out.println("Đã cập nhật ngày thu cho " + rowsUpdated + " bản ghi.");
 
-			// Redirect về trang KHOANDONGGOP (load lại danh sách)
-			response.sendRedirect("KHOANDONGGOP");
+				// Redirect về trang KHOANDONGGOP với thông báo thành công
+				response.sendRedirect("KHOANDONGGOP?action=updateSuccess");
 
+			} else if ("updateKHOANDONGGOP".equalsIgnoreCase(action)) {
+				// Xử lý cập nhật thông tin khoản đóng góp
+				// Lấy CCCD chủ hộ từ form
+				String cccdchuho = request.getParameter("cccdchuho");
+
+				// Lấy các giá trị quỹ từ form (nếu không có, đặt mặc định là 0)
+				int quyVNN = parseIntOrDefault(request.getParameter("quyVNN"), 0);
+				int quyVBD = parseIntOrDefault(request.getParameter("quyVBD"), 0);
+				int quyTDP = parseIntOrDefault(request.getParameter("quyTDP"), 0);
+				int quyVTT = parseIntOrDefault(request.getParameter("quyVTT"), 0);
+				int quyVNDTT = parseIntOrDefault(request.getParameter("quyVNDTT"), 0);
+				int quyTN = parseIntOrDefault(request.getParameter("quyTN"), 0);
+				int quyKH = parseIntOrDefault(request.getParameter("quyKH"), 0);
+				int quyNCT = parseIntOrDefault(request.getParameter("quyNCT"), 0);
+
+				// Tính tổng thu
+				int tongthu = quyVNN + quyVBD + quyTDP + quyVTT + quyVNDTT + quyTN + quyKH + quyNCT;
+
+				System.out.println("Tổng thu: " + tongthu);
+
+				// Tạo model KHOANDONGGOP
+				KHOANDONGGOP donggop = new KHOANDONGGOP();
+				donggop.setCCCDchuho(cccdchuho);
+				donggop.setQuyVNN(quyVNN);
+				donggop.setQuyVBD(quyVBD);
+				donggop.setQuyTDP(quyTDP);
+				donggop.setQuyVTT(quyVTT);
+				donggop.setQuyVNDTT(quyVNDTT);
+				donggop.setQuyTN(quyTN);
+				donggop.setQuyKH(quyKH);
+				donggop.setQuyNCT(quyNCT);
+				donggop.setTongthu(tongthu);
+
+				// Gọi Service để cập nhật khoản đóng góp
+				khoandonggopService.updateKHOANDONGGOP(donggop);
+
+				System.out.println("Dữ liệu đã được lưu/cập nhật thành công.");
+
+				// Redirect về trang KHOANDONGGOP (load lại danh sách)
+				response.sendRedirect("KHOANDONGGOP");
+
+			} else {
+				// Hành động không hợp lệ
+				throw new IllegalArgumentException("Action không hợp lệ.");
+			}
 		} catch (IllegalArgumentException e) {
 			System.out.println("Lỗi: " + e.getMessage());
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
