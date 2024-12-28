@@ -13,6 +13,7 @@ com/example/model/QUANLY.class
 com/example/model/KHOANDONGGOP.class
 com/example/controller/QuanLyHoGiaDinhController.class
 com/example/controller/QuanLyTamTruController.class
+QuanLyTamTru.class
 com/example/dao/KHOANPHIDao.class
 com/example/dao/HOGIADINHDao.class
 QuanLyHoGiaDinh.class

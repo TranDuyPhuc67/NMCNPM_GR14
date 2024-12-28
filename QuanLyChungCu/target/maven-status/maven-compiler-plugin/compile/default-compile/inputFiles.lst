@@ -26,6 +26,7 @@
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/dao/QUANLYDao.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/service/QUANLYService.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/model/NHANKHAU.java
+/home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/display/QuanLyTamTru.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/model/TAMTRU.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/service/KHOANDONGGOPService.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/controller/CanHoController.java

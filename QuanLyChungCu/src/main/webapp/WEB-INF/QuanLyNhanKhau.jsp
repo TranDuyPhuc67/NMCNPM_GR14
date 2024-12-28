@@ -652,9 +652,6 @@
     
       function confirmDelete() {
         // Thực hiện hành động xóa ở đây
-        document.getElementById('cccdXoa').value = cccdToDelete;
-        document.getElementById('deleteForm').submit();
-    
         var deleteModal = bootstrap.Modal.getInstance(
           document.getElementById("deleteModal")
         );
@@ -665,6 +662,8 @@
           document.getElementById("successModal")
         );
         successModal.show();
+        document.getElementById('cccdXoa').value = cccdToDelete;
+        document.getElementById('deleteForm').submit();
       }
     </script>
     <script>

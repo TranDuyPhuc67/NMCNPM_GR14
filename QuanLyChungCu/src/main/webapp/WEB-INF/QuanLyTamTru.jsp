@@ -156,7 +156,7 @@
         <!-- Tìm kiếm và thêm mới -->
         <div class="row mb-3">
           <div class="col-md-6 col-12">
-            <form class="input-group" action="TamTru" method="post">
+            <form class="input-group" action="QuanLyTamTru" method="get">
               <input
                 type="text"
                 class="form-control"
@@ -191,85 +191,48 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Nguyễn Văn A</td>
-              <td>123456789</td>
-              <td>A101</td>
-              <td>01/12/2024</td>
-              <td>15/12/2024</td>
-              <td>Công tác</td>
-              <td class="text-success">Đang tạm trú</td>
-              <td>
-                <button
-                  class="btn btn-warning btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editModal"
-                >
-                  Chỉnh sửa
-                </button>
-                <button
-                  class="btn btn-danger btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#deleteModal"
-                >
-                  Xóa
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Trần Thị B</td>
-              <td>987654321</td>
-              <td>B102</td>
-              <td>05/12/2024</td>
-              <td>20/12/2024</td>
-              <td>Thăm người thân</td>
-              <td class="text-danger">Hết hạn</td>
-              <td>
-                <button
-                  class="btn btn-warning btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#editModal"
-                >
-                  Chỉnh sửa
-                </button>
-                <button
-                  class="btn btn-danger btn-sm"
-                  data-bs-toggle="modal"
-                  data-bs-target="#deleteModal"
-                >
-                  Xóa
-                </button>
-              </td>
-              </tr>
-              <c:if test="${tamtrus != null}">
+            <c:if test="${tamtrus != null}">
               <c:forEach var="tamtru" items="${tamtrus}">
-                      <tr>
-                        <td>${tamtru.hovaten}</td>
-                        <td>${tamtru.cccd}</td>
-                        <td>${tamtru.sonha}</td>
-                        <td>${tamtru.ngaybatdau}</td>
-                        <td>${tamtru.ngayketthuc}</td>
-                        <td>${tamtru.lydo}</td>
-                        <td>${tamtru.trangthai}</td>    
-                        <td>
+                  <tr>
+                      <td>${tamtru.hovaten}</td>
+                      <td>${tamtru.cccd}</td>
+                      <td>${tamtru.sonha}</td>
+                      <td>${tamtru.ngaybatdau}</td>
+                      <td>${tamtru.ngayketthuc}</td>
+                      <td>${tamtru.lydo}</td>
+                    
+                      <!-- Kiểm tra ngày kết thúc -->
+                      <td>
+                          <c:choose>
+                              <c:when test="${tamtru.ngayketthuc < today}">
+                                  <span class="text-danger">Hết hạn</span>
+                              </c:when>
+                              <c:otherwise>
+                                  <span class="text-success">Đang tạm trú</span>
+                              </c:otherwise>
+                          </c:choose>
+                      </td>
+                      <td>
                           <button
-                            class="btn btn-warning btn-sm"
-                            data-bs-toggle="modal"
-                            data-bs-target="#editModal"
+                              class="btn btn-warning btn-sm"
+                              data-bs-toggle="modal"
+                              data-bs-target="#editModal"
                           >
-                            Chỉnh sửa
+                              Chỉnh sửa
                           </button>
                           <button
-                            class="btn btn-danger btn-sm"
-                            data-bs-toggle="modal"
-                            data-bs-target="#deleteModal"
+                              class="btn btn-danger btn-sm"
+                              data-bs-toggle="modal"
+                              data-bs-target="#deleteModal"
+                              onclick="deletePerson('${tamtru.cccd}')"
                           >
-                            Xóa
+                              Xóa
                           </button>
-                        </td>
-                      </tr>
+                      </td>
+                  </tr>
               </c:forEach>
-            </c:if>
+          </c:if>
+          
 
           </tbody>
         </table>
@@ -659,7 +622,7 @@
               >
                 Hủy
               </button>
-              <button type="" class="btn btn-danger" onclick="deleteTamTru()">
+              <button type="" class="btn btn-danger" onclick="confirmDelete()">
                 Xóa
               </button>
             </div>
@@ -702,7 +665,35 @@
         </div>
       </div>
     </div>
+    <form id="deleteForm" action="./TamTru" method="POST" >
+      <input type="hidden" id="cccdXoa" name="cccdXoa" value="">
+      <input type="hidden" id="xuly" name="xuly" value="2">
+    </form>
     <script>
+      let cccdToDelete = '';
+    
+      function deletePerson(cccd) {
+        cccdToDelete = cccd;
+      }
+    
+      function confirmDelete() {
+        // Thực hiện hành động xóa ở đây
+        var deleteModal = bootstrap.Modal.getInstance(
+          document.getElementById("deleteModal")
+        );
+        deleteModal.hide();
+        
+        // Hiển thị modal thông báo xóa thành công
+        var successModal = new bootstrap.Modal(
+          document.getElementById("successModal")
+        );
+        successModal.show();
+        document.getElementById('cccdXoa').value = cccdToDelete;
+        document.getElementById('deleteForm').submit();
+      }
+    </script>
+    <script>
+      
       function deleteTamTru() {
         // Thực hiện hành động xóa ở đây
         // Thay thế bằng mã xóa thực tế

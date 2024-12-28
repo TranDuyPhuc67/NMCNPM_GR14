@@ -24,7 +24,7 @@ public class TAMTRU {
         Hovaten = hovaten;
         Ngaybatdau = ngaybd;
         Ngayketthuc = ngaykt;
-        Trangthai = "TV";
+        Trangthai = "TT";
         Lydo = lydo;
         Nhankhau = nhankhau;
         }

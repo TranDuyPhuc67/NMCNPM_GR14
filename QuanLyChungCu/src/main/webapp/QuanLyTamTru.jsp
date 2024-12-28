@@ -156,14 +156,15 @@
         <!-- Tìm kiếm và thêm mới -->
         <div class="row mb-3">
           <div class="col-md-6 col-12">
-            <div class="input-group">
+            <form class="input-group" action="TamTru" method="post">
               <input
                 type="text"
                 class="form-control"
                 placeholder="Tìm kiếm cư dân"
+                name="search"
               />
-              <button type="" class="btn btn-search">Tìm kiếm</button>
-            </div>
+              <button type="submit" class="btn btn-search" >Tìm kiếm</button>
+            </form>
           </div>
           <div class="col-md-6 col-12 text-md-end mt-2 mt-md-0">
             <button
@@ -239,7 +240,37 @@
                   Xóa
                 </button>
               </td>
-            </tr>
+              </tr>
+              <c:if test="${tamtrus != null}">
+              <c:forEach var="tamtru" items="${tamtrus}">
+                      <tr>
+                        <td>${tamtru.hovaten}</td>
+                        <td>${tamtru.cccd}</td>
+                        <td>${tamtru.sonha}</td>
+                        <td>${tamtru.ngaybatdau}</td>
+                        <td>${tamtru.ngayketthuc}</td>
+                        <td>${tamtru.lydo}</td>
+                        <td>${tamtru.trangthai}</td>    
+                        <td>
+                          <button
+                            class="btn btn-warning btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editModal"
+                          >
+                            Chỉnh sửa
+                          </button>
+                          <button
+                            class="btn btn-danger btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteModal"
+                          >
+                            Xóa
+                          </button>
+                        </td>
+                      </tr>
+              </c:forEach>
+            </c:if>
+
           </tbody>
         </table>
       </div>

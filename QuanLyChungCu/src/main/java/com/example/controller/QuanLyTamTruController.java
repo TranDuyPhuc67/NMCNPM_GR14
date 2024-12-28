@@ -60,7 +60,10 @@ public class QuanLyTamTruController extends HttpServlet {
         else if(xuly.equals("2")){
             String cccdXoa = request.getParameter("cccdXoa");
             TAMTRU tamtruXoa = new TAMTRU();
+            NHANKHAU nhankhauXoa = new NHANKHAU();
+            nhankhauXoa.setCCCD(cccdXoa);
             tamtruXoa.setCCCD(cccdXoa);
+            tamtruXoa.setNhankhau(nhankhauXoa);
             tamtruService.deleteTAMTRU(tamtruXoa);
         }
         else if(xuly.equals("3")){

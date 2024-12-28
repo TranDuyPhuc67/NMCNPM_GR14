@@ -58,7 +58,7 @@ public class TAMTRUDao implements DAOInterface<TAMTRU>{
 
     @Override
 	public ArrayList<TAMTRU> selectAll(){
-        String sql = "SELECT BANGTRUVANG.*,HOGIADINH.Sonha FROM BANGTRUVANG JOIN HOGIADINH ON HOGIADINH.Idcanho = BANGTRUVANG.Idcanho WHERE BANGTRUVANG.Trangthai = 'TV';";
+        String sql = "SELECT BANGTRUVANG.*,HOGIADINH.Sonha FROM BANGTRUVANG JOIN HOGIADINH ON HOGIADINH.Idcanho = BANGTRUVANG.Idcanho WHERE BANGTRUVANG.Trangthai = 'TT';";
         ArrayList<TAMTRU> list = new ArrayList<>();
         try (Connection conn = DatabaseUtil.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -90,7 +90,7 @@ public class TAMTRUDao implements DAOInterface<TAMTRU>{
 
     @Override
 	public ArrayList<TAMTRU> selectByCondition(String condition){
-        String sql = "SELECT BANGTRUVANG.*,HOGIADINH.Sonha FROM BANGTRUVANG JOIN HOGIADINH ON HOGIADINH.Idcanho = BANGTRUVANG.Idcanho WHERE BANGTRUVANG.Trangthai = 'TV' AND (BANGTRUVANG.CCCD = ? OR BANGTRUVANG.HOVATEN = ? OR HOGIDINH.Sonha = ? OR BANGTRUVANG.Ngaybatdau > ? OR BANGTRUVANG.Ngayketthuc < ?);";
+        String sql = "SELECT BANGTRUVANG.*,HOGIADINH.Sonha FROM BANGTRUVANG JOIN HOGIADINH ON HOGIADINH.Idcanho = BANGTRUVANG.Idcanho WHERE BANGTRUVANG.Trangthai = 'TT' AND (BANGTRUVANG.CCCD = ? OR BANGTRUVANG.HOVATEN = ? OR HOGIADINH.Sonha = ? OR BANGTRUVANG.Ngaybatdau > ? OR BANGTRUVANG.Ngayketthuc < ?);";
 		ArrayList<TAMTRU> list = new ArrayList<>();
 		if (condition == null || condition.isEmpty()) {
 			throw new IllegalArgumentException("Condition cannot be null or empty");
@@ -99,14 +99,15 @@ public class TAMTRUDao implements DAOInterface<TAMTRU>{
 			stmt.setString(1, condition);
 			stmt.setString(2, condition);
 			stmt.setString(3, condition);
-			stmt.setString(4, condition);
-			try{
+            String dateRegex = "\\d{4}-\\d{2}-\\d{2}";
+            boolean check = condition != null && condition.matches(dateRegex);
+			if (check){
+				stmt.setDate(4, Date.valueOf(condition));
 				stmt.setDate(5, Date.valueOf(condition));
-				stmt.setDate(6, Date.valueOf(condition));
 			}
-			catch (NumberFormatException e){
+			else{
+				stmt.setDate(4, null);
 				stmt.setDate(5, null);
-				stmt.setDate(6, null);
 			}
 			try (ResultSet rs = stmt.executeQuery()) {
 
@@ -125,8 +126,8 @@ public class TAMTRUDao implements DAOInterface<TAMTRU>{
 			} 
 		}
 		catch (SQLException e) {
-				System.err.println("Error while selecting HOGIADINH by condition: " + e.getMessage());
-				throw new RuntimeException("Error while selecting HOGIADINH by condition", e);
+				System.err.println("Error while selecting TAMTRU by condition: " + e.getMessage());
+				throw new RuntimeException("Error while selecting TAMTRU by condition", e);
 		}
 		
 		return list;

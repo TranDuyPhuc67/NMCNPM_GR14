@@ -10,7 +10,6 @@ public class TAMTRUService {
 
     private TAMTRUDao tamtruDao;  
     private NHANKHAUDao nhankhauDao;
-
     public TAMTRUService() {
         this.tamtruDao = new TAMTRUDao(); 
     }
@@ -30,6 +29,8 @@ public class TAMTRUService {
 
 
     public boolean deleteTAMTRU(TAMTRU tamtru) {
+        nhankhauDao = new NHANKHAUDao();
+        nhankhauDao.delete(tamtru.getNhankhau());
         return tamtruDao.delete(tamtru); 
     }
 
