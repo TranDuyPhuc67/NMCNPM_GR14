@@ -232,4 +232,27 @@ public class KHOANDONGGOPDao {
 
 		return list;
 	}
+	// Cập nhật tất cả các cột ngày thu trong bảng KHOANDONGGOP
+	public int updateAllDateColumns(java.util.Date newDate) {
+	    String sql = """
+	                UPDATE KHOANDONGGOP
+	                SET Ngaythu = ?
+	                """; 
+
+	    try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+	        // Chuyển đổi java.util.Date sang java.sql.Date
+	        java.sql.Date sqlDate = new java.sql.Date(newDate.getTime());
+	        
+	        // Gán giá trị mới cho tất cả các cột ngày
+	        stmt.setDate(1, sqlDate);
+
+	        // Thực hiện cập nhật và trả về số bản ghi được cập nhật
+	        return stmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return 0;
+	}
+
+
 }
