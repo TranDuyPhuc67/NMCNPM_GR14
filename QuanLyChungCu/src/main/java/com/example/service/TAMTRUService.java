@@ -1,14 +1,15 @@
 package com.example.service;
 
-import com.example.dao.TAMTRUDao;
+
 import com.example.model.TAMTRU;
-import com.example.dao.NHANKHAUDao;
+import com.example.dao.*;
 
 import java.util.List;
 
 public class TAMTRUService {
 
     private TAMTRUDao tamtruDao;  
+    private HOGIADINHDao hogiadinhDao;
     private NHANKHAUDao nhankhauDao;
     public TAMTRUService() {
         this.tamtruDao = new TAMTRUDao(); 
@@ -17,6 +18,8 @@ public class TAMTRUService {
     public int addTAMTRU(TAMTRU tamtru) {
         nhankhauDao = new NHANKHAUDao();
         nhankhauDao.insert(tamtru.getNhankhau());
+        hogiadinhDao = new HOGIADINHDao();
+        hogiadinhDao.updateNK(tamtru.getNhankhau().getCCCDchuho());
         return tamtruDao.insert(tamtru); 
     }
 
@@ -31,6 +34,8 @@ public class TAMTRUService {
     public boolean deleteTAMTRU(TAMTRU tamtru) {
         nhankhauDao = new NHANKHAUDao();
         nhankhauDao.delete(tamtru.getNhankhau());
+        hogiadinhDao = new HOGIADINHDao();
+        hogiadinhDao.updateNK(tamtru.getNhankhau().getCCCDchuho());
         return tamtruDao.delete(tamtru); 
     }
 

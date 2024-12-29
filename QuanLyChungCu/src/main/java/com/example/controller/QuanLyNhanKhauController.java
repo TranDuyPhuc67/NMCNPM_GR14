@@ -22,8 +22,8 @@ import com.example.service.HOGIADINHService;
 @WebServlet("/NhanKhau")
 public class QuanLyNhanKhauController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    try{
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -75,6 +75,11 @@ public class QuanLyNhanKhauController extends HttpServlet {
         }
         
         response.sendRedirect("./QuanLyNhanKhau?CCCDchuho=" + cccdChuho);
+    }
+    catch(Exception e){
+        e.printStackTrace();
+        response.sendRedirect("error.jsp");
+    }
     }
 }
 

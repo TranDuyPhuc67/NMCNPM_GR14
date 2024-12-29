@@ -3,7 +3,6 @@ package com.example.controller;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-
 import javax.servlet.ServletException;
 import java.sql.Date;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +21,8 @@ import com.example.service.CANHOService;
 @WebServlet("/TamTru")
 public class QuanLyTamTruController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    try{
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -62,6 +61,9 @@ public class QuanLyTamTruController extends HttpServlet {
             TAMTRU tamtruXoa = new TAMTRU();
             NHANKHAU nhankhauXoa = new NHANKHAU();
             nhankhauXoa.setCCCD(cccdXoa);
+            NHANKHAUService nhankhauService = new NHANKHAUService();
+            nhankhauXoa = nhankhauService.getNHANKHAU(nhankhauXoa);
+            System.out.println(nhankhauXoa.getCCCDchuho());
             tamtruXoa.setCCCD(cccdXoa);
             tamtruXoa.setNhankhau(nhankhauXoa);
             tamtruService.deleteTAMTRU(tamtruXoa);
@@ -78,6 +80,12 @@ public class QuanLyTamTruController extends HttpServlet {
             tamtruService.updateTAMTRU(tamtru);
             }
             response.sendRedirect("./QuanLyTamTru");
+    } 
+    catch(Exception e){
+        e.printStackTrace();
+        response.sendRedirect("error.jsp");
+    }
+        
         
     }  
 }

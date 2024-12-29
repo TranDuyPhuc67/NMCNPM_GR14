@@ -70,7 +70,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			throw new RuntimeException("Error while deleting HOGIADINH", e);
 		}
 	}
-
+	
 	@Override
 	public ArrayList<HOGIADINH> selectAll() {
 		String sql = "SELECT * FROM HOGIADINH";
@@ -232,4 +232,15 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 		}
 		return null;
 	}
+	public int updateNK(String cccd) {
+        String sql = "UPDATE HOGIADINH SET Sothanhvien = (SELECT COUNT(*) FROM NHANKHAU WHERE CCCDchuho = ?)+1 WHERE CCCDchuho = ?";
+        try (Connection conn = DatabaseUtil.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, cccd);
+				stmt.setString(2, cccd);
+            return stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi khi cập nhật HOGIADINH", e);
+        }
+    }
 }

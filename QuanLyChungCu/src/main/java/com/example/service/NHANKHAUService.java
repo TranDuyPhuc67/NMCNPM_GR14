@@ -1,19 +1,22 @@
 package com.example.service;
 
-import com.example.dao.NHANKHAUDao;
+import com.example.dao.*;
 import com.example.model.NHANKHAU;
+
 import java.util.List;
 
 public class NHANKHAUService {
 
     private NHANKHAUDao nhankhauDao;  
-
+    private HOGIADINHDao hogiadinhDao;
     public NHANKHAUService() {
         this.nhankhauDao = new NHANKHAUDao(); 
     }
 
     public int addNHANKHAU(NHANKHAU nhankhau) {
-        return nhankhauDao.insert(nhankhau); 
+        hogiadinhDao = new HOGIADINHDao();
+        nhankhauDao.insert(nhankhau);
+        return hogiadinhDao.updateNK(nhankhau.getCCCDchuho());
     }
 
 
@@ -23,7 +26,13 @@ public class NHANKHAUService {
 
 
     public boolean deleteNHANKHAU(NHANKHAU nhankhau) {
-        return nhankhauDao.delete(nhankhau); 
+        hogiadinhDao = new HOGIADINHDao();
+        nhankhauDao.delete(nhankhau);
+        hogiadinhDao.updateNK(nhankhau.getCCCDchuho());
+        return true;
+    }
+    public NHANKHAU getNHANKHAU(NHANKHAU nhankhau) {
+        return nhankhauDao.selectById(nhankhau);  
     }
 
     public List<NHANKHAU> getAllNHANKHAU() {

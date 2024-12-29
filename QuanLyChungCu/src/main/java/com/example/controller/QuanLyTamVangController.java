@@ -3,7 +3,6 @@ package com.example.controller;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-
 import javax.servlet.ServletException;
 import java.sql.Date;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +21,7 @@ public class QuanLyTamVangController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    try{
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
@@ -60,7 +60,11 @@ public class QuanLyTamVangController extends HttpServlet {
             tamvangService.updateTAMVANG(tamvang);
             }
             response.sendRedirect("./QuanLyTamVang");
-        
+    }
+    catch(Exception e){
+        e.printStackTrace();
+        response.sendRedirect("error.jsp");
+    }      
     }  
 }
 

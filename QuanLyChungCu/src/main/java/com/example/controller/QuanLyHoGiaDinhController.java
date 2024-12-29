@@ -22,6 +22,7 @@ public class QuanLyHoGiaDinhController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    try{
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=UTF-8");
@@ -92,6 +93,9 @@ public class QuanLyHoGiaDinhController extends HttpServlet {
         // HttpSession session = request.getSession();
         // session.setAttribute("success", check);
         response.sendRedirect("./QuanLyHoGiaDinh");
-
+    }catch(Exception e){
+        e.printStackTrace();
+        response.sendRedirect("error.jsp");
+    }   
     }
 }
