@@ -1,55 +1,62 @@
 package com.example.model;
 
-import java.sql.Date;
-
 public class PHIGUIXE {
-	private String CCCDchuho;
-	private int Soxemay;
-	private int Sooto;
-	private Date Thoihan;
+    private int Idcanho;
+    private int Tienxemay;
+    private int Tienxeoto;
+    private String Hanthu; 
+    private int Tongguixe;
 
-	public PHIGUIXE() {
-		super();
-	}
+    public PHIGUIXE(int idcanho, int tienxemay, int tienxeoto, String hanthu, int tongguixe) {
+        super();
+        Idcanho = idcanho;
+        Tienxemay = tienxemay;
+        Tienxeoto = tienxeoto;
+        Hanthu = hanthu;
+        Tongguixe = tongguixe;
+    }
 
-	public PHIGUIXE(String cCCDchuho, int soxemay, int sooto, Date thoihan) {
-		super();
-		CCCDchuho = cCCDchuho;
-		Soxemay = soxemay;
-		Sooto = sooto;
-		Thoihan = thoihan;
-	}
+    public PHIGUIXE() {
+        super();
+    }
 
-	public String getCCCDchuho() {
-		return CCCDchuho;
-	}
+    public int getIdcanho() {
+        return Idcanho;
+    }
 
-	public void setCCCDchuho(String cCCDchuho) {
-		CCCDchuho = cCCDchuho;
-	}
+    public void setIdcanho(int idcanho) {
+        Idcanho = idcanho;
+    }
 
-	public int getSoxemay() {
-		return Soxemay;
-	}
+    public int getTienxemay() {
+        return Tienxemay;
+    }
 
-	public void setSoxemay(int soxemay) {
-		Soxemay = soxemay;
-	}
+    public void setTienxemay(int tienxemay) {
+        Tienxemay = tienxemay;
+    }
 
-	public int getSooto() {
-		return Sooto;
-	}
+    public int getTienxeoto() {
+        return Tienxeoto;
+    }
 
-	public void setSooto(int sooto) {
-		Sooto = sooto;
-	}
+    public void setTienxeoto(int tienxeoto) {
+        Tienxeoto = tienxeoto;
+    }
 
-	public Date getThoihan() {
-		return Thoihan;
-	}
+    public String getHanthu() {
+        return Hanthu;
+    }
 
-	public void setThoihan(Date thoihan) {
-		Thoihan = thoihan;
-	}
+    public void setHanthu(String hanthu) {
+        Hanthu = hanthu;
+    }
 
+    public int getTongguixe() {
+        return Tongguixe;
+    }
+
+    public void setTongguixe(int tongguixe) {
+        Tongguixe = tongguixe;
+    }
 }

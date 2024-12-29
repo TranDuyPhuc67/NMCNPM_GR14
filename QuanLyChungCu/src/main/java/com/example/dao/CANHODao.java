@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.example.model.CANHO;
 import com.example.util.DatabaseUtil;
@@ -218,4 +220,34 @@ public class CANHODao implements DAOInterface<CANHO> {
 
         return list;
     }
+    public ArrayList<Map<String, Object>> getAllChuHoWithCanHo() {
+	    String sql = """
+	        SELECT c.Idcanho, c.Sonha, c.Dientich, h.Hotenchuho, h.Soxemay, h.Sooto
+	        FROM CANHO c
+	        LEFT JOIN HOGIADINH h ON c.Idcanho = h.Idcanho
+	    """;
+
+	    ArrayList<Map<String, Object>> resultList = new ArrayList<>();
+
+	    try (Connection conn = DatabaseUtil.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql);
+	         ResultSet rs = stmt.executeQuery()) {
+
+	        while (rs.next()) {
+	            Map<String, Object> row = new HashMap<>();
+	            row.put("idcanho", rs.getInt("Idcanho"));
+	            row.put("sonha", rs.getString("Sonha"));
+	            row.put("dientich", rs.getDouble("Dientich"));
+	            row.put("hotenchuho", rs.getString("Hotenchuho"));
+	            row.put("soxemay", rs.getInt("Soxemay")); // Lấy số xe máy
+	            row.put("sooto", rs.getInt("Sooto"));     // Lấy số ô tô
+	            resultList.add(row);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw new RuntimeException("Lỗi khi lấy danh sách chủ hộ với căn hộ", e);
+	    }
+
+	    return resultList;
+	}
 }

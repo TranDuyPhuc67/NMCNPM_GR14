@@ -3,6 +3,8 @@ package com.example.service;
 import com.example.dao.CANHODao;
 import com.example.model.CANHO;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CANHOService {
 
@@ -44,4 +46,8 @@ public class CANHOService {
     public String IdtoName(int id) {       
         return canHoDao.IdtoName(id);
     }
+    public ArrayList<Map<String, Object>> getAllChuHoWithCanHo() {
+		return canHoDao.getAllChuHoWithCanHo();
+	}
+
 }

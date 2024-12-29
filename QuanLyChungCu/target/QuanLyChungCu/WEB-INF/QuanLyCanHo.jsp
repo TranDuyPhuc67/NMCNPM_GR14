@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    // Kiểm tra xem session có chứa thuộc tính "username" hay không
+    if (session.getAttribute("username") == null) {
+        // Chuyển hướng về trang index.jsp
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -91,7 +100,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="margin-left: 30px">
+        <a class="navbar-brand" href="index.jsp" style="margin-left: 30px">
           <img
             src="./Image/Remove-bg.ai_1730519657240.png"
             alt="Logo"

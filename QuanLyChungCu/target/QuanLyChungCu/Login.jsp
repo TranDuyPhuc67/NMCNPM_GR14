@@ -12,13 +12,7 @@
       <h2>BlueMoon</h2>
 
       <!-- Hiển thị thông báo lỗi -->
-      <%
-        // Kiểm tra nếu có tham số 'error' trong URL
-        String error = request.getParameter("error");
-        if ("true".equals(error)) {
-      %>
-        <p style="color: red; font-size: 14px;">Tài khoản hoặc mật khẩu không chính xác!</p>
-      <% } %>
+
 
       <form action="/QuanLyChungCu/Login" method="post">
         <p

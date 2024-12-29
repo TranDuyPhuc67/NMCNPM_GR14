@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%
+    // Kiểm tra xem session có chứa thuộc tính "username" hay không
+    if (session.getAttribute("username") == null) {
+        // Chuyển hướng về trang index.jsp
+        response.sendRedirect("index.jsp");
+        return;
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -233,7 +242,7 @@
         <!-- thêm mới -->
         <div class="row mb-3">
           <div class="col-4">
-            <a href="QuanLyHoGiaDinh.jsp">
+            <a href="QuanLyHoGiaDinh">
               <button id="backButton" class="btn btn-outline-secondary">
                 Quay lại
               </button>
