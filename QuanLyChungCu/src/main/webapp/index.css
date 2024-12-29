@@ -1,0 +1,52 @@
+html, body{
+    margin:0;
+    background-image:linear-gradient( 180deg, rgba(0,0,0,0.5), rgba(0,0,0,0)), url("Image/background.png");
+    background-size: 100% 100%; 
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    background-origin: content-box; 
+    background-position: top center;
+    background-attachment: fixed;
+    display:flex;
+    height:100%;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+.navbar-brand{
+    padding:3px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.navbar{
+    background-color: #ccedff;
+}
+/* Đổi màu chữ của tất cả các liên kết trong navbar */
+.navbar-default .navbar-nav > li > a {
+    color: #4f4a4a; /* màu chữ cho liên kết trong navbar */
+  }
+
+  /* Đổi màu chữ khi hover vào các liên kết */
+  .navbar-default .navbar-nav > li > a:hover {
+    color: #0f1011; /* màu chữ khi di chuột qua */
+  }
+  .navbar-default .navbar-nav > .active > a {
+    background-color: #bbd9ea; /* màu nền cho liên kết đang chọn */
+    color: #4f4a4a; /* màu chữ cho liên kết đang chọn */
+  }
+
+.container p{
+    color:aliceblue;
+}
+
+.btn{
+  background-color: #bbd9ea;
+  border: none;
+  border-radius: 18px;
+  color: #4f4a4a;
+  font-size: 15px;
+  font-weight: 550;
+  margin: 0;
+  font-family:arial,sans-serif;
+}
+
