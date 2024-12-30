@@ -481,21 +481,7 @@
                   />
                 </div>
 
-                <div class="mb-3">
-                  <label for="status" class="form-label"
-                    >Trạng thái
-                    <span class="small-text"
-                      >(Thường trú hoặc Tạm trú)</span
-                    ></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="status"
-                    name= "status"
-                    required
-                  />
-                </div>
+                
               </form>
             </div>
             <div class="modal-footer">
