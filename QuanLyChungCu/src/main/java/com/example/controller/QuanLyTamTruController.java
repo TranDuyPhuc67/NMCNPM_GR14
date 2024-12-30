@@ -83,7 +83,8 @@ public class QuanLyTamTruController extends HttpServlet {
     } 
     catch(Exception e){
         e.printStackTrace();
-        response.sendRedirect("error.jsp");
+        request.setAttribute("notification", "Vui lòng nhập lại chính xác");
+        request.getRequestDispatcher("./WEB-INF/QuanLyTamTru.jsp").forward(request, response);
     }
         
         

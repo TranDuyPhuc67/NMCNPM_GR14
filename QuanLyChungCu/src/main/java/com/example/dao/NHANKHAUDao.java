@@ -58,16 +58,33 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
 
     @Override
     public boolean delete(NHANKHAU t) {
-        String sql = "DELETE FROM NHANKHAU WHERE CCCD = ?";
-        try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, t.getCccd());
-            System.out.println("delete thanh cong");
-            return stmt.executeUpdate() > 0;
+        String sql1 = "DELETE FROM NHANKHAU WHERE CCCD = ?";
+        String sql2 = "DELETE FROM BANGTRUVANG WHERE CCCD = ?";
+        try (Connection conn = DatabaseUtil.getConnection()) {
+            conn.setAutoCommit(false); // Bắt đầu transaction
+    
+            try (PreparedStatement stmt1 = conn.prepareStatement(sql1);
+                 PreparedStatement stmt2 = conn.prepareStatement(sql2)) {
+    
+                // Xóa từ bảng NHANKHAU
+                stmt1.setString(1, t.getCccd());
+                int rowsDeleted1 = stmt1.executeUpdate();
+    
+                // Xóa từ bảng BANGTRUVANG
+                stmt2.setString(1, t.getCccd());
+                int rowsDeleted2 = stmt2.executeUpdate();
+    
+                conn.commit(); // Commit transaction
+    
+                System.out.println("delete thanh cong");
+                return rowsDeleted1 > 0 && rowsDeleted2 > 0;
+            } catch (SQLException e) {
+                conn.rollback(); // Rollback transaction nếu có lỗi
+                System.out.println("delete that bai");
+                throw new RuntimeException("Lỗi khi xóa NHANKHAU", e);
+            }
         } catch (SQLException e) {
-            System.out.println("delete that bai");
-            throw new RuntimeException("Lỗi khi xóa NHANKHAU", e);
+            throw new RuntimeException("Lỗi khi kết nối cơ sở dữ liệu", e);
         }
     }
 
@@ -168,11 +185,11 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
 
     @Override
     public NHANKHAU selectById(NHANKHAU t) {
-        String sql = "SELECT * FROM NHANKHAU WHERE CCCD = ?";
+        String sql = "SELECT CCCD, CCCDchuho, Hovaten, Gioitinh, Ngaysinh, Dantoc, Tongiao,Quoctich,Diachi, Sdt, Email, Quanhe, Trangthai  FROM NHANKHAU WHERE CCCD = ? UNION SELECT CCCDchuho, CCCDchuho, Hotenchuho, Gioitinh, Ngaysinh, Dantoc, Tongiao,Quoctich,Diachi, Sdt, Email, 'Chủ hộ', Trangthai FROM HOGIADINH WHERE CCCDchuho = ?;";
         try (Connection conn = DatabaseUtil.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, t.getCccd());
+            stmt.setString(2, t.getCccd());
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     NHANKHAU nhankhau = new NHANKHAU();
@@ -197,20 +214,61 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
         }
         return null;
     }
-    public int updateTT(String cccd,String trangthai) {
-        String sql = "UPDATE NHANKHAU SET Trangthai = ? WHERE CCCD = ?; UPDATE HOGIADINH SET Trangthai = ? WHERE CCCDchuho = ?";
-        try (Connection conn = DatabaseUtil.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setString(1, trangthai);
-                stmt.setString(2, cccd);
-                stmt.setString(3, trangthai);
-                stmt.setString(4, cccd);
-            return stmt.executeUpdate();
+    public int updateTT(String cccd, String trangthai) {
+        String sql1 = "UPDATE NHANKHAU SET Trangthai = ? WHERE CCCD = ?";
+        String sql2 = "UPDATE HOGIADINH SET Trangthai = ? WHERE CCCDchuho = ?";
+        try (Connection conn = DatabaseUtil.getConnection()) {
+            conn.setAutoCommit(false); // Bắt đầu transaction
+    
+            try (PreparedStatement stmt1 = conn.prepareStatement(sql1);
+                 PreparedStatement stmt2 = conn.prepareStatement(sql2)) {
+    
+                // Cập nhật NHANKHAU
+                stmt1.setString(1, trangthai);
+                stmt1.setString(2, cccd);
+                int rowsUpdated1 = stmt1.executeUpdate();
+    
+                // Cập nhật HOGIADINH
+                stmt2.setString(1, trangthai);
+                stmt2.setString(2, cccd);
+                int rowsUpdated2 = stmt2.executeUpdate();
+    
+                conn.commit(); // Commit transaction
+    
+                return rowsUpdated1 + rowsUpdated2;
+            } catch (SQLException e) {
+                conn.rollback(); // Rollback transaction nếu có lỗi
+                throw new RuntimeException("Lỗi khi cập nhật NHANKHAU", e);
+            }
         } catch (SQLException e) {
-            throw new RuntimeException("Lỗi khi cập nhật NHANKHAU", e);
+            throw new RuntimeException("Lỗi khi kết nối cơ sở dữ liệu", e);
         }
     }
-
+    public boolean check(String cccd) {
+        String sql = "SELECT CCCD FROM NHANKHAU WHERE CCCD = ? UNION SELECT CCCDchuho FROM NHANKHAU WHERE CCCDchuho = ?";
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setString(1, cccd);
+            stmt.setString(2, cccd);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    System.out.print("check");
+                    return true;
+                } else {
+                    return false; // Không tìm thấy kết quả
+                }
+            }
+        } catch (SQLException e) {
+            // Xử lý lỗi và ghi log chi tiết
+            System.err.println("Lỗi khi kiểm tra CCCD hoặc cập nhật trạng thái: " + e.getMessage());
+            e.printStackTrace();
+        }
+        // Trả về false nếu có lỗi xảy ra
+        return false;
+    }
+        
 	@Override
 	public ArrayList<NHANKHAU> selectByCondition(String Condition) {
 		// TODO Auto-generated method stub

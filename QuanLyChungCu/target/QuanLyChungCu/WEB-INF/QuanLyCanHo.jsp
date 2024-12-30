@@ -9,12 +9,17 @@
     }
 %>
 
+
 <!DOCTYPE html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý căn hộ</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -97,6 +102,34 @@
     </style>
   </head>
   <body>
+    <c:if test="${not empty notification}">
+            <!-- Modal -->
+      <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="notificationModalLabel">Thông báo hệ thống</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      ${notification}
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Hiển thị Modal khi có thông báo -->
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $('#notificationModal').modal('show');
+          });
+      </script>
+  </c:if>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid">
@@ -208,7 +241,7 @@
                           <td>${canho.dientich} m²</td>
                           <td>${canho.diachi}</td>
                           <td>
-                              <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal">Chỉnh sửa</button>
+                              <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="edit('${canho.sonha}','${canho.loaicanho}','${canho.dientich}','${canho.diachi}')">Chỉnh sửa</button>
                               <button class="btn btn-danger btn-sm" onclick="Xoa('${canho.sonha}')">Xóa</button>
 
                           </td>
@@ -230,6 +263,12 @@
                 document.getElementById('sonha').value = canhoId;
                 document.getElementById('deleteForm').submit();
             }
+        }
+        function edit(sonha, loaicanho, dientich, diachi) {
+          document.getElementById("apartment1").value = sonha;
+          document.getElementById("apartmentType1").value = loaicanho;
+          document.getElementById("square1").value = dientich;
+          document.getElementById("idCard1").value = diachi;
         }
     </script>
     
@@ -265,6 +304,7 @@
                     name="sonha"
                     class="form-control"
                     id="apartment"
+                    value=""
                     required
                   />
                 </div>
@@ -277,6 +317,7 @@
                     name="loaicanho"
                     class="form-control"
                     id="apartmentType"
+                    value=""
                     required
                   />
                 </div>
@@ -287,6 +328,7 @@
                     name="dientich"
                     class="form-control"
                     id="square"
+                    value=""
                     required
                   />
                 </div>
@@ -300,6 +342,7 @@
                     name="diachi"
                     class="form-control"
                     id="idCard"
+                    value=""
                     required
                   />
                 </div>
@@ -360,7 +403,7 @@
                     type="text"
                     name="sonha"
                     class="form-control"
-                    id="apartment"
+                    id="apartment1"
                     required
                   />
                 </div>
@@ -372,7 +415,7 @@
                     type="text"
                     name="loaicanho"
                     class="form-control"
-                    id="apartmentType"
+                    id="apartmentType1"
                     required
                   />
                 </div>
@@ -382,7 +425,7 @@
                     type="text"
                     name="dientich"
                     class="form-control"
-                    id="square"
+                    id="square1"
                     required
                   />
                 </div>
@@ -395,7 +438,7 @@
                     type="text"
                     name="diachi"
                     class="form-control"
-                    id="idCard"
+                    id="idCard1"
                     required
                   />
                 </div>
@@ -416,6 +459,7 @@
         </div>
       </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

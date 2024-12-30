@@ -15,6 +15,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý Tạm Trú</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -99,6 +104,34 @@
     </style>
   </head>
   <body>
+    <c:if test="${not empty notification}">
+            <!-- Modal -->
+      <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="notificationModalLabel">Thông báo hệ thống</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      ${notification}
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Hiển thị Modal khi có thông báo -->
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $('#notificationModal').modal('show');
+          });
+      </script>
+  </c:if>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.jsp" style="margin-left: 30px">
@@ -226,6 +259,7 @@
                               class="btn btn-warning btn-sm"
                               data-bs-toggle="modal"
                               data-bs-target="#editModal"
+                              onclick="edit('${tamtru.hovaten}', '${tamtru.cccd}', '${tamtru.sonha}',  '${tamtru.ngaybatdau}', '${tamtru.ngayketthuc}', '${tamtru.lydo}')"
                           >
                               Chỉnh sửa
                           </button>
@@ -447,14 +481,14 @@
                 <input type="hidden" id="xuly" name="xuly" value="3">
                 <div class="mb-3">
                   <label for="name" class="form-label">Họ và tên</label>
-                  <input type="text" class="form-control" id="name" name="name" required />
+                  <input type="text" class="form-control" id="name1" name="name" required />
                 </div>
                 <div class="mb-3">
                   <label for="apartment" class="form-label">Căn hộ</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="apartment"
+                    id="apartment1"
                     name="apartment"
                     required
                   />
@@ -464,7 +498,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="idCard"
+                    id="idCard1"
                     name="idCard"
                     required
                   />
@@ -475,7 +509,7 @@
                   <input
                     type="date"
                     class="form-control"
-                    id="dateBirth"
+                    id="dateBirth1"
                     name="dateBirth"
                     required
                   />
@@ -489,7 +523,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="nation"
+                    id="nation1"
                     name="nation"
                     required
                   />
@@ -499,7 +533,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="religion"
+                    id="religion1"
                     name="religion"
                     required
                   />
@@ -509,7 +543,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="nationality"
+                    id="nationality1"
                     name="nationality"
                     required
                   />
@@ -522,7 +556,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="address"
+                    id="address1"
                     name="address"
                     required
                   />
@@ -534,7 +568,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="phonenumber"
+                    id="phonenumber1"
                     name="phonenumber"
                     required
                   />
@@ -546,7 +580,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="relation"
+                    id="relation1"
                     name="relation"
                     required
                   />
@@ -557,7 +591,7 @@
                   <input
                     type="date"
                     class="form-control"
-                    id="startDate"
+                    id="startDate1"
                     name="startDate"
                     required
                   />
@@ -567,7 +601,7 @@
                   <input
                     type="date"
                     class="form-control"
-                    id="endDate"
+                    id="endDate1"
                     name="endDate"
                     required
                   />
@@ -577,7 +611,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="reason"
+                    id="reason1"
                     name="reason"
                     required
                   />
@@ -678,6 +712,16 @@
       <input type="hidden" id="cccdXoa" name="cccdXoa" value="">
       <input type="hidden" id="xuly" name="xuly" value="2">
     </form>
+    <script>
+      function edit(name, cccd, apartment, startDate, endDate, reason) {
+        document.getElementById("name1").value = name;
+        document.getElementById("idCard1").value = cccd;
+        document.getElementById("apartment1").value = apartment;
+        document.getElementById("startDate1").value = startDate;
+        document.getElementById("endDate1").value = endDate;
+        document.getElementById("reason1").value = reason;
+      }
+    </script>
     <script>
       let cccdToDelete = '';
     

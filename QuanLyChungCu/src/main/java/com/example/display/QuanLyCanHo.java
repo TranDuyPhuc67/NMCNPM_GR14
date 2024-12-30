@@ -14,7 +14,7 @@ import com.example.service.CANHOService;
 @WebServlet("/QuanLyCanHo")
 public class QuanLyCanHo extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String sonha = request.getParameter("sonha");
         CANHOService canhoService = new CANHOService();
@@ -31,7 +31,6 @@ public class QuanLyCanHo extends HttpServlet {
         } else {
             request.setAttribute("canhos", canhos);
         }
-        
         request.getRequestDispatcher("./WEB-INF/QuanLyCanHo.jsp").forward(request, response);
     }
 }

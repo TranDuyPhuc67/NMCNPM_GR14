@@ -16,6 +16,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý cư dân</title>
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -112,6 +117,34 @@
     </style>
   </head>
   <body>
+    <c:if test="${not empty notification}">
+            <!-- Modal -->
+      <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="notificationModalLabel">Thông báo hệ thống</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      ${notification}
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Hiển thị Modal khi có thông báo -->
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $('#notificationModal').modal('show');
+          });
+      </script>
+  </c:if>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">

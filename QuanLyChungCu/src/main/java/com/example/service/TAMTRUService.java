@@ -17,7 +17,11 @@ public class TAMTRUService {
 
     public int addTAMTRU(TAMTRU tamtru) {
         nhankhauDao = new NHANKHAUDao();
-        nhankhauDao.insert(tamtru.getNhankhau());
+        if (nhankhauDao.check(tamtru.getNhankhau().getCccd())){
+            NHANKHAUDao nhankhauDao = new NHANKHAUDao();
+            nhankhauDao.updateTT(tamtru.getNhankhau().getCccd(),"Tạm trú");
+        }
+        else {nhankhauDao.insert(tamtru.getNhankhau());}
         hogiadinhDao = new HOGIADINHDao();
         hogiadinhDao.updateNK(tamtru.getNhankhau().getCCCDchuho());
         return tamtruDao.insert(tamtru); 
@@ -32,9 +36,9 @@ public class TAMTRUService {
 
 
     public boolean deleteTAMTRU(TAMTRU tamtru) {
-        nhankhauDao = new NHANKHAUDao();
-        nhankhauDao.delete(tamtru.getNhankhau());
         hogiadinhDao = new HOGIADINHDao();
+        nhankhauDao = new NHANKHAUDao();
+        nhankhauDao.updateTT(tamtru.getNhankhau().getCccd(),"Thường trú");
         hogiadinhDao.updateNK(tamtru.getNhankhau().getCCCDchuho());
         return tamtruDao.delete(tamtru); 
     }

@@ -38,7 +38,8 @@ public class QuanLyNhanKhauController extends HttpServlet {
         String tongiao = request.getParameter("religion");
         String quoctich = request.getParameter("nationality"); 
         String diachi = request.getParameter("address");
-        String trangthai = request.getParameter("status");
+        String trangthai = "Thường trú";
+        // request.getParameter("status");
         String quanhe = request.getParameter("relation");
          if(xuly.equals("1")){
             String ngaysinh_String = request.getParameter("dateBirth");
@@ -78,7 +79,8 @@ public class QuanLyNhanKhauController extends HttpServlet {
     }
     catch(Exception e){
         e.printStackTrace();
-        response.sendRedirect("error.jsp");
+        request.setAttribute("notification", "Vui lòng nhập lại chính xác");
+        request.getRequestDispatcher("./WEB-INF/QuanLyNhanKhau.jsp").forward(request, response);
     }
     }
 }

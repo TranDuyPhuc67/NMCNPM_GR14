@@ -15,6 +15,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quản lý nhân khẩu</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -117,6 +122,34 @@
     </style>
   </head>
   <body>
+    <c:if test="${not empty notification}">
+            <!-- Modal -->
+      <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="notificationModalLabel">Thông báo hệ thống</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      ${notification}
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Hiển thị Modal khi có thông báo -->
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $('#notificationModal').modal('show');
+          });
+      </script>
+  </c:if>
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
@@ -221,6 +254,7 @@
                             class="btn btn-warning btn-sm"
                             data-bs-toggle="modal"
                             data-bs-target="#editModal"
+                            onclick="edit('${nhankhau.hovaten}', '${nhankhau.cccd}', '${nhankhau.ngaysinh}', '${nhankhau.gioitinh}', '${nhankhau.dantoc}', '${nhankhau.tongiao}', '${nhankhau.quoctich}', '${nhankhau.diachi}', '${nhankhau.sdt}', '${nhankhau.quanhe}', '${nhankhau.trangthai}')"
                           >
                             Chỉnh sửa
                           </button>
@@ -382,21 +416,7 @@
                     required
                   />
                 </div>
-                <div class="mb-3">
-                  <label for="status" class="form-label"
-                    >Trạng thái
-                    <span class="small-text"
-                      >(Thường trú hoặc Tạm trú)</span
-                    ></label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="status"
-                    name="status"
-                    required
-                  />
-                </div>
+                
                 <div class="modal-footer">
                   <button
                     type="button"
@@ -427,7 +447,7 @@
               class="modal-header"
               style="background-color: #3790e9; color: #fff"
             >
-              <h5 class="modal-title" id="addModalLabel">Thêm mới nhân khẩu</h5>
+              <h5 class="modal-title" id="addModalLabel">Chỉnh sửa nhân khẩu</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -437,18 +457,18 @@
             </div>
             <div class="modal-body">
               <form action="NhanKhau" method="POST" id = "form2">
-                <input type="hidden" id="CCCDChuho" name="cccdChuho" value="">
+                <input type="hidden" id="CCCDChuho1" name="cccdChuho" value="">
                 <input type="hidden" id="xuly" name="xuly" value="3">
                 <div class="mb-3">
                   <label for="name" class="form-label">Họ và tên</label>
-                  <input type="text" class="form-control" id="name" name="name" required />
+                  <input type="text" class="form-control" id="name1" name="name" required />
                 </div>
                 <div class="mb-3">
                   <label for="idCard" class="form-label">CMND/CCCD</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="idCard"
+                    id="idCard1"
                     name="idCard"
                     required
                   />
@@ -459,21 +479,21 @@
                   <input
                     type="date"
                     class="form-control"
-                    id="dateBirth"
+                    id="dateBirth1"
                     name="dateBirth"
                     required
                   />
                 </div>
                 <div class="mb-3">
                   <label for="sex" class="form-label">Giới tính</label>
-                  <input type="text" class="form-control" id="sex" name="sex"required />
+                  <input type="text" class="form-control" id="sex1" name="sex"required />
                 </div>
                 <div class="mb-3">
                   <label for="nation" class="form-label">Dân tộc</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="nation"
+                    id="nation1"
                     name="nation"
                     required
                   />
@@ -483,7 +503,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="religion"
+                    id="religion1"
                     name="religion"
                     required
                   />
@@ -493,7 +513,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="nationality"
+                    id="nationality1"
                     name="nationality"
                     required
                   />
@@ -506,7 +526,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="address"
+                    id="address1"
                     name="address"
                     required
                   />
@@ -518,7 +538,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="phonenumber"
+                    id="phonenumber1"
                     name="phonenumber"
                     required
                   />
@@ -530,12 +550,12 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="relation"
+                    id="relation1"
                     name="relation"
                     required
                   />
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                   <label for="status" class="form-label"
                     >Trạng thái
                     <span class="small-text"
@@ -545,11 +565,11 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="status"
+                    id="status1"
                     name="status"
                     required
                   />
-                </div>
+                </div> -->
                 <div class="modal-footer">
                   <button
                     type="button"
@@ -742,6 +762,19 @@
       });
     </script>
     <script>
+      function edit(hovaten, cccd, ngaysinh, gioitinh, dantoc, tongiao, quoctich, diachi, sdt, quanhe, trangthai) {
+        document.getElementById('name1').value = hovaten;
+        document.getElementById('idCard1').value = cccd;
+        document.getElementById('dateBirth1').value = ngaysinh;
+        document.getElementById('sex1').value = gioitinh;
+        document.getElementById('nation1').value = dantoc;
+        document.getElementById('religion1').value = tongiao;
+        document.getElementById('nationality1').value = quoctich;
+        document.getElementById('address1').value = diachi;
+        document.getElementById('phonenumber1').value = sdt;
+        document.getElementById('relation1').value = quanhe;
+        // document.getElementById('status1').value = trangthai;
+      }
       function deleteNhanKhau() {
         // Thực hiện hành động xóa ở đây
         // Thay thế bằng mã xóa thực tế
