@@ -28,7 +28,7 @@ public class CANHODao implements DAOInterface<CANHO> {
         } catch (SQLException e) {
             // Log error and throw an exception
             System.err.println("Error while inserting CANHO: " + e.getMessage());
-            throw new RuntimeException("Error while inserting CANHO", e);
+            throw new RuntimeException("Thêm căn hộ thất bại, vui lòng nhập chính xác dữ liệu", e);
         }
     }
 
@@ -49,7 +49,7 @@ public class CANHODao implements DAOInterface<CANHO> {
         } catch (SQLException e) {
             // Log error and throw an exception
             System.err.println("Error while updating CANHO: " + e.getMessage());
-            throw new RuntimeException("Error while updating CANHO", e);
+            throw new RuntimeException("Chỉnh sửa thất bại, vui lòng nhập chính xác dữ liệu", e);
         }
     }
 
@@ -63,7 +63,7 @@ public class CANHODao implements DAOInterface<CANHO> {
         } catch (SQLException e) {
             // Log error and throw an exception
             System.err.println("Error while deleting CANHO: " + e.getMessage());
-            throw new RuntimeException("Error while deleting CANHO", e);
+            throw new RuntimeException("Xóa căn hộ thất bại", e);
         }
     }
 
@@ -87,7 +87,7 @@ public class CANHODao implements DAOInterface<CANHO> {
         } catch (SQLException e) {
             // Log error and throw an exception
             System.err.println("Error while selecting all CANHO: " + e.getMessage());
-            throw new RuntimeException("Error while selecting all CANHO", e);
+            throw new RuntimeException("Đã có lỗi xảy ra trong quá trình xử lý", e);
         }
 
         return list;
@@ -114,7 +114,7 @@ public class CANHODao implements DAOInterface<CANHO> {
         } catch (SQLException e) {
             // Log error and throw an exception
             System.err.println("Error while selecting CANHO by ID: " + e.getMessage());
-            throw new RuntimeException("Error while selecting CANHO by ID", e);
+            throw new RuntimeException("Lỗi tìm kiếm căn hộ", e);
         }
 
         return null;
@@ -133,7 +133,7 @@ public class CANHODao implements DAOInterface<CANHO> {
         } catch (SQLException e) {
             // Log error and throw an exception
             System.err.println("Error while selecting CANHO by ID: " + e.getMessage());
-            throw new RuntimeException("Error while selecting CANHO by ID", e);
+            throw new RuntimeException("Đã có lỗi hệ thống xảy ra", e);
         }
 
         return 0;
@@ -152,7 +152,7 @@ public class CANHODao implements DAOInterface<CANHO> {
         } catch (SQLException e) {
             // Log error and throw an exception
             System.err.println("Error while selecting CANHO by ID: " + e.getMessage());
-            throw new RuntimeException("Error while selecting CANHO by ID", e);
+            throw new RuntimeException("Đã có lỗi hệ thống xảy ra", e);
         }
 
         return null;
@@ -177,7 +177,7 @@ public class CANHODao implements DAOInterface<CANHO> {
         } catch (SQLException e) {
             // Log error and throw an exception
             System.err.println("Error while selecting CANHO by ID: " + e.getMessage());
-            throw new RuntimeException("Error while selecting CANHO by ID", e);
+            throw new RuntimeException("Đã có lỗi hệ thống xảy ra", e);
         }
 
         return null;
@@ -215,7 +215,7 @@ public class CANHODao implements DAOInterface<CANHO> {
         } catch (SQLException e) {
             // Log error and throw an exception
             System.err.println("Error while selecting CANHO by condition: " + e.getMessage());
-            throw new RuntimeException("Error while selecting CANHO by condition", e);
+            throw new RuntimeException("Tìm điều ", e);
         }
 
         return list;

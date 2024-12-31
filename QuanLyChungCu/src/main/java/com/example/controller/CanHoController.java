@@ -55,8 +55,12 @@ public class CanHoController extends HttpServlet {
             }
             response.sendRedirect("./QuanLyCanHo");
         }
+        catch (NumberFormatException e){
+            request.setAttribute("notification", "Đã xảy ra lỗi: Diện tích phải là số thực" );
+            request.getRequestDispatcher("./WEB-INF/QuanLyCanHo.jsp").forward(request, response);
+        }
         catch(Exception e){
-            request.setAttribute("notification", "Vui lòng nhập lại chính xác");
+            request.setAttribute("notification", "Đã xảy ra lỗi: " + e.getMessage());
             request.getRequestDispatcher("./WEB-INF/QuanLyCanHo.jsp").forward(request, response);
         }
     }

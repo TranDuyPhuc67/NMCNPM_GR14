@@ -24,7 +24,7 @@ public class QuanLyCanHo extends HttpServlet {
         } else {
             canhos = canhoService.getByCondition(sonha);
         }
-        
+
         if (canhos == null || canhos.isEmpty() || canhos.get(0) == null) {
             request.setAttribute("errorMessage", "Không tìm thấy căn hộ nào phù hợp.");
             request.setAttribute("canhos", null);

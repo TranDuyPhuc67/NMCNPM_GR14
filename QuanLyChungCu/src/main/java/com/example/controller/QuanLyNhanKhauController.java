@@ -79,7 +79,7 @@ public class QuanLyNhanKhauController extends HttpServlet {
     }
     catch(Exception e){
         e.printStackTrace();
-        request.setAttribute("notification", "Vui lòng nhập lại chính xác");
+        request.setAttribute("notification", "Đã xảy ra lỗi: " + e.getMessage());
         request.getRequestDispatcher("./WEB-INF/QuanLyNhanKhau.jsp").forward(request, response);
     }
     }

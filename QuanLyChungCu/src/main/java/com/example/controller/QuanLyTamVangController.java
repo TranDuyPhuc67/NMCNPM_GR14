@@ -63,7 +63,7 @@ public class QuanLyTamVangController extends HttpServlet {
     }
     catch(Exception e){
         e.printStackTrace();
-        request.setAttribute("notification", "Vui lòng nhập lại chính xác");
+        request.setAttribute("notification", "Đã xảy ra lỗi: " + e.getMessage());
         request.getRequestDispatcher("./WEB-INF/QuanLyTamVang.jsp").forward(request, response);
     }      
     }  

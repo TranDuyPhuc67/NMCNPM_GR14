@@ -40,11 +40,7 @@
 
         <input type="password" name="password" required />
 
-        <a
-          class="forget"
-          href="./Forgot_Password.html"
-          >Quên mật khẩu?
-        </a>
+
         <input type="submit" value="Đăng nhập" />
 
       </form>

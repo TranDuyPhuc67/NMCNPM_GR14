@@ -41,16 +41,17 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 
 	@Override
 	public int update(HOGIADINH t) {
-		String sql = "UPDATE HOGIADINH SET Sdt = ?,  Idcanho = ?, Sothanhvien = ?, Tang = ?, Sonha = ? WHERE CCCDchuho = ? AND Hotenchuho = ?";
+		String sql = "UPDATE HOGIADINH SET Hotenchuho = ?, Sdt = ?,  Idcanho = ?, Sothanhvien = ?, Tang = ?, Sonha = ? WHERE CCCDchuho = ? ";
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			// stmt.setString(1, t.getCCCDchuho());
-			stmt.setString(1, t.getSdt());
-			stmt.setInt(2, t.getIdcanho());
-			stmt.setInt(3, t.getSothanhvien());
-			stmt.setInt(4, t.getTang());
-			stmt.setString(5, t.getSonha());
-			stmt.setString(6, t.getCccdchuho());
-			stmt.setString(7, t.getHotenchuho());
+			stmt.setString(1, t.getHotenchuho());
+			stmt.setString(2, t.getSdt());
+			stmt.setInt(3, t.getIdcanho());
+			stmt.setInt(4, t.getSothanhvien());
+			stmt.setInt(5, t.getTang());
+			stmt.setString(6, t.getSonha());
+			stmt.setString(7, t.getCccdchuho());
+			
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error while updating HOGIADINH: " + e.getMessage());
@@ -60,14 +61,39 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 
 	@Override
 	public boolean delete(HOGIADINH t) {
-		String sql = "DELETE FROM HOGIADINH WHERE CCCDchuho = ?";
-		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-			stmt.setString(1, t.getCccdchuho());
-			return stmt.executeUpdate() > 0;
+		String sql1 = "DELETE FROM KHOANDONGGOP WHERE CCCDchuho = ?";
+		String sql2 = "DELETE FROM NHANKHAU WHERE CCCDchuho = ?";
+		String sql3 = "DELETE FROM HOGIADINH WHERE CCCDchuho = ?";
+		try (Connection conn = DatabaseUtil.getConnection()) {
+			conn.setAutoCommit(false); // Bắt đầu transaction
+	
+			try (PreparedStatement stmt1 = conn.prepareStatement(sql1);
+				 PreparedStatement stmt2 = conn.prepareStatement(sql2);
+				 PreparedStatement stmt3 = conn.prepareStatement(sql3)) {
+	
+				// Xóa từ bảng KHOADONGGOP
+				stmt1.setString(1, t.getCccdchuho());
+				int rowsDeleted1 = stmt1.executeUpdate();
+	
+				// Xóa từ bảng NHANKHAU
+				stmt2.setString(1, t.getCccdchuho());
+				int rowsDeleted2 = stmt2.executeUpdate();
+	
+				// Xóa từ bảng HOGIADINH
+				stmt3.setString(1, t.getCccdchuho());
+				int rowsDeleted3 = stmt3.executeUpdate();
+	
+				conn.commit(); // Commit transaction
+	
+				return rowsDeleted1 > 0 && rowsDeleted2 > 0 && rowsDeleted3 > 0;
+			} catch (SQLException e) {
+				conn.rollback(); // Rollback transaction nếu có lỗi
+				System.err.println("Error while deleting HOGIADINH: " + e.getMessage());
+				throw new RuntimeException("Error while deleting HOGIADINH", e);
+			}
 		} catch (SQLException e) {
-			System.err.println("Error while deleting HOGIADINH: " + e.getMessage());
-			throw new RuntimeException("Error while deleting HOGIADINH", e);
+			System.err.println("Error while connecting to the database: " + e.getMessage());
+			throw new RuntimeException("Error while connecting to the database", e);
 		}
 	}
 	

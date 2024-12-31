@@ -42,7 +42,7 @@ public class TONGTHANHTOANService {
             throw new IllegalArgumentException("HanThu phải có định dạng YYYY-MM");
         }
 
-        if (soTienDaNop <= 0) {
+        if (soTienDaNop < 0) {
             throw new IllegalArgumentException("SoTienDaNop phải lớn hơn 0");
         }
 

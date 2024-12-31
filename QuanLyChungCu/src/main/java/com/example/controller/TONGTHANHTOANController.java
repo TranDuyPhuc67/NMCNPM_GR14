@@ -68,7 +68,7 @@ public class TONGTHANHTOANController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		throws ServletException, IOException {
 		try {
 			String action = request.getParameter("action");
 
@@ -78,11 +78,20 @@ public class TONGTHANHTOANController extends HttpServlet {
 				String hanThu = request.getParameter("hanthu");
 				int soTienDaNop = Integer.parseInt(request.getParameter("sotiendanop"));
 
-				// Gọi service để cập nhật số tiền đã nộp
-				service.updateSoTienDaNopForCurrentMonth(idCanHo, hanThu, soTienDaNop);
+				try {
+					// Gọi service để cập nhật số tiền đã nộp
+					service.updateSoTienDaNopForCurrentMonth(idCanHo, hanThu, soTienDaNop);
 
-				// Gọi lại doGet để làm mới danh sách
-				doGet(request, response);
+					// Gọi lại doGet để làm mới danh sách
+					doGet(request, response);
+				} catch (IllegalArgumentException e) {
+					// Nếu lỗi do số tiền âm
+					request.setAttribute("message", "Số tiền đã nộp không được nhỏ hơn 0.");
+					request.setAttribute("error", e.getMessage());
+
+					// Lấy lại danh sách để hiển thị cùng lỗi
+					doGet(request, response);
+				}
 			} else {
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Hành động không hợp lệ!");
 			}
