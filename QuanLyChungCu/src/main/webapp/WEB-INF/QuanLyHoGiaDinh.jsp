@@ -244,6 +244,8 @@
               <th>Số điện thoại</th>
               <th>Căn hộ</th>
               <th>Tầng</th>
+              <th>Số ô tô</th>
+              <th>Số xe máy</th>
               <th>Số nhân khẩu</th>
               <th>Hành động</th>
             </tr>
@@ -257,7 +259,9 @@
                         <td>${hogiadinh.sdt}</td>
                         <td>${hogiadinh.sonha}</td>
                         <td>${hogiadinh.tang}</td>
-                        <td>${hogiadinh.sothanhvien}</td>     
+                        <td>${hogiadinh.sooto}</td>   
+                        <td>${hogiadinh.soxemay}</td> 
+                        <td>${hogiadinh.sothanhvien}</td>   
                           <td>
                             <a href="QuanLyNhanKhau?CCCDchuho=${hogiadinh.cccdchuho}">
                               <button class="btn btn-success btn-sm">Quản lý</button>
@@ -266,7 +270,7 @@
                               class="btn btn-warning btn-sm"
                               data-bs-toggle="modal"
                               data-bs-target="#editModal"
-                              onclick="edit('${hogiadinh.hotenchuho}', '${hogiadinh.cccdchuho}', '${hogiadinh.sdt}', '${hogiadinh.sonha}', '${hogiadinh.tang}', '${hogiadinh.sothanhvien}')"
+                              onclick="edit('${hogiadinh.hotenchuho}', '${hogiadinh.cccdchuho}', '${hogiadinh.sdt}', '${hogiadinh.sonha}', '${hogiadinh.tang}', '${hogiadinh.sothanhvien}', '${hogiadinh.sooto}', '${hogiadinh.soxemay}')"
                             >
                               Chỉnh sửa
                             </button>
@@ -565,6 +569,26 @@
                   <input type="text" class="form-control" id="floor1" name="floor" required />
                 </div>
                 <div class="mb-3">
+                  <label for="carNum" class="form-label">Số ô tô</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="carNum1"
+                    name="carNum"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="motorNum" class="form-label">Số xe máy</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="motorNum1"
+                    name="motorNum"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
                   <label for="persons" class="form-label">Số nhân khẩu</label>
                   <input
                     type="text"
@@ -699,13 +723,15 @@
         );
         successModal.show();
       }
-      function edit(name, idCard, phoneNum, apartment, floor, persons) {
+      function edit(name, idCard, phoneNum, apartment, floor, persons, x,y) {
         document.getElementById('name1').value = name;
         document.getElementById('idCard1').value = idCard;
         document.getElementById('phoneNum1').value = phoneNum;
         document.getElementById('apartment1').value = apartment;
         document.getElementById('floor1').value = floor;
         document.getElementById('persons1').value = persons;
+        document.getElementById('carNum1').value = x;
+        document.getElementById('motorNum1').value = y;
       }
     </script>
     <!-- thêm hộ gia đình -->

@@ -235,11 +235,11 @@ body {
 									</a></li>
 								</ul>
 							</div> <%
- } else {
- %> <a class="btn btn-outline-secondary" href="Login.jsp">Đăng
-								nhập</a> <%
- }
- %>
+								} else {
+								%> <a class="btn btn-outline-secondary" href="Login.jsp">Đăng
+																nhập</a> <%
+								}
+								%>
 						</li>
 					</ul>
 				</div>

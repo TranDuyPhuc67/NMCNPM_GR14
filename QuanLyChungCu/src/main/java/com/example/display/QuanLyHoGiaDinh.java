@@ -22,7 +22,7 @@ public class QuanLyHoGiaDinh extends HttpServlet {
         List<HOGIADINH> hogiadinhs;
         if (search == null || search.isEmpty()) {
             hogiadinhs = hogiadinhService.getAllHOGIADINH();
-            System.out.println(1);
+            // System.out.println(1);
         } else {
             hogiadinhs = hogiadinhService.getHOGIADINHByCondition(search);
         }

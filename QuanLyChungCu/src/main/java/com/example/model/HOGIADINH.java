@@ -22,7 +22,7 @@ public class HOGIADINH {
 	public HOGIADINH() {
 		super();
 	}
-	public HOGIADINH(String cccdchuho,int idcanho, String hotenchuho,int sothanhvien,String sdt,int tang,String sonha) {
+	public HOGIADINH(String cccdchuho,int idcanho, String hotenchuho,int sothanhvien,String sdt,int tang,String sonha,int soxemay,int sooto) {
 		super();
 		CCCDchuho = cccdchuho;
 		Idcanho = idcanho;
@@ -31,6 +31,8 @@ public class HOGIADINH {
 		Sdt = sdt;
 		Tang = tang;
 		Sonha = sonha;
+		Soxemay = soxemay;
+		Sooto = sooto;
 	}
 	public HOGIADINH(String cccdchuho,String hotenchuho,String gioitinh,Date ngaysinh,String dantoc,String tongiao,String quoctich,String diachi,String sdt,String trangthai){
 		super();

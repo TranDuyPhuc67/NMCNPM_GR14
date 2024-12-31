@@ -41,7 +41,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 
 	@Override
 	public int update(HOGIADINH t) {
-		String sql = "UPDATE HOGIADINH SET Hotenchuho = ?, Sdt = ?,  Idcanho = ?, Sothanhvien = ?, Tang = ?, Sonha = ? WHERE CCCDchuho = ? ";
+		String sql = "UPDATE HOGIADINH SET Hotenchuho = ?, Sdt = ?,  Idcanho = ?, Sothanhvien = ?, Tang = ?, Sonha = ?,Sooto = ?, Soxemay = ? WHERE CCCDchuho = ? ";
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			// stmt.setString(1, t.getCCCDchuho());
 			stmt.setString(1, t.getHotenchuho());
@@ -50,7 +50,9 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			stmt.setInt(4, t.getSothanhvien());
 			stmt.setInt(5, t.getTang());
 			stmt.setString(6, t.getSonha());
-			stmt.setString(7, t.getCccdchuho());
+			stmt.setInt(7,t.getSooto());
+			stmt.setInt(8,t.getSoxemay());
+			stmt.setString(9, t.getCccdchuho());
 			
 			return stmt.executeUpdate();
 		} catch (SQLException e) {

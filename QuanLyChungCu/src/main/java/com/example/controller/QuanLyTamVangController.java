@@ -28,6 +28,7 @@ public class QuanLyTamVangController extends HttpServlet {
         CANHOService canhoService = new CANHOService();
         TAMVANGService tamvangService = new TAMVANGService();
         HOGIADINHService hogiadinhService = new HOGIADINHService();
+        NHANKHAUService nhankhauService = new NHANKHAUService();
         String hoten = request.getParameter("name");
         String cccd = request.getParameter("idCard");
         String sonha = request.getParameter("apartment");
@@ -42,6 +43,14 @@ public class QuanLyTamVangController extends HttpServlet {
             Date ngaybd = Date.valueOf(ngaybd_String);
             String ngaykt_String = request.getParameter("endDate");
             Date ngaykt = Date.valueOf(ngaykt_String);
+            NHANKHAU nhankhau_tmp = new NHANKHAU();
+            nhankhau_tmp.setCCCD(cccd);
+            NHANKHAU nhankhau = nhankhauService.getNHANKHAU(nhankhau_tmp);
+            if(nhankhau == null){
+                request.setAttribute("notification", "Không tìm thấy nhân khẩu, vui lòng thử lại");
+                request.getRequestDispatcher("./WEB-INF/QuanLyTamVang.jsp").forward(request, response);
+                return;
+            }
             TAMVANG tamvang = new TAMVANG(cccd, idcanho, hoten, ngaybd, ngaykt, lydo);
             tamvangService.addTAMVANG(tamvang);
         }

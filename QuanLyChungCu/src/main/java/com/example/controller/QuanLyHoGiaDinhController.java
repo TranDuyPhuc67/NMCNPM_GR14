@@ -70,7 +70,9 @@ public class QuanLyHoGiaDinhController extends HttpServlet {
                     String sonha = request.getParameter("apartment");
                     int idcanho = canhoService.NametoId(sonha);
                     String sothanhvien = request.getParameter("persons");
-                    HOGIADINH hogiadinh = new HOGIADINH(cccdChuho, idcanho, hotenchuho, Integer.parseInt(sothanhvien), sdt, tang, sonha);
+                    int soxemay = Integer.parseInt(request.getParameter("motorNum"));
+                    int sooto = Integer.parseInt(request.getParameter("carNum"));
+                    HOGIADINH hogiadinh = new HOGIADINH(cccdChuho, idcanho, hotenchuho, Integer.parseInt(sothanhvien), sdt, tang, sonha,soxemay,sooto);
                     System.out.println(hogiadinh.getCccdchuho());
                     HOGIADINHService hogiadinhService = new HOGIADINHService();
                     hogiadinhService.updateHOGIADINH(hogiadinh);
