@@ -39,6 +39,11 @@ public class CanHoController extends HttpServlet {
                 loaicanho = URLDecoder.decode(loaicanho, StandardCharsets.UTF_8.name());
                 String dientich = request.getParameter("dientich");
                 double num_dientich  = Double.parseDouble(dientich);
+                if (num_dientich <= 0) {
+                    request.setAttribute("notification", "Đã xảy ra lỗi: Diện tích phải số dương" );
+                    request.getRequestDispatcher("./WEB-INF/QuanLyCanHo.jsp").forward(request, response);
+                    return;
+                }
                 String diachi = request.getParameter("diachi");
                 diachi = URLDecoder.decode(diachi, StandardCharsets.UTF_8.name());
         
