@@ -152,13 +152,19 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
         return list;
     }
     public ArrayList<NHANKHAU> selectAllMCH(String macanho) {
-        String sql = "SELECT HGD.Sonha, NK.Hovaten, NK.CCCD, NK.Ngaysinh, NK.Gioitinh, NK.Sdt, NK.Trangthai FROM NHANKHAU NK JOIN HOGIADINH HGD ON NK.CCCDchuho = HGD.CCCDchuho WHERE HGD.Sonha = ? UNION SELECT Sonha, Hotenchuho, CCCDchuho, Ngaysinh, Gioitinh, Sdt, Trangthai FROM HOGIADINH WHERE Sonha = ? ORDER BY Sonha;";
+        String sql = "SELECT HGD.Sonha, NK.Hovaten, NK.CCCD, NK.Ngaysinh, NK.Gioitinh, NK.Sdt, NK.Trangthai FROM NHANKHAU NK JOIN HOGIADINH HGD ON NK.CCCDchuho = HGD.CCCDchuho WHERE HGD.Sonha = ? OR NK.Sdt = ? OR NK.CCCD = ? OR NK.Hovaten LIKE ? UNION SELECT Sonha, Hotenchuho, CCCDchuho, Ngaysinh, Gioitinh, Sdt, Trangthai FROM HOGIADINH WHERE Sonha = ? OR CCCDchuho  = ? OR Hotenchuho LIKE ? OR Sdt = ? ORDER BY Sonha;";
         ArrayList<NHANKHAU> list = new ArrayList<>();
 
         try (Connection conn = DatabaseUtil.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);) {
                 stmt.setString(1, macanho);
                 stmt.setString(2, macanho);
+                stmt.setString(3, macanho);
+                stmt.setString(4, "%"+macanho+"%");
+                stmt.setString(5, macanho);
+                stmt.setString(6, macanho);
+                stmt.setString(7, "%"+macanho+"%");
+                stmt.setString(8, macanho);
             try (ResultSet rs = stmt.executeQuery()){
                 while (rs.next()) {
                     NHANKHAU nhankhau = new NHANKHAU();
