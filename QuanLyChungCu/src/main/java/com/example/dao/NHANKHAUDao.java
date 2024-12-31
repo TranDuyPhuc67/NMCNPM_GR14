@@ -28,7 +28,7 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
             stmt.setString(13, t.getTrangthai());
             return stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Lỗi khi thêm NHANKHAU", e);
+            throw new RuntimeException("Lỗi khi thêm cư dân, vui lòng kiếm tra lại", e);
         }
     }
 
@@ -52,7 +52,7 @@ public class NHANKHAUDao implements DAOInterface<NHANKHAU> {
             System.out.println("update thanh cong");
             return stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Lỗi khi cập nhật NHANKHAU", e);
+            throw new RuntimeException("Lỗi khi cập nhật cư dân, vui lòng kiếm tra lại", e);
         }
     }
 

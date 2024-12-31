@@ -788,10 +788,10 @@
                 if (response.ok) {
                   // alert("Dữ liệu đã được gửi thành công!");
                   modal2.hide();
-                  location.reload();
+                  // location.reload();
                 } else {
                   // alert("Có lỗi xảy ra khi gửi dữ liệu!");
-                  location.reload();
+                  // location.reload();
                 }
               })
               .catch((error) => {

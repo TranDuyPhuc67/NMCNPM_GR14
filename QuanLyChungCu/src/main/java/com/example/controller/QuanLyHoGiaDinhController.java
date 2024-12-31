@@ -36,6 +36,7 @@ public class QuanLyHoGiaDinhController extends HttpServlet {
                     }
                 }
 
+
                 ObjectMapper objectMapper = new ObjectMapper();
                 JsonNode jsonNode = objectMapper.readTree(jsonBuffer.toString());
 
@@ -49,6 +50,7 @@ public class QuanLyHoGiaDinhController extends HttpServlet {
                 String ngaysinh_String = jsonNode.get("dateBirth").asText();
                 Date ngaysinh = Date.valueOf(ngaysinh_String);
                 String gioitinh = jsonNode.get("sex").asText();
+                // if (!(gioitinh.equals('nam') && gioitinh.equals('nu') && gioitinh.equals('nam')))
                 String dantoc = jsonNode.get("nation").asText();
                 String tongiao = jsonNode.get("religion").asText();
                 String quoctich = jsonNode.get("nationality").asText();
@@ -83,12 +85,18 @@ public class QuanLyHoGiaDinhController extends HttpServlet {
                     hogiadinh.setCCCDchuho(cccdChuho);
                     hogiadinhService.deleteHOGIADINH(hogiadinh);
                 }
-            }
-            response.sendRedirect("./QuanLyHoGiaDinh");
-        } catch (Exception e) {
-            e.printStackTrace();
+            } 
+            response.sendRedirect("./QuanLyHoGiaDinh");  
+        }        
+        catch (NumberFormatException e){
+            request.setAttribute("notification", "Đã xảy ra lỗi: Vui lòng nhập chính xác hơn" );
+            request.getRequestDispatcher("./WEB-INF/QuanLyHoGiaDinh.jsp").forward(request, response);
+            // return;
+        }
+        catch (Exception e) {
+            // e.printStackTrace();
             request.setAttribute("notification", "Đã xảy ra lỗi: " + e.getMessage());
             request.getRequestDispatcher("./WEB-INF/QuanLyHoGiaDinh.jsp").forward(request, response);
-        }
+        } 
     }
 }

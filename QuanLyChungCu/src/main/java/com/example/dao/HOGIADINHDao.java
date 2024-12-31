@@ -35,7 +35,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error while inserting HOGIADINH: " + e.getMessage());
-			throw new RuntimeException("Error while inserting HOGIADINH", e);
+			throw new RuntimeException("Vui lòng nhập chính xác", e);
 		}
 	}
 
@@ -57,7 +57,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error while updating HOGIADINH: " + e.getMessage());
-			throw new RuntimeException("Error while updating HOGIADINH", e);
+			throw new RuntimeException("Vui lòng nhập chính xác", e);
 		}
 	}
 
@@ -91,11 +91,11 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			} catch (SQLException e) {
 				conn.rollback(); // Rollback transaction nếu có lỗi
 				System.err.println("Error while deleting HOGIADINH: " + e.getMessage());
-				throw new RuntimeException("Error while deleting HOGIADINH", e);
+				throw new RuntimeException("Vui lòng nhập chính xác", e);
 			}
 		} catch (SQLException e) {
 			System.err.println("Error while connecting to the database: " + e.getMessage());
-			throw new RuntimeException("Error while connecting to the database", e);
+			throw new RuntimeException("Vui lòng nhập chính xác", e);
 		}
 	}
 	
@@ -130,7 +130,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			}
 		} catch (SQLException e) {
 			System.err.println("Error while selecting all HOGIADINH: " + e.getMessage());
-			throw new RuntimeException("Error while selecting all HOGIADINH", e);
+			throw new RuntimeException("Vui lòng nhập chính xác", e);
 		}
 
 		return list;
@@ -166,7 +166,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			}
 		} catch (SQLException e) {
 			System.err.println("Error while selecting HOGIADINH by ID: " + e.getMessage());
-			throw new RuntimeException("Error while selecting HOGIADINH by ID", e);
+			throw new RuntimeException("Vui lòng nhập chính xác", e);
 		}
 		return null;
 	}
@@ -189,7 +189,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Error while updating HOGIADINH: " + e.getMessage());
-			throw new RuntimeException("Error while updating HOGIADINH", e);
+			throw new RuntimeException("Vui lòng nhập chính xác", e);
 		}
 	}
 	@Override
@@ -239,7 +239,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 		}
 		catch (SQLException e) {
 				System.err.println("Error while selecting HOGIADINH by condition: " + e.getMessage());
-				throw new RuntimeException("Error while selecting HOGIADINH by condition", e);
+				throw new RuntimeException("Vui lòng nhập chính xác", e);
 		}
 		
 		return list;
@@ -256,7 +256,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 			}
 		} catch (SQLException e) {
 			System.err.println("Error while selecting HOGIADINH by ID: " + e.getMessage());
-			throw new RuntimeException("Error while selecting HOGIADINH by ID", e);
+			throw new RuntimeException("Vui lòng nhập chính xác", e);
 		}
 		return null;
 	}
@@ -268,7 +268,7 @@ public class HOGIADINHDao implements DAOInterface<HOGIADINH> {
 				stmt.setString(2, cccd);
             return stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Lỗi khi cập nhật HOGIADINH", e);
+            throw new RuntimeException("Vui lòng nhập chính xác", e);
         }
     }
 }

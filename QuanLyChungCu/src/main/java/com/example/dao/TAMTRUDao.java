@@ -38,7 +38,7 @@ public class TAMTRUDao implements DAOInterface<TAMTRU>{
             stmt.setString(6, t.getCccd());
             return stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Lỗi khi cập nhật TAMTRU", e);
+            throw new RuntimeException("Lỗi khi cập nhật tạm trú", e);
         }
     }
 
@@ -52,7 +52,7 @@ public class TAMTRUDao implements DAOInterface<TAMTRU>{
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("delete that bai");
-            throw new RuntimeException("Lỗi khi xóa TAMTRU", e);
+            throw new RuntimeException("Lỗi khi xóa tạm trú", e);
         }
     }
 
@@ -77,7 +77,7 @@ public class TAMTRUDao implements DAOInterface<TAMTRU>{
                 }
             }
         catch (SQLException e) {
-            throw new RuntimeException("Lỗi khi chọn tất cả tamtru", e);
+            throw new RuntimeException("Vui lòng nhập chính xác hơn", e);
         }
             
         return list;
@@ -93,7 +93,7 @@ public class TAMTRUDao implements DAOInterface<TAMTRU>{
         String sql = "SELECT BANGTRUVANG.*,HOGIADINH.Sonha FROM BANGTRUVANG JOIN HOGIADINH ON HOGIADINH.Idcanho = BANGTRUVANG.Idcanho WHERE BANGTRUVANG.Trangthai = 'TT' AND (BANGTRUVANG.CCCD = ? OR BANGTRUVANG.HOVATEN = ? OR HOGIADINH.Sonha = ? OR BANGTRUVANG.Ngaybatdau > ? OR BANGTRUVANG.Ngayketthuc < ?);";
 		ArrayList<TAMTRU> list = new ArrayList<>();
 		if (condition == null || condition.isEmpty()) {
-			throw new IllegalArgumentException("Condition cannot be null or empty");
+			throw new IllegalArgumentException("Vui lòng nhập chính xác hơn");
 		}
 		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, condition);
@@ -127,7 +127,7 @@ public class TAMTRUDao implements DAOInterface<TAMTRU>{
 		}
 		catch (SQLException e) {
 				System.err.println("Error while selecting TAMTRU by condition: " + e.getMessage());
-				throw new RuntimeException("Error while selecting TAMTRU by condition", e);
+				throw new RuntimeException("Lỗi tìm kiếm", e);
 		}
 		
 		return list;

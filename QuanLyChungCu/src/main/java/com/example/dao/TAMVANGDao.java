@@ -38,7 +38,7 @@ public class TAMVANGDao implements DAOInterface<TAMVANG>{
             stmt.setString(6, t.getCccd());
             return stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException("Lỗi khi cập nhật TAMVANG", e);
+            throw new RuntimeException("Lỗi khi chỉnh sửa tạm vắng", e);
         }
     }
 
@@ -52,7 +52,7 @@ public class TAMVANGDao implements DAOInterface<TAMVANG>{
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             System.out.println("delete that bai");
-            throw new RuntimeException("Lỗi khi xóa TAMVANG", e);
+            throw new RuntimeException("Lỗi khi xóa tạm vắng", e);
         }
     }
 
@@ -77,7 +77,7 @@ public class TAMVANGDao implements DAOInterface<TAMVANG>{
                 }
             }
         catch (SQLException e) {
-            throw new RuntimeException("Lỗi khi chọn tất cả tamvang", e);
+            throw new RuntimeException("Lỗi hệ thống", e);
         }
             
         return list;
@@ -127,7 +127,7 @@ public class TAMVANGDao implements DAOInterface<TAMVANG>{
 		}
 		catch (SQLException e) {
 				System.err.println("Error while selecting TAMVANG by condition: " + e.getMessage());
-				throw new RuntimeException("Error while selecting TAMVANG by condition", e);
+				throw new RuntimeException("Lỗi tìm kiếm", e);
 		}
 		
 		return list;
