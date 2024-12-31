@@ -25,6 +25,7 @@
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/display/QuanLyTamVang.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/model/PHIGUIXE.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/model/KHOANDONGGOP.java
+/home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/controller/ChangePasswordController.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/dao/TONGTHANHTOANDao.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/service/TAMVANGService.java
 /home/p4nda/BTL/NMCNPM_GR14/QuanLyChungCu/src/main/java/com/example/service/CANHOService.java

@@ -75,6 +75,19 @@ public class QUANLYDao implements DAOInterface<QUANLY> {
 		return 0;
 	}
 
+	public int update1(String username, String password, String newpassword) {
+		String query = "UPDATE QUANLY SET password = ? WHERE username = ? AND password = ?";
+		try (Connection conn = DatabaseUtil.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+			stmt.setString(1, newpassword);
+			stmt.setString(2, username);
+			stmt.setString(3, password);
+			return stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 	@Override
 	public boolean delete(QUANLY t) {
 		String query = "DELETE FROM QUANLY WHERE username = ?";

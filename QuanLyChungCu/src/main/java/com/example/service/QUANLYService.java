@@ -12,4 +12,8 @@ public class QUANLYService {
 	    	QUANLY QUANLY = QUANLYDao.authenticate(username, password);
 	        return QUANLY != null;
 	    }
+		public boolean changeQUANLY(String username, String password, String newpassword) {
+	    	int check = QUANLYDao.update1(username, password,newpassword);
+	        return check != 0;
+	    }
 }

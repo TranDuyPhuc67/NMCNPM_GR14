@@ -531,9 +531,9 @@
                   <input type="text" class="form-control" id="name1" name="name" required />
                 </div>
                 <div class="mb-3">
-                  <label for="idCard" class="form-label">CMND/CCCD</label>
+                  <!-- <label for="idCard" class="form-label">CMND/CCCD</label> -->
                   <input
-                    type="text"
+                    type="hidden"
                     class="form-control"
                     id="idCard1"
                     name="idCard"

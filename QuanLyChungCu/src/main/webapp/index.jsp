@@ -190,7 +190,7 @@ body {
 	<div class="hide-navbar">
 		<nav class="navbar navbar-expand-lg fixed-top">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="HomePage.html"
+				<a class="navbar-brand" href="./"
 					style="margin-left: 30px"> <img
 					src="Image/Remove-bg.ai_1730519657240.png" alt="Logo" height="50" />
 				</a>
@@ -223,27 +223,23 @@ body {
 								<ul class="dropdown-menu dropdown-menu-end"
 									aria-labelledby="notificationDropdown"
 									style="border-radius: 10px; background-color: rgba(52, 52, 52, 0.8);">
-									<li>
-										<p class="dropdown-item" style="color: #efeff0">Bạn chưa
-											có thông báo mới</p>
-									</li>
 
 									<li>
 										<hr class="dropdown-divider" style="background-color: #efeff0" />
 									</li>
-									<li><a class="dropdown-item" href="#"
-										style="color: #efeff0">Trang cá nhân</a></li>
+									<li><a class="dropdown-item" href="DoiMatKhau.jsp"
+										style="color: #efeff0">Đổi mật khẩu</a></li>
 									<li><a href="Logout" style="text-decoration: none">
 											<button class="dropdown-item" style="color: #efeff0">
 												Đăng xuất</button>
 									</a></li>
 								</ul>
 							</div> <%
- } else {
- %> <a class="btn btn-outline-secondary" href="Login.jsp">Đăng
-								nhập</a> <%
- }
- %>
+								} else {
+								%> <a class="btn btn-outline-secondary" href="Login.jsp">Đăng
+																nhập</a> <%
+								}
+								%>
 						</li>
 					</ul>
 				</div>

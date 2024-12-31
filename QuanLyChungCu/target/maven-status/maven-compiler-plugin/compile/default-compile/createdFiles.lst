@@ -52,4 +52,5 @@ com/example/controller/TONGTHANHTOANController.class
 com/example/display/QuanLyCanHo.class
 com/example/controller/LogoutController.class
 com/example/controller/PHIGUIXEController.class
+com/example/controller/ChangePasswordController.class
 com/example/display/QuanLyTamTru.class
