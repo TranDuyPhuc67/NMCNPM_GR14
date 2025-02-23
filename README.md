@@ -1,4 +1,4 @@
-# 🌟 NHẬP MÔN CÔNG NGHỆ PHẦN MỀM - NHÓM 14 🌟
+# 🌟 QUẢN LÝ CHUNG CƯ 🌟
 
 ![Pudgy Penguins](https://media.giphy.com/media/0lGd2OXXHe4tFhb7Wh/giphy.gif)
 
